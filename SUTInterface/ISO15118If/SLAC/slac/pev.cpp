@@ -371,11 +371,18 @@ void Plc::run(void)
       this->mTimer->stop();
       if (true == api_match())
       {
-        pevSleep(4);
         Logging::info(LogSLAC_ENABLE, "[SLAC]: SLAC MATCH successful");
-        if (0 == api_set_key())
+        bool set_key_flag = false;
+        for (size_t i = 0; i < 5; i++)
         {
-          pevSleep(1);
+          if (0 == api_set_key()) {
+            set_key_flag = true;
+            pevSleep(1);
+            break;
+          }
+        }
+        if (set_key_flag)
+        {
           this->notifyEvent(pevStateType_MATCHED);
           Plc::state = pevStateType_LOOP;
           Logging::info(LogSLAC_ENABLE, "[SLAC]: Join logical network successful");
