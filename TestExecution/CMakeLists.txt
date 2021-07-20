@@ -1,0 +1,7 @@
+add_subdirectory(./Components)
+add_subdirectory(./CmnFunc)
+add_subdirectory(./ConfigurationFunc)
+add_subdirectory(./PreConditionFunc)
+add_subdirectory(./PostConditionFunc)
+add_subdirectory(./TestBehaviorFunc)
+add_subdirectory(./LibFunc)

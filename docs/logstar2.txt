@@ -1,0 +1,4069 @@
+log
+POLL: CP Voltage=12V                                                        state A
+V2G: ReportSTATE: type=1, info=12,0
+POLL: Last PD type(2)
+POLL: settle down
+POLL: CP Voltage=9V                                                         CP to state B
+POLL: time to determine a pd type
+V2G: ReportSTATE: type=1, info=9,0
+POLL: settle down
+POLL: PD Type(2)
+qcaspi0.MACTasks: SYNC done.
+GQ: MACAddr[14:1f:ba:10:2c:b4]
+GQ: IPv6Addr[fe80:0:0:0:161f:baff:fe10:2cb4]                                init IPV6 address
+EVSE: state=STATE_EVSE_SLAC                                                 SLAC phase
+Start POLLING !
+SLAC[0] state(PARAM)
+SLAC[1] state(PARAM)
+SLAC[2] state(PARAM)
+SLAC[3] state(PARAM)
+SLAC[4] state(PARAM)
+PWM 5% DUTY
+SLAC: selected session=0
+SLAC[0] [20:38:0737] <-- CM_SLAC_PARAM.REQ
+SLAC[0] [20:38:0737] --> CM_SLAC_PARAM.CNF
+SLAC[0] state(START_ATTEN_CHAR)
+SLAC[0] [20:38:0958] <-- CM_START_ATTEN_CHAR.IND
+SLAC[0] state(MNBC_SOUND)
+SLAC[0] [20:39:0078] <-- CM_MNBC_SOUND.IND(1)
+SLAC[0] [20:39:0079] <-- CM_ATTEN_PROFILE.IND(1)
+SLAC[0] [20:39:0119] <-- CM_MNBC_SOUND.IND(2)
+SLAC[0] [20:39:0119] <-- CM_ATTEN_PROFILE.IND(2)
+SLAC[0] [20:39:0159] <-- CM_MNBC_SOUND.IND(3)
+SLAC[0] [20:39:0159] <-- CM_ATTEN_PROFILE.IND(3)
+SLAC[0] [20:39:0199] <-- CM_MNBC_SOUND.IND(4)
+SLAC[0] [20:39:0199] <-- CM_ATTEN_PROFILE.IND(4)
+SLAC[0] [20:39:0239] <-- CM_MNBC_SOUND.IND(5)
+SLAC[0] [20:39:0240] <-- CM_ATTEN_PROFILE.IND(5)
+SLAC[0] [20:39:0279] <-- CM_MNBC_SOUND.IND(6)
+SLAC[0] [20:39:0280] <-- CM_ATTEN_PROFILE.IND(6)
+SLAC[0] [20:39:0319] <-- CM_MNBC_SOUND.IND(7)
+SLAC[0] [20:39:0320] <-- CM_ATTEN_PROFILE.IND(7)
+SLAC[0] [20:39:0359] <-- CM_MNBC_SOUND.IND(8)
+SLAC[0] [20:39:0360] <-- CM_ATTEN_PROFILE.IND(8)
+SLAC[0] [20:39:0400] <-- CM_MNBC_SOUND.IND(9)
+SLAC[0] [20:39:0400] <-- CM_ATTEN_PROFILE.IND(9)
+SLAC[0] [20:39:0440] <-- CM_MNBC_SOUND.IND(10)
+SLAC[0] [20:39:0441] <-- CM_ATTEN_PROFILE.IND(10)
+SLAC[0] AVGATTN=25
+SLAC[0] state(ATTEN_CHAR)
+SLAC[0] [20:39:0441] --> CM_ATTEN_CHAR.IND
+SLAC[0] [20:39:0446] <-- CM_ATTEN_CHAR.RSP
+SLAC[0] state(MATCH)
+SLAC[0] [20:39:0460] <-- CM_SLAC_MATCH.REQ
+	PEV_MAC = 00:16:81:08:c5:88
+SLAC[0] [20:39:0460] --> CM_SLAC_MATCH.CNF
+SLAC[0] state(JOIN)
+SLAC[0] --> VS_PL_LINK_STATUS.REQ
+SLAC[0] <-- VS_PL_LINK_STATUS.CNF (1)
+SLAC[0] Link Detected !!!
+SLAC[0] state(DONE)
+SLAC: ReportSLAC: ErroCode=0x00
+EVSE: state=STATE_EVSE_SDP
+SDP: state=STATE_SDP_WAIT_REQUEST
+EVSE: state=STATE_EVSE_ACCEPT
+SDP: Rx the reqeust from the PEV (bytes=10)
+sdp-req: ver=1, inv=fe, type=9000, length=2, sec=10, trans_pro=0
+sdp-res: ver=1, type=9001,length=20,secc_port = 53029, sec=10, tcp=0
+SDP: Tx the response to the PEV (bytes = 28, port = 53029)
+SDP: state=STATE_SDP_WAIT_TRIGGER
+EVSE: state=STATE_EVSE_APPHAND
+V2G: <-- ApplicationProtocolHandshake
+	Protocol entry #=1
+		ProtocolNamespace=urn:din:70121:2012:MsgDef
+		Version=2.0
+		SchemaID=1
+		Priority=2
+		Supported SchemaID(DIN)=1
+	Protocol entry #=2
+		ProtocolNamespace=urn:iso:15118:2:2013:MsgDef
+		Version=2.0
+		SchemaID=0
+		Priority=1
+		Supported SchemaID(V2G)=0
+V2G: Protocol=DIN(schemaID=1)
+V2G: --> ApplicationProtocolHandshake
+EVSE: state=STATE_EVSE_ISO15118
+GQ EVSE[20:41:0363] <-- SessionSetup
+SessionSetupReq data:
+	SessionID=00
+	 EVCCID=00:16:81:08:C5:88
+	New SessionID=4F:32:36:31:34:33:39:35
+SessionSetupRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEID=
+GQ EVSE[20:41:0432] --> SessionSetup
+GQ EVSE[20:41:0463] <-- ServiceDiscovery
+ServiceDiscoveryReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+ServiceDiscoveryRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 PaymentOption=1
+	 ServiceTag:
+		 ServiceID=1
+		 ServiceCategory=0
+	 FreeService=0
+	 EnergyTransferType=3
+GQ EVSE[20:41:0524] --> ServiceDiscovery
+GQ EVSE[20:41:0554] <-- ServicePaymentSelection
+ServicePaymentSelectionReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 SelectedPaymentOption=ExternalPayment
+	 SelectedServiceList(1):
+		 ServiceID=1
+ServicePaymentSelectionRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+GQ EVSE[20:41:0612] --> ServicePaymentSelection
+GQ EVSE[20:41:0644] <-- ContractAuthentication
+ContractAuthenticationReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+ContractAuthenticationRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEProcessing=Finished
+GQ EVSE[20:41:0702] --> ContractAuthentication
+GQ EVSE[20:41:0735] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=0 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEProcessing=1
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=0 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[20:41:0832] --> ChargeParameterDiscovery
+GQ EVSE[20:42:0357] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=0 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEProcessing=1
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=0 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[20:42:0456] --> ChargeParameterDiscovery
+GQ EVSE[20:42:0980] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=700 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEProcessing=1
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=0 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[20:43:0079] --> ChargeParameterDiscovery
+GQ EVSE[20:43:0612] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=700 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEProcessing=0
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=500 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[20:43:0712] --> ChargeParameterDiscovery
+POLL: CP Voltage=6V
+V2G: ReportSTATE: type=1, info=6,0
+GQ EVSE[20:43:0953] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:44:0017] --> CableCheck
+GQ EVSE[20:44:0245] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:44:0309] --> CableCheck
+GQ EVSE[20:44:0536] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:44:0600] --> CableCheck
+GQ EVSE[20:44:0827] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:44:0891] --> CableCheck
+GQ EVSE[20:45:0118] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:45:0183] --> CableCheck
+GQ EVSE[20:45:0409] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:45:0474] --> CableCheck
+GQ EVSE[20:45:0701] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:45:0766] --> CableCheck
+GQ EVSE[20:45:0992] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:46:0057] --> CableCheck
+GQ EVSE[20:46:0283] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:46:0350] --> CableCheck
+GQ EVSE[20:46:0574] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:46:0641] --> CableCheck
+GQ EVSE[20:46:0865] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:46:0932] --> CableCheck
+GQ EVSE[20:47:0156] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:47:0214] --> CableCheck
+GQ EVSE[20:47:0437] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:47:0495] --> CableCheck
+GQ EVSE[20:47:0719] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:47:0776] --> CableCheck
+GQ EVSE[20:48:0000] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:48:0058] --> CableCheck
+GQ EVSE[20:48:0281] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:48:0339] --> CableCheck
+GQ EVSE[20:48:0562] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:48:0620] --> CableCheck
+GQ EVSE[20:48:0843] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:48:0902] --> CableCheck
+GQ EVSE[20:49:0124] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:49:0183] --> CableCheck
+GQ EVSE[20:49:0406] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:49:0465] --> CableCheck
+GQ EVSE[20:49:0697] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:49:0756] --> CableCheck
+GQ EVSE[20:49:0988] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:50:0047] --> CableCheck
+GQ EVSE[20:50:0279] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:50:0339] --> CableCheck
+GQ EVSE[20:50:0570] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:50:0630] --> CableCheck
+GQ EVSE[20:50:0861] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:50:0921] --> CableCheck
+GQ EVSE[20:51:0153] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:51:0214] --> CableCheck
+GQ EVSE[20:51:0444] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:51:0505] --> CableCheck
+GQ EVSE[20:51:0735] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:51:0797] --> CableCheck
+GQ EVSE[20:52:0026] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:52:0088] --> CableCheck
+GQ EVSE[20:52:0317] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:52:0380] --> CableCheck
+GQ EVSE[20:52:0609] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:52:0671] --> CableCheck
+GQ EVSE[20:52:0900] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:52:0962] --> CableCheck
+GQ EVSE[20:53:0191] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:53:0254] --> CableCheck
+GQ EVSE[20:53:0482] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:53:0545] --> CableCheck
+GQ EVSE[20:53:0773] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:53:0836] --> CableCheck
+GQ EVSE[20:54:0064] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:54:0128] --> CableCheck
+GQ EVSE[20:54:0356] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:54:0419] --> CableCheck
+GQ EVSE[20:54:0647] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:54:0710] --> CableCheck
+GQ EVSE[20:54:0938] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:55:0003] --> CableCheck
+GQ EVSE[20:55:0229] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:55:0294] --> CableCheck
+GQ EVSE[20:55:0520] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:55:0586] --> CableCheck
+GQ EVSE[20:55:0812] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:55:0877] --> CableCheck
+GQ EVSE[20:56:0103] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:56:0169] --> CableCheck
+GQ EVSE[20:56:0394] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:56:0460] --> CableCheck
+GQ EVSE[20:56:0685] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:56:0751] --> CableCheck
+GQ EVSE[20:56:0976] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:57:0043] --> CableCheck
+GQ EVSE[20:57:0267] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:57:0334] --> CableCheck
+GQ EVSE[20:57:0559] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:57:0625] --> CableCheck
+GQ EVSE[20:57:0850] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:57:0907] --> CableCheck
+GQ EVSE[20:58:0131] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:58:0188] --> CableCheck
+GQ EVSE[20:58:0412] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:58:0470] --> CableCheck
+GQ EVSE[20:58:0693] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:58:0751] --> CableCheck
+GQ EVSE[20:58:0974] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:59:0032] --> CableCheck
+GQ EVSE[20:59:0256] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:59:0314] --> CableCheck
+GQ EVSE[20:59:0537] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:59:0595] --> CableCheck
+GQ EVSE[20:59:0818] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[20:59:0877] --> CableCheck
+GQ EVSE[21:00:0099] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:00:0159] --> CableCheck
+GQ EVSE[21:00:0390] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:00:0450] --> CableCheck
+GQ EVSE[21:00:0681] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:00:0741] --> CableCheck
+GQ EVSE[21:00:0972] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:01:0033] --> CableCheck
+GQ EVSE[21:01:0264] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:01:0324] --> CableCheck
+GQ EVSE[21:01:0555] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:01:0616] --> CableCheck
+GQ EVSE[21:01:0846] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:01:0907] --> CableCheck
+GQ EVSE[21:02:0137] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:02:0199] --> CableCheck
+GQ EVSE[21:02:0428] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:02:0490] --> CableCheck
+GQ EVSE[21:02:0720] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:02:0781] --> CableCheck
+GQ EVSE[21:03:0011] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:03:0073] --> CableCheck
+GQ EVSE[21:03:0302] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:03:0364] --> CableCheck
+GQ EVSE[21:03:0593] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:03:0656] --> CableCheck
+GQ EVSE[21:03:0884] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:03:0948] --> CableCheck
+GQ EVSE[21:04:0176] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:04:0239] --> CableCheck
+GQ EVSE[21:04:0467] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:04:0531] --> CableCheck
+GQ EVSE[21:04:0758] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:04:0822] --> CableCheck
+GQ EVSE[21:05:0049] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:05:0113] --> CableCheck
+GQ EVSE[21:05:0340] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:05:0405] --> CableCheck
+GQ EVSE[21:05:0631] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:05:0696] --> CableCheck
+GQ EVSE[21:05:0923] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:05:0987] --> CableCheck
+GQ EVSE[21:06:0214] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:06:0279] --> CableCheck
+GQ EVSE[21:06:0505] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:06:0570] --> CableCheck
+GQ EVSE[21:06:0796] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:06:0862] --> CableCheck
+GQ EVSE[21:07:0087] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:07:0153] --> CableCheck
+GQ EVSE[21:07:0378] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:07:0445] --> CableCheck
+GQ EVSE[21:07:0670] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:07:0737] --> CableCheck
+GQ EVSE[21:07:0961] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:08:0028] --> CableCheck
+GQ EVSE[21:08:0252] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:08:0310] --> CableCheck
+GQ EVSE[21:08:0533] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:08:0591] --> CableCheck
+GQ EVSE[21:08:0814] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:08:0872] --> CableCheck
+GQ EVSE[21:09:0095] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:09:0154] --> CableCheck
+GQ EVSE[21:09:0377] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:09:0435] --> CableCheck
+GQ EVSE[21:09:0658] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:09:0716] --> CableCheck
+GQ EVSE[21:09:0939] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:09:0998] --> CableCheck
+GQ EVSE[21:10:0220] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:10:0279] --> CableCheck
+GQ EVSE[21:10:0501] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:10:0561] --> CableCheck
+GQ EVSE[21:10:0792] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:10:0852] --> CableCheck
+GQ EVSE[21:11:0084] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:11:0143] --> CableCheck
+GQ EVSE[21:11:0375] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:11:0435] --> CableCheck
+GQ EVSE[21:11:0666] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:11:0726] --> CableCheck
+GQ EVSE[21:11:0957] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:12:0017] --> CableCheck
+GQ EVSE[21:12:0248] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:12:0309] --> CableCheck
+GQ EVSE[21:12:0539] <-- CableCheck
+CableCheckReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[21:12:0601] --> CableCheck
+GQ EVSE[21:12:0700] <-- SessionStop
+SessionStopReq data:
+	SessionID=4F:32:36:31:34:33:39:35
+POLL: CP Voltage=9V
+V2G: ReportSTATE: type=1, info=9,0
+SessionStopRes data:
+	SessionID=4F:32:36:31:34:33:39:35
+	ResponseCode=0
+GQ EVSE[21:12:0758] --> SessionStop
+V2G: ReportV2G: ErroCode=0x00
+Stop POLLING !
+EVSE: state=STATE_EVSE_SLEEP
+GQ EVSE[21:14:0461] <-- PWMOFF
+EVSE: state=STATE_EVSE_WAIT
+
+
++++++++++++++++++++++++++++++++++++++
+[@_@] Apr 18 2019
+[@_@] Code-Version=1.0.1
+[@_@] SLAC-Version=70121:2014-12
+[@_@] Release-Info=20190418-1,(1.2.4)
+
+::: UCOMM :::
+SLAC: --> CM_SET_KEY.REQ
+SLAC: <-- CM_SET_KEY.CNF
+SLAC: Set Key done, wait for settling down
+–δι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ι‘ιfQ EVSE[38:40:0527] <-- PWMOFF
+EVSE: state=STATE_EVSE_WAIT
+
+
++++++++++++++++++++++++++++++++++++++
+[@_@] Apr 18 2019
+[@_@] Code-Version=1.0.1
+[@_@] SLAC-Version=70121:2014-12
+[@_@] Release-Info=20190418-1,(1.2.4)
+
+::: UCOMM :::
+SLAC: --> CM_SET_KEY.REQ
+SLAC: <-- CM_SET_KEY.CNF
+SLAC: Set Key done, wait for settling down
+POLL: CP Voltage=12V
+V2G: ReportSTATE: type=1, info=12,0
+POLL: Last PD type(2)
+POLL: settle down
+UCOMM: !!! weird ALL STOP !!!
+EVSE: state=STATE_EVSE_SLEEP
+GQ EVSE[00:47:0344] <-- PWMOFF
+EVSE: state=STATE_EVSE_WAIT
+
+
++++++++++++++++++++++++++++++++++++++
+[@_@] Apr 18 2019
+[@_@] Code-Version=1.0.1
+[@_@] SLAC-Version=70121:2014-12
+[@_@] Release-Info=20190418-1,(1.2.4)
+
+::: UCOMM :::
+SLAC: --> CM_SET_KEY.REQ
+SLAC: <-- CM_SET_KEY.CNF
+SLAC: Set Key done, wait for settling down
+POLL: CP Voltage=9V
+POLL: time to determine a pd type
+V2G: ReportSTATE: type=1, info=9,0
+POLL: settle down
+POLL: PD Type(2)
+qcaspi0.MACTasks: SYNC done.
+GQ: MACAddr[14:1f:ba:10:2c:b4]
+GQ: IPv6Addr[fe80:0:0:0:161f:baff:fe10:2cb4]
+EVSE: state=STATE_EVSE_SLAC
+Start POLLING !
+SLAC[0] state(PARAM)
+SLAC[1] state(PARAM)
+SLAC[2] state(PARAM)
+SLAC[3] state(PARAM)
+SLAC[4] state(PARAM)
+PWM 5% DUTY
+SLAC: selected session=0
+SLAC[0] [01:17:0761] <-- CM_SLAC_PARAM.REQ
+SLAC[0] [01:17:0761] --> CM_SLAC_PARAM.CNF
+SLAC[0] state(START_ATTEN_CHAR)
+SLAC[0] [01:17:0982] <-- CM_START_ATTEN_CHAR.IND
+SLAC[0] state(MNBC_SOUND)
+SLAC[0] [01:18:0102] <-- CM_MNBC_SOUND.IND(1)
+SLAC[0] [01:18:0103] <-- CM_ATTEN_PROFILE.IND(1)
+SLAC[0] [01:18:0143] <-- CM_MNBC_SOUND.IND(2)
+SLAC[0] [01:18:0143] <-- CM_ATTEN_PROFILE.IND(2)
+SLAC[0] [01:18:0183] <-- CM_MNBC_SOUND.IND(3)
+SLAC[0] [01:18:0184] <-- CM_ATTEN_PROFILE.IND(3)
+SLAC[0] [01:18:0223] <-- CM_MNBC_SOUND.IND(4)
+SLAC[0] [01:18:0224] <-- CM_ATTEN_PROFILE.IND(4)
+SLAC[0] [01:18:0263] <-- CM_MNBC_SOUND.IND(5)
+SLAC[0] [01:18:0264] <-- CM_ATTEN_PROFILE.IND(5)
+SLAC[0] [01:18:0303] <-- CM_MNBC_SOUND.IND(6)
+SLAC[0] [01:18:0304] <-- CM_ATTEN_PROFILE.IND(6)
+SLAC[0] [01:18:0343] <-- CM_MNBC_SOUND.IND(7)
+SLAC[0] [01:18:0344] <-- CM_ATTEN_PROFILE.IND(7)
+SLAC[0] [01:18:0384] <-- CM_MNBC_SOUND.IND(8)
+SLAC[0] [01:18:0384] <-- CM_ATTEN_PROFILE.IND(8)
+SLAC[0] [01:18:0424] <-- CM_MNBC_SOUND.IND(9)
+SLAC[0] [01:18:0424] <-- CM_ATTEN_PROFILE.IND(9)
+SLAC[0] [01:18:0464] <-- CM_MNBC_SOUND.IND(10)
+SLAC[0] [01:18:0465] <-- CM_ATTEN_PROFILE.IND(10)
+SLAC[0] AVGATTN=25
+SLAC[0] state(ATTEN_CHAR)
+SLAC[0] [01:18:0465] --> CM_ATTEN_CHAR.IND
+SLAC[0] [01:18:0470] <-- CM_ATTEN_CHAR.RSP
+SLAC[0] state(MATCH)
+SLAC[0] [01:18:0484] <-- CM_SLAC_MATCH.REQ
+	PEV_MAC = 00:16:81:08:c5:88
+SLAC[0] [01:18:0484] --> CM_SLAC_MATCH.CNF
+SLAC[0] state(JOIN)
+SLAC[0] --> VS_PL_LINK_STATUS.REQ
+SLAC[0] <-- VS_PL_LINK_STATUS.CNF (1)
+SLAC[0] Link Detected !!!
+SLAC[0] state(DONE)
+SLAC: ReportSLAC: ErroCode=0x00
+EVSE: state=STATE_EVSE_SDP
+SDP: state=STATE_SDP_WAIT_REQUEST
+EVSE: state=STATE_EVSE_ACCEPT
+SDP: Rx the reqeust from the PEV (bytes=10)
+sdp-req: ver=1, inv=fe, type=9000, length=2, sec=10, trans_pro=0
+sdp-res: ver=1, type=9001,length=20,secc_port = 50327, sec=10, tcp=0
+SDP: Tx the response to the PEV (bytes = 28, port = 50327)
+SDP: state=STATE_SDP_WAIT_TRIGGER
+EVSE: state=STATE_EVSE_APPHAND
+V2G: <-- ApplicationProtocolHandshake
+	Protocol entry #=1
+		ProtocolNamespace=urn:din:70121:2012:MsgDef
+		Version=2.0
+		SchemaID=1
+		Priority=2
+		Supported SchemaID(DIN)=1
+	Protocol entry #=2
+		ProtocolNamespace=urn:iso:15118:2:2013:MsgDef
+		Version=2.0
+		SchemaID=0
+		Priority=1
+		Supported SchemaID(V2G)=0
+V2G: Protocol=DIN(schemaID=1)
+V2G: --> ApplicationProtocolHandshake
+EVSE: state=STATE_EVSE_ISO15118
+GQ EVSE[01:21:0582] <-- SessionSetup
+SessionSetupReq data:
+	SessionID=00
+	 EVCCID=00:16:81:08:C5:88
+	New SessionID=35:50:4B:4F:38:34:33:31
+SessionSetupRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEID=
+GQ EVSE[01:21:0654] --> SessionSetup
+GQ EVSE[01:21:0682] <-- ServiceDiscovery
+ServiceDiscoveryReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+ServiceDiscoveryRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 PaymentOption=1
+	 ServiceTag:
+		 ServiceID=1
+		 ServiceCategory=0
+	 FreeService=0
+	 EnergyTransferType=3
+GQ EVSE[01:21:0747] --> ServiceDiscovery
+GQ EVSE[01:21:0783] <-- ServicePaymentSelection
+ServicePaymentSelectionReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 SelectedPaymentOption=ExternalPayment
+	 SelectedServiceList(1):
+		 ServiceID=1
+ServicePaymentSelectionRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+GQ EVSE[01:21:0845] --> ServicePaymentSelection
+GQ EVSE[01:21:0873] <-- ContractAuthentication
+ContractAuthenticationReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+ContractAuthenticationRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEProcessing=Finished
+GQ EVSE[01:21:0935] --> ContractAuthentication
+GQ EVSE[01:21:0973] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=0 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEProcessing=1
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=0 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[01:22:0075] --> ChargeParameterDiscovery
+GQ EVSE[01:22:0606] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=0 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEProcessing=1
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=0 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[01:22:0699] --> ChargeParameterDiscovery
+GQ EVSE[01:23:0229] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=700 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEProcessing=1
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=500 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=5000 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[01:23:0322] --> ChargeParameterDiscovery
+GQ EVSE[01:23:0851] <-- ChargeParameterDiscovery
+ChargeParameterDiscoveryReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVRequestedEnergyTransferType=3
+	 EVChargeParameter:
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+	 EVMaximumCurrentLimit=0 (0 0)
+	 EVMaximumPowerLimit=1500 (0 2)
+	 EVMaximumVoltageLimit=700 (0 0)
+	 EVEnergyCapacity=259 (0 3)
+	 EVEnergyRequest=226 (0 3)
+	 FullSOC=100
+	 BulkSOC=80
+ChargeParameterDiscoveryRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEProcessing=0
+	 EVSEStatus:
+		 EVSEStatusCode=1
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+	 EVSEMaximumCurrentLimit=500 (3 -1)
+	 EVSEMaximumPowerLimit=300 (7 2)
+	 EVSEMaximumVoltageLimit=7500 (5 -1)
+	 EVSEMinimumCurrentLimit=0 (3 -1)
+	 EVSEMinimumVoltageLimit=2000 (5 -1)
+	 EVSECurrentRegulationTolerance=20 (3 -1)
+	 EVSEPeakCurrentRipple=20 (3 -1)
+	SAScheduleList: 
+		 Tuple#1: 
+		 SAScheduleTupleID=10: 
+			 Entry#1: 
+				 PMax=180
+				 Start=0 
+				 Duration=86400 
+GQ EVSE[01:23:0945] --> ChargeParameterDiscovery
+POLL: CP Voltage=6V
+V2G: ReportSTATE: type=1, info=6,0
+GQ EVSE[01:24:0172] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:24:0230] --> CableCheck
+GQ EVSE[01:24:0453] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:24:0511] --> CableCheck
+GQ EVSE[01:24:0735] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:24:0793] --> CableCheck
+GQ EVSE[01:25:0016] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:25:0074] --> CableCheck
+GQ EVSE[01:25:0297] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:25:0355] --> CableCheck
+GQ EVSE[01:25:0578] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:25:0637] --> CableCheck
+GQ EVSE[01:25:0859] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:25:0918] --> CableCheck
+GQ EVSE[01:26:0140] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:26:0200] --> CableCheck
+GQ EVSE[01:26:0431] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:26:0491] --> CableCheck
+GQ EVSE[01:26:0723] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:26:0782] --> CableCheck
+GQ EVSE[01:27:0014] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:27:0074] --> CableCheck
+GQ EVSE[01:27:0305] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:27:0365] --> CableCheck
+GQ EVSE[01:27:0596] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:27:0657] --> CableCheck
+GQ EVSE[01:27:0887] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:27:0949] --> CableCheck
+GQ EVSE[01:28:0179] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:28:0240] --> CableCheck
+GQ EVSE[01:28:0470] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:28:0532] --> CableCheck
+GQ EVSE[01:28:0761] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:28:0823] --> CableCheck
+GQ EVSE[01:29:0052] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:29:0114] --> CableCheck
+GQ EVSE[01:29:0343] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:29:0406] --> CableCheck
+GQ EVSE[01:29:0634] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:29:0697] --> CableCheck
+GQ EVSE[01:29:0926] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:29:0989] --> CableCheck
+GQ EVSE[01:30:0217] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:30:0280] --> CableCheck
+GQ EVSE[01:30:0508] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:30:0571] --> CableCheck
+GQ EVSE[01:30:0799] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:30:0863] --> CableCheck
+GQ EVSE[01:31:0091] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:31:0154] --> CableCheck
+GQ EVSE[01:31:0382] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:31:0446] --> CableCheck
+GQ EVSE[01:31:0673] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:31:0738] --> CableCheck
+GQ EVSE[01:31:0964] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:32:0029] --> CableCheck
+GQ EVSE[01:32:0255] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:32:0321] --> CableCheck
+GQ EVSE[01:32:0546] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:32:0612] --> CableCheck
+GQ EVSE[01:32:0838] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:32:0903] --> CableCheck
+GQ EVSE[01:33:0129] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:33:0195] --> CableCheck
+GQ EVSE[01:33:0420] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:33:0486] --> CableCheck
+GQ EVSE[01:33:0711] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:33:0778] --> CableCheck
+GQ EVSE[01:34:0002] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:34:0059] --> CableCheck
+GQ EVSE[01:34:0283] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:34:0350] --> CableCheck
+GQ EVSE[01:34:0574] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:34:0632] --> CableCheck
+GQ EVSE[01:34:0856] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:34:0913] --> CableCheck
+GQ EVSE[01:35:0137] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:35:0195] --> CableCheck
+GQ EVSE[01:35:0418] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:35:0476] --> CableCheck
+GQ EVSE[01:35:0699] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:35:0757] --> CableCheck
+GQ EVSE[01:35:0980] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:36:0039] --> CableCheck
+GQ EVSE[01:36:0271] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:36:0331] --> CableCheck
+GQ EVSE[01:36:0563] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:36:0622] --> CableCheck
+GQ EVSE[01:36:0844] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:36:0904] --> CableCheck
+GQ EVSE[01:37:0135] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:37:0195] --> CableCheck
+GQ EVSE[01:37:0426] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:37:0486] --> CableCheck
+GQ EVSE[01:37:0717] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:37:0778] --> CableCheck
+GQ EVSE[01:38:0008] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:38:0069] --> CableCheck
+GQ EVSE[01:38:0300] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:38:0361] --> CableCheck
+GQ EVSE[01:38:0591] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:38:0652] --> CableCheck
+GQ EVSE[01:38:0882] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:38:0943] --> CableCheck
+GQ EVSE[01:39:0173] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:39:0235] --> CableCheck
+GQ EVSE[01:39:0464] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:39:0526] --> CableCheck
+GQ EVSE[01:39:0755] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:39:0818] --> CableCheck
+GQ EVSE[01:40:0047] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:40:0109] --> CableCheck
+GQ EVSE[01:40:0338] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:40:0401] --> CableCheck
+GQ EVSE[01:40:0629] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:40:0693] --> CableCheck
+GQ EVSE[01:40:0920] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:40:0984] --> CableCheck
+GQ EVSE[01:41:0211] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:41:0276] --> CableCheck
+GQ EVSE[01:41:0503] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:41:0567] --> CableCheck
+GQ EVSE[01:41:0794] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:41:0858] --> CableCheck
+GQ EVSE[01:42:0085] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:42:0150] --> CableCheck
+GQ EVSE[01:42:0376] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:42:0441] --> CableCheck
+GQ EVSE[01:42:0667] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:42:0732] --> CableCheck
+GQ EVSE[01:42:0958] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:43:0024] --> CableCheck
+GQ EVSE[01:43:0250] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:43:0315] --> CableCheck
+GQ EVSE[01:43:0541] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:43:0607] --> CableCheck
+GQ EVSE[01:43:0832] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:43:0898] --> CableCheck
+GQ EVSE[01:44:0123] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:44:0190] --> CableCheck
+GQ EVSE[01:44:0414] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:44:0472] --> CableCheck
+GQ EVSE[01:44:0695] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:44:0753] --> CableCheck
+GQ EVSE[01:44:0977] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:45:0045] --> CableCheck
+GQ EVSE[01:45:0268] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:45:0326] --> CableCheck
+GQ EVSE[01:45:0549] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:45:0607] --> CableCheck
+GQ EVSE[01:45:0830] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:45:0889] --> CableCheck
+GQ EVSE[01:46:0111] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:46:0170] --> CableCheck
+GQ EVSE[01:46:0393] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:46:0451] --> CableCheck
+GQ EVSE[01:46:0674] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:46:0733] --> CableCheck
+GQ EVSE[01:46:0965] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:47:0024] --> CableCheck
+GQ EVSE[01:47:0246] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:47:0306] --> CableCheck
+GQ EVSE[01:47:0537] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:47:0597] --> CableCheck
+GQ EVSE[01:47:0828] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:47:0888] --> CableCheck
+GQ EVSE[01:48:0120] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:48:0180] --> CableCheck
+GQ EVSE[01:48:0411] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:48:0471] --> CableCheck
+GQ EVSE[01:48:0702] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:48:0762] --> CableCheck
+GQ EVSE[01:48:0993] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:49:0055] --> CableCheck
+GQ EVSE[01:49:0284] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:49:0346] --> CableCheck
+GQ EVSE[01:49:0575] <-- CableCheck
+CableCheckReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 EVChargeParameter:
+	 EVStatus:
+		 EVReady=1
+		 EVRESSSOC=12
+		 EVErrorCode=0
+		 EVCabinConditioning=1
+CableCheckRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	 ResponseCode=0
+	 EVSEStatus:
+		 EVSEIsolationStatus=0
+		 EVSEStatusCode=4
+		 EVSENotification=None_EVSENotificationType
+		 NotificationMaxDelay=0
+GQ EVSE[01:49:0638] --> CableCheck
+GQ EVSE[01:49:0656] <-- SessionStop
+SessionStopReq data:
+	SessionID=35:50:4B:4F:38:34:33:31
+POLL: CP Voltage=9V
+V2G: ReportSTATE: type=1, info=9,0
+SessionStopRes data:
+	SessionID=35:50:4B:4F:38:34:33:31
+	ResponseCode=0
+GQ EVSE[01:49:0735] --> SessionStop
+V2G: ReportV2G: ErroCode=0x00
+Stop POLLING !
+EVSE: state=STATE_EVSE_SLEEP
+GQ EVSE[01:51:0436] <-- PWMOFF
+EVSE: state=STATE_EVSE_WAIT
+
+
++++++++++++++++++++++++++++++++++++++
+[@_@] Apr 18 2019
+[@_@] Code-Version=1.0.1
+[@_@] SLAC-Version=70121:2014-12
+[@_@] Release-Info=20190418-1,(1.2.4)
+
+::: UCOMM :::
+SLAC: --> CM_SET_KEY.REQ
+SLAC: <-- CM_SET_KEY.CNF
+SLAC: Set Key done, wait for settling down

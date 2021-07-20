@@ -1,0 +1,14 @@
+{
+  "threshold":
+  {
+    "C_EV_vald_nb_toggles" : 3,
+    "C_EV_match_signalattn_direct" : 20,
+    "C_EV_match_signalattn_indirect" : 80
+  },
+  "timer":
+  {
+    "TP_EV_vald_state_duration" : 0.3,
+    "TP_EV_vald_toggle" : 2.4,
+    "TP_EV_SLAC_init" : 15
+  }
+}
