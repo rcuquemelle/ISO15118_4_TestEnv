@@ -89,6 +89,7 @@ SeccBasicSignaling::SeccBasicSignaling(const std::shared_ptr<CppCommon::Asio::Se
   this->_pwmFreq = 0.0;
   this->_voltLevel = 0.0;
   this->_state = DataStructure_HAL_61851::IEC_61851_States::none_;
+  // pigpio_start() // Connects to a pigpio daemon
   // init relay
   relay_flag = (RASP_GPIO_OK == this->initRelay());
   // init UART

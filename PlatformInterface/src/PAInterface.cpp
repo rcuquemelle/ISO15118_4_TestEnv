@@ -130,7 +130,7 @@ void PATimer::stop()
   }
   // while (this->state == enPATimerState::EXECUTE)
   // {
-  //   std::this_thread::sleep_for(asio::chrono::milliseconds(10));
+  //   std::this_thread::sleep_for(std::chrono::milliseconds(10));
   // }
   this->tmOutFlag = false;
 }
@@ -145,7 +145,7 @@ bool PATimer::wait_timeout()
   this->start();
   while (this->state != enPATimerState::COMPLETED)
   {
-    std::this_thread::sleep_for(asio::chrono::milliseconds(10));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
   bool temp = this->tmOutFlag;
   this->_clean();

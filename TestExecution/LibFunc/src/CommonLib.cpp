@@ -71,15 +71,18 @@ verdict_val f_SECC_CMN_PR_PLCLinkStatus_001(std::shared_ptr<System_SECC> &system
   std::shared_ptr<BaseOperation> cmd = std::make_shared<BaseOperation>(OpType_SLAC);
   std::shared_ptr<PATimer> t_sleep = _mtc->pt_TimerManager->createTimer("local_slac", 30);
   cmd->SLACReq = std::make_shared<DLINKCmd>();
-  cmd->SLACReq->cmd = GET_DLINK_STATUS;
+  cmd->SLACReq->cmd = en_DLINKCmdType::GET_DLINK_STATUS;
   cmd->SLACRes = std::make_shared<DLINKEvent>();
+  cmd->SLACRes->event = en_DLINKEventType::DISCONNECT;
 
-  auto handler = [&t_sleep](std::shared_ptr<BaseOperation>& expected, std::shared_ptr<BaseOperation>& received) -> bool {
-    if (received->SLACRes->event == MATCHED) {
-      expected->SLACRes->event = MATCHED;
+  auto handler = [](std::shared_ptr<BaseOperation>& expected, std::shared_ptr<BaseOperation>& received) -> bool {
+    if (received->SLACRes->event == en_DLINKEventType::MATCHED) {
+      expected->SLACRes->event = en_DLINKEventType::MATCHED;
+      Logging::debug(LogCfgFnc_ENABLE, "[CMN_LIB]: MATCHED Event receive");
       return true;
     }
     else {
+      Logging::debug(LogCfgFnc_ENABLE, fmt::format("[CMN_LIB]: SLAC Event {} receive", received->SLACRes->event));
       return false;
     }
   };
@@ -95,14 +98,14 @@ verdict_val f_SECC_CMN_PR_PLCLinkStatus_001(std::shared_ptr<System_SECC> &system
     if (t_sleep->timeout()){
       Logging::info(LogCfgFnc_ENABLE, "[CMN_LIB]: SLAC timeout");
       _mtc->pt_TimerManager->popTimer("local_slac");
-      cmd->SLACRes->event = DISCONNECT;
+      cmd->SLACRes->event = en_DLINKEventType::DISCONNECT;
       break;
     }
   }
-  if (cmd->SLACRes->event == MATCHED)
+  if (cmd->SLACRes->event == en_DLINKEventType::MATCHED)
   {
     PAsleep(5);
-    cmd->SLACReq->cmd = SET_DLINK_CLOSE_FD;
+    cmd->SLACReq->cmd = en_DLINKCmdType::SET_DLINK_CLOSE_FD;
     _mtc->pt_SLAC_Port->send(cmd);
     PAsleep(5);
     (void)systemSECC->_pUDPIf->start();

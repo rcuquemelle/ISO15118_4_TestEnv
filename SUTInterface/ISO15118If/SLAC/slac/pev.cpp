@@ -116,7 +116,7 @@ void Plc::updateControlPilotState(IEC_61851_States cur_state)
 static void pevSleep(float val)
 {
   uint64_t micros_val = val * 1000000;
-  std::this_thread::sleep_for(asio::chrono::microseconds(micros_val));
+  std::this_thread::sleep_for(std::chrono::microseconds(micros_val));
 }
 void callBCBToggle(float period, uint8_t number)
 {
@@ -376,8 +376,8 @@ void Plc::run(void)
         for (size_t i = 0; i < 5; i++)
         {
           if (0 == api_set_key()) {
-            set_key_flag = true;
             pevSleep(1);
+            set_key_flag = true;
             break;
           }
         }
