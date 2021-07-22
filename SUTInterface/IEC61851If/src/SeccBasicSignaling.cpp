@@ -89,7 +89,6 @@ SeccBasicSignaling::SeccBasicSignaling(const std::shared_ptr<CppCommon::Asio::Se
   this->_pwmFreq = 0.0;
   this->_voltLevel = 0.0;
   this->_state = DataStructure_HAL_61851::IEC_61851_States::none_;
-  // pigpio_start() // Connects to a pigpio daemon
   // init relay
   relay_flag = (RASP_GPIO_OK == this->initRelay());
   // init UART
@@ -310,11 +309,13 @@ void SeccBasicSignaling::getSTMDataCyclic(bool _cancel)
 #endif
 }
 
-uint8_t SeccBasicSignaling::initRelay(void)
+int SeccBasicSignaling::initRelay(void)
 {
-  uint8_t result = RASP_GPIO_OK;
+  int result = RASP_GPIO_OK;
 #if (PI_ENABLE == 1)
-  if (RASP_GPIO_OK > gpioInitialise())
+  this->pid = pigpio_start(NULL, NULL); // Connects to a pigpio daemon
+  // if (RASP_GPIO_OK > gpioInitialise())
+  if (RASP_GPIO_OK > this->pid)
   {
     result = 0xFF;
   }
@@ -322,15 +323,21 @@ uint8_t SeccBasicSignaling::initRelay(void)
   {
     for (int i = 0; i < SIZE_RELAY; i++)
     {
-      result += gpioSetMode(relay_list[i].gpio, PI_OUTPUT);
+      result += set_mode(this->pid, relay_list[i].gpio, PI_OUTPUT);
+      // result += gpioSetMode(relay_list[i].gpio, PI_OUTPUT);
       // pull up default HIGH
-      result += gpioSetPullUpDown(relay_list[i].gpio, relay_list[i].pull_type);
-      result += gpioWrite(relay_list[i].gpio, relay_list[i].default_val);
+      result += set_pull_up_down(this->pid, relay_list[i].gpio, relay_list[i].pull_type);
+      // result += gpioSetPullUpDown(relay_list[i].gpio, relay_list[i].pull_type);
+      result += gpio_write(this->pid, relay_list[i].gpio, relay_list[i].default_val);
+      // result += gpioWrite(relay_list[i].gpio, relay_list[i].default_val);
     }
+    result += set_mode(this->pid, INPUT_ISR_PIN, PI_INPUT);
+    // result += gpioSetMode(INPUT_ISR_PIN, PI_INPUT);
+    result += set_pull_up_down(this->pid, INPUT_ISR_PIN, PI_PUD_UP);
+    // result += gpioSetPullUpDown(INPUT_ISR_PIN, PI_PUD_UP);
+    result += callback_ex(this->pid, INPUT_ISR_PIN, RISING_EDGE, &SeccBasicSignaling::btnISRFunc, this);
+    // result += gpioSetISRFuncEx(INPUT_ISR_PIN, 0, 10, &SeccBasicSignaling::btnISRFunc, this);
   }
-  result += gpioSetMode(INPUT_ISR_PIN, PI_INPUT);
-  result += gpioSetPullUpDown(INPUT_ISR_PIN, PI_PUD_UP);
-  result += gpioSetISRFuncEx(INPUT_ISR_PIN, 0, 10, &SeccBasicSignaling::btnISRFunc, this);
   if (RASP_GPIO_OK == result)
   {
     initialized_flag = RASP_GPIO_OK;
@@ -344,7 +351,8 @@ uint8_t SeccBasicSignaling::initRelay(void)
 #endif
   return result;
 }
-void SeccBasicSignaling::btnISRFunc(int gpio, int level, uint32_t tick, void *userdata)
+// void SeccBasicSignaling::btnISRFunc(int gpio, int level, uint32_t tick, void *userdata)
+void SeccBasicSignaling::btnISRFunc(int pi, uint32_t gpio, uint32_t level, uint32_t tick, void *userdata)
 {
   if ((gpio == INPUT_ISR_PIN) && (0 == level))
   {
@@ -367,7 +375,8 @@ void SeccBasicSignaling::getButtonPress(bool _cancel)
   this->_timer_cancel = _cancel;
   if (false == _cancel)
   {
-    int value = gpioRead(INPUT_ISR_PIN);
+    // int value = gpioRead(INPUT_ISR_PIN);
+    int value = gpio_read(this->pid, INPUT_ISR_PIN);
     if (value >= 0)
     {
       this->pressState = (this->pressState << 1) | value | 0xE0000000;
@@ -418,7 +427,8 @@ void SeccBasicSignaling::startCheckBtn(void)
 void SeccBasicSignaling::deInitRelay(void)
 {
 #if (PI_ENABLE == 1)
-  gpioTerminate();
+  pigpio_stop(this->pid);
+  // gpioTerminate();
 #endif
 }
 
@@ -430,7 +440,8 @@ uint8_t SeccBasicSignaling::setRelay(relay_pin_t idx, relay_val_t value)
   relay_idx = this->checkValidGpio(idx);
   if ((RASP_GPIO_OK == initialized_flag) && (RASP_GPIO_NG != relay_idx))
   {
-    result = gpioWrite(relay_list[relay_idx].gpio, SET_RELAY[relay_list[relay_idx].type][value]);
+    // result = gpioWrite(relay_list[relay_idx].gpio, SET_RELAY[relay_list[relay_idx].type][value]);
+    result = gpio_write(this->pid, relay_list[relay_idx].gpio, SET_RELAY[relay_list[relay_idx].type][value]);
     // Logging::debug(LogSut61851_ENABLE, fmt::format("[SUT_IF][61851]: SET GPIO {0}, VALUE {1} ", relay_list[relay_idx].gpio, SET_RELAY[relay_list[relay_idx].type][value]));
   }
   else

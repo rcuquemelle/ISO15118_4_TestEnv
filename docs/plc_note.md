@@ -12,6 +12,13 @@ open folder:
   - pev -i eth1 -p ~/Desktop/open-plc-utils/slac/pev.ini (check connection)
   - copy pev.ini to home folder
 
+sudo systemctl enable pigpiod
+sudo systemctl stop pigpiod.service
+sudo vim /lib/systemd/system/pigpiod.service
+pigpiod -x -1
+sudo systemctl daemon-reload
+sudo systemctl restart pigpiod.service
+
 REWRITE LOGGING INFO
 ADD DUMP MSG
 FIX SLAC VERIFY

@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <ctime>
 #include <cstdlib>
+#include <regex>
 
 static const char* HAL_CMD[] = {
   [IEC_61851_States::A] = "A",
@@ -142,8 +143,20 @@ bool a_CMN_shutdownOscillator(std::shared_ptr<HAL_61851_Internal_Port>& port){
   return false;
 }
 
-bool fx_validateEVSEID(std::string id, std::string compare_id){
-  return (id.compare(compare_id) != 0);
+bool fx_validateEVSEID(const std::string& v_evseID,const std::string& v_protocol) {
+  std::regex regex_msg("\\w{2}\\*[a-zA-Z0-9]{3}\\*E[a-zA-Z0-9\\*]{1,30}", std::regex_constants::ECMAScript);
+  std::smatch matches;
+  if (v_protocol == "ISO") {
+    if (std::regex_search(v_evseID, matches, regex_msg)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+    return (v_evseID.compare(v_protocol) != 0);
+  }
 }
 
 // output random sessionID value

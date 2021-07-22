@@ -8,7 +8,7 @@
 #include "asiowrapper/timer.h"
 #include <vector>
 #if (PI_ENABLE == 1)
-#include <pigpio.h>
+#include <pigpiod_if2.h>
 #include "frame_com_service.h"
 #endif
 
@@ -154,6 +154,7 @@ private:
   float _pwmFreq;
   float _voltLevel;
   uint32_t btnCounter;
+  int pid;
   std::shared_ptr<CppCommon::Asio::Service> _service;
   std::shared_ptr<CppCommon::Asio::Timer> _cyclicTimer;
   std::shared_ptr<CppCommon::Asio::Timer> _bcbTimer;
@@ -161,7 +162,7 @@ private:
   DataStructure_HAL_61851::IEC_61851_States _state;
   uint8_t initialized_flag = 0xFF;
   uint8_t checkValidGpio(relay_pin_t idx);
-  uint8_t initRelay(void);
+  int initRelay(void);
   void deInitRelay(void);
 
   std::vector<NotifyFunc> funcList;
@@ -204,7 +205,8 @@ public:
   uint32_t pressState;
   std::atomic<bool> btnPressFlag;
   bool isButtonPress(void);
-  static void btnISRFunc(int gpio, int level, uint32_t tick, void *userdata);
+  // static void btnISRFunc(int gpio, int level, uint32_t tick, void *userdata);
+  static void btnISRFunc(int pi, uint32_t gpio, uint32_t level, uint32_t tick, void *userdata);
   void startCheckBtn(void);
   uint32_t getBtnPressCounter(void);
   void resetBtnCounter(void);

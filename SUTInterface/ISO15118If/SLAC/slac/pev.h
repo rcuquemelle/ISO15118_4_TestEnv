@@ -122,6 +122,7 @@ public:
   void setEventCallBack(const std::shared_ptr<onSLACEventType>& eventHandler) { _onEventHandler = eventHandler; }
   static void updateControlPilotState(DataStructure_HAL_61851::IEC_61851_States cur_state);
   static void timeout_pev_init(bool timeout);
+  bool reinitValid(void);
 private:
   void notifyEvent(pevStateType event);
 };

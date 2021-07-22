@@ -24,7 +24,7 @@ extern void f_check_PhysicalValue_valueRange(std::shared_ptr<SECC_Tester> &_mtc,
 extern void f_SECC_setIsConfirmationFlagDC(void);
 extern verdict_val f_SECC_setProximity(int val);
 extern std::shared_ptr<urn_iso_15118_2_2013_X509Def::iso1Part4_X509CertificateType> fx_loadCertificate(DataStructure_PIXIT_15118_2::iso1Part4_PkiType type, const std::string &name);
-extern bool fx_validateEVSEID(std::string id, std::string compare_id);
+extern bool fx_validateEVSEID(const std::string& v_evseID,const std::string& v_protocol);
 extern std::vector<uint8_t> f_rnd_SessionID(uint32_t lower_val, uint32_t upper_val);
 extern std::string f_toString(char *arr, int size);
 extern std::string f_toString(char arr[]);

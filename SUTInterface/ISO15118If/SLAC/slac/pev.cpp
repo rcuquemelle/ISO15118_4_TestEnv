@@ -90,6 +90,10 @@ void Plc::timeout_pev_init(bool timeout)
   Logging::info(LogSLAC_ENABLE, "[SLAC]: Timeout pev init");
   Plc::state = pevStateType_DISCONNECTED;
 }
+
+bool Plc::reinitValid() {
+  return isInStateArr(this->BC->getState(), TRG_INIT_STATE);
+}
 // map to IEC61851 to notify when state change
 void Plc::updateControlPilotState(IEC_61851_States cur_state)
 {
@@ -171,13 +175,14 @@ bool Plc::reinit(void)
     return false;
   }
   // set qca interface attribute NMK, NID,
+  pevSleep(1);
   if (1 == api_set_key())
   {
     // error return
     Logging::error(LogSLAC_ENABLE, "[SLAC]: Failed to set param for QCA interface");
     return false;
   }
-  pevSleep(2);
+  pevSleep(1);
   return true;
 }
 #define FUNC_SIZE 4
@@ -280,6 +285,9 @@ void Plc::run(void)
         {
           Plc::reInitCounter = NO_REINIT_SLAC;
           Logging::info(LogSLAC_ENABLE, "[SLAC]: ReInit qca interface completed");
+          if (this->reinitValid()) {
+            Plc::state = pevStateType_MATCHING;
+          }
         }
       }
       // end after 10 retry
