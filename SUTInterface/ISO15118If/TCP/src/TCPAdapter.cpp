@@ -40,6 +40,7 @@ bool TCPAdapter::setSUTAddress(const std::string& ipv6_address, int port, const 
 bool TCPAdapter::connect() {
   // if SUTAddress is configured and valid then call TCPClient.Connect
   if (this->_validSUTAddress) {
+    this->SetupKeepAlive(true);
     if (true == this->ConnectAsync())
     {
       Logging::debug(LogSutTCP_ENABLE, fmt::format("[SUT_IF][ISO15118][TCP]: try connected {0}-{1}",this->address(), this->port()));

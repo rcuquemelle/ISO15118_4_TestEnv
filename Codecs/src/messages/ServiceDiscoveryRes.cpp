@@ -21,12 +21,12 @@ ServiceDiscoveryRes::~ServiceDiscoveryRes()
 
 responseCodeType ServiceDiscoveryRes::getResponseCode()
 {
-    return mExiData.V2G_Message.Body.ServiceDetailRes.ResponseCode;
+    return mExiData.V2G_Message.Body.ServiceDiscoveryRes.ResponseCode;
 }
 
 void ServiceDiscoveryRes::setResponseCode(responseCodeType code)
 {
-    mExiData.V2G_Message.Body.ServiceDetailRes.ResponseCode = code;
+    mExiData.V2G_Message.Body.ServiceDiscoveryRes.ResponseCode = code;
     this->mResponseCode = code;
 }
 

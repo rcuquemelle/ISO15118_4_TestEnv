@@ -788,6 +788,7 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedPaymentOption(selPaymentOption);
   std::shared_ptr<SelectedServiceListType> servicelist = std::shared_ptr<SelectedServiceListType>(new SelectedServiceListType);
+  servicelist->SelectedService.arrayLen = 1;
   servicelist->SelectedService.array[0].ServiceID = 1;
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedServiceList(servicelist.get());
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);

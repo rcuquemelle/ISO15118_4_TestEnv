@@ -46,14 +46,12 @@ void f_SECC_changeValidFrequencyRange(std::shared_ptr<System_SECC> &_systemSECC,
   if (!((lower <= feq) && (feq <= upper))){
     Logging::error(LogCmnLib_ENABLE, fmt::format("[CMN_LIB]: Frequency of CP PWM {0} is out of range {1}-{2}", feq, lower, upper));
   }
-  Logging::debug(LogCmnLib_ENABLE, fmt::format("[CMN_LIB]: f_SECC_changeValidFrequencyRange {0} {1}-{2}", feq, lower, upper));
 }
 void f_SECC_changeValidDutyCycleRange(std::shared_ptr<System_SECC> &_systemSECC, float lower, float upper) {
   float duty = _systemSECC->_pBCIf->getPWMDuty();
   if (!((lower <= duty) && (duty <= upper))){
     Logging::error(LogCmnLib_ENABLE, fmt::format("[CMN_LIB]: Duty of CP PWM {0} is out of range {1}-{2}", duty, lower, upper));
   }
-  Logging::debug(LogCmnLib_ENABLE, fmt::format("[CMN_LIB]: f_SECC_changeValidDutyCycleRange {0} {1}-{2}", duty, lower, upper));
 }
 // check plc link status
 verdict_val f_SECC_CMN_PR_PLCLinkStatus_002(std::shared_ptr<System_SECC> &systemSECC, std::shared_ptr<SECC_Tester> &_mtc, std::shared_ptr<HAL_61851_Listener>& v_HAL_61851_Listener)
@@ -109,9 +107,14 @@ verdict_val f_SECC_CMN_PR_PLCLinkStatus_001(std::shared_ptr<System_SECC> &system
     cmd->SLACReq->cmd = en_DLINKCmdType::SET_DLINK_CLOSE_FD;
     _mtc->pt_SLAC_Port->send(cmd);
     PAsleep(5);
-    (void)systemSECC->_pUDPIf->start();
-    Logging::info(LogCmnLib_ENABLE, "[CMN_LIB]: SLAC - CONNECTED");
-    return pass;
+    if (systemSECC->_pUDPIf->start()) {
+      Logging::info(LogCmnLib_ENABLE, "[CMN_LIB]: SLAC - CONNECTED");
+      return pass;
+    }
+    else {
+      Logging::info(LogCmnLib_ENABLE, "[CMN_LIB]: UDP connect - FAIL");
+      return fail;
+    }
   }
   else
   {
@@ -137,7 +140,7 @@ void f_hexStringToArr(const std::string &hexString, std::vector<uint8_t> &arr) {
   }
 }
 
-// check if pwm output is turnoff by SECC when TCP connection is shutdown
+// check if pwm output is turnoff by SECC before TCP connection is shutdown
 bool a_CMN_shutdownOscillator(std::shared_ptr<HAL_61851_Internal_Port>& port){
 
   return false;

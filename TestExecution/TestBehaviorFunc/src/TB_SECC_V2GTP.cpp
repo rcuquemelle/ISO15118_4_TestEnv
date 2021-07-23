@@ -13,6 +13,9 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
   // send session setup request msg
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<SessionSetupReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<SessionSetupRes>();
+  // md_CMN_V2GTP_header_TYPE_001('01'H,'FE'H,'8001'H, omit)
+  sendMsg->setTPVersion(0x01, 0xFE);
+  sendMsg->setPayloadType(0x8001);
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setEVCCID(this->mtc->vc_eVCCID);
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mEVSEID_flag = has_value;
@@ -29,27 +32,38 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
     // check if deserialize is valid?
     if (cast_received->deserialize())
     {
-      // compare cast_received and cast_expected
-      if ((*cast_expected) == (*cast_received))
-      {
-        // pass v2g session setup is ok
-        this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-        Logging::debug(LogTbFnc_ENABLE, "[TB][V2GTPSessionSetup_001]: PASS - Session setup completed");
-        this->mtc->setverdict(pass, "V2GTP (SessionSetupRes) message was correct.");
-        this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
-        return true;
+      char V2GTPHeader[8];
+      cast_received->getHeader(V2GTPHeader);
+      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x8001)
+        && (cast_received->getPayloadLength() != 0)) {
+        // compare cast_received and cast_expected
+        if ((*cast_expected) == (*cast_received))
+        {
+          // pass v2g session setup is ok
+          this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
+          this->mtc->setverdict(pass, "V2GTP (SessionSetupRes) message was correct.");
+          this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
+          return true;
+        }
+        else
+        {
+          // invalid receive message content - not match with expected
+          // -> set receive msg queue status to unexpected content
+          // a_SECC_Unexpected_Message_Content shall check status for this value
+          Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SessionSetupRes) with invalid body content");
+          this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
+          return false;
+        }
       }
-      else
-      {
-        // invalid receive message content - not match with expected
-        // -> set receive msg queue status to unexpected content
-        // a_SECC_Unexpected_Message_Content shall check status for this value
+      else {
+        Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SessionSetupRes) with invalid header content");
         this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
         return false;
       }
     }
     else
     {
+      Logging::error(LogTbFnc_ENABLE, "Receive messsage but failed to deserialize, might not be V2G msg");
       return false;
     }
   };
@@ -109,24 +123,36 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
     char *receive_data;
     auto size = received->getBufferPtr(&receive_data);
     cast_received->setMessage(receive_data, size);
+
     if (cast_received->deserialize())
     {
-      if ((*cast_expected) == (*cast_received))
-      {
-        this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-        this->mtc->setverdict(fail, "Invalid V2GTP header was not ignored.");
-        Logging::debug(LogTbFnc_ENABLE, "[TB][V2GTPSessionSetup_002]: FAIL - Invalid V2GTP header was not ignored.");
-        this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
-        return true;
+      char V2GTPHeader[8];
+      cast_received->getHeader(V2GTPHeader);
+      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x8001)
+        && (cast_received->getPayloadLength() != 0)) {
+        if ((*cast_expected) == (*cast_received))
+        {
+          this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
+          this->mtc->setverdict(fail, "Invalid V2GTP header was not ignored.");
+          this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
+          return true;
+        }
+        else
+        {
+          Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SessionSetupRes) with invalid body content");
+          this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
+          return false;
+        }
       }
-      else
-      {
+      else {
+        Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SessionSetupRes) with invalid header content");
         this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
         return false;
       }
     }
     else
     {
+      Logging::error(LogTbFnc_ENABLE, "Receive messsage but failed to deserialize, might not be V2G msg");
       return false;
     }
   };
@@ -166,6 +192,8 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_001()
   int v_count = 0;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<V2gSdpMessage>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<V2gSdpResMessage>();
+  sendMsg->setTPVersion(0x01, 0xFE);
+  sendMsg->setPayloadType(0x9000);
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setSecurityType(0x10);
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(0x00);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(0x10);
@@ -184,27 +212,37 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_001()
     cast_received->setMessage(receive_data, size);
     if (cast_received->deserialize())
     {
-      if ((*cast_expected) == (*cast_received))
-      {
-        this->mtc->tc_EVCC_SDP_Timer->stop();
-        asio::ip::address_v6::bytes_type ipAddr = asio::ip::address_v6::bytes_type();
-        this->mtc->vc_V2G_Port_PortNumber = cast_received->getSeccPort();
-        cast_received->getSeccIpAddr((char *)ipAddr.data(), 16);
-        // store Ipaddress
-        this->mtc->vc_V2G_Port_IpAddress = asio::ip::make_address_v6(ipAddr).to_string();
-        v_count = this->mtc->vc_maxRepetitionSDP;
-        this->mtc->setverdict(pass, "V2GTP Header message was correct. (SDP Response Message).");
-        Logging::debug(LogTbFnc_ENABLE, "[TB][V2GTPSDP_001]: PASS - V2GTP Header message was correct. (SDP Response Message).");
-        this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
-        return true;
+      char V2GTPHeader[8];
+      cast_received->getHeader(V2GTPHeader);
+      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x9001)
+        && (cast_received->getPayloadLength() == 20)) {
+        if ((*cast_expected) == (*cast_received))
+        {
+          this->mtc->tc_EVCC_SDP_Timer->stop();
+          asio::ip::address_v6::bytes_type ipAddr = asio::ip::address_v6::bytes_type();
+          this->mtc->vc_V2G_Port_PortNumber = cast_received->getSeccPort();
+          cast_received->getSeccIpAddr((char *)ipAddr.data(), 16);
+          // store Ipaddress
+          this->mtc->vc_V2G_Port_IpAddress = asio::ip::make_address_v6(ipAddr).to_string();
+          v_count = this->mtc->vc_maxRepetitionSDP;
+          this->mtc->setverdict(pass, "V2GTP Header message was correct. (SDP Response Message).");
+          this->mtc->pt_V2G_UDP_SDP_Port->receiveQueueStatus = ReceiveType_NONE;
+          return true;
+        }
+        else
+        {
+          Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SDP) with invalid body content");
+          return false;
+        }
       }
-      else
-      {
+      else {
+        Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SDP) with invalid header content");
         return false;
       }
     }
     else
     {
+      Logging::error(LogTbFnc_ENABLE, "Receive messsage but failed to deserialize, might not be V2G msg");
       return false;
     }
   };
@@ -259,22 +297,33 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_002(iso1Part4
     std::shared_ptr<V2gSdpResMessage> cast_received = std::dynamic_pointer_cast<V2gSdpResMessage>(received);
     if (cast_received->deserialize())
     {
-      Logging::debug(LogTbFnc_ENABLE, "[TB][V2GTPSDP_002]: FAIL - Invalid V2GTP header was not ignored.");
-      if ((*cast_expected) == (*cast_received))
-      {
-        this->mtc->tc_EVCC_SDP_Timer->stop();
-        this->mtc->setverdict(fail, "Invalid V2GTP header was not ignored.");
-        this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
-        return true;
+      char V2GTPHeader[8];
+      cast_received->getHeader(V2GTPHeader);
+      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x9001)
+        && (cast_received->getPayloadLength() == 20)) {
+        if ((*cast_expected) == (*cast_received))
+        {
+          this->mtc->tc_EVCC_SDP_Timer->stop();
+          this->mtc->setverdict(fail, "Invalid V2GTP header was not ignored.");
+          this->mtc->pt_V2G_UDP_SDP_Port->receiveQueueStatus = ReceiveType_NONE;
+          return true;
+        }
+        else
+        {
+          Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SDP) with invalid body content");
+          this->mtc->setverdict(fail, "Invalid V2GTP header was not ignored.");
+          return true;
+        }
       }
-      else
-      {
+      else {
+        Logging::error(LogTbFnc_ENABLE, "Receive messsage V2GTP(SDP) with invalid header content");
         this->mtc->setverdict(fail, "Invalid V2GTP header was not ignored.");
         return true;
       }
     }
     else
     {
+      Logging::error(LogTbFnc_ENABLE, "Receive messsage but failed to deserialize, might not be V2G msg");
       return false;
     }
   };

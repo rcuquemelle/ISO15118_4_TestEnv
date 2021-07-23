@@ -18,10 +18,10 @@ using namespace Pics_15118::PICS_SECC_Tester;
 using namespace Pics_15118_2::PICS_15118_2::PICS_CMN;
 using namespace Pics_15118_2::PICS_15118_2::PICS_SECC_Tester;
 
-static std::shared_ptr<appHandAppProtocolType> md_CMN_CMN_AppProtocolType_001(std::string xmlnamespace, uint32_t major_ver, uint32_t minor_ver, uint8_t schemeID, uint8_t priority);
+static std::shared_ptr<appHandAppProtocolType> md_CMN_CMN_AppProtocolType_001(const std::string& xmlnamespace, uint32_t major_ver, uint32_t minor_ver, uint8_t schemeID, uint8_t priority);
 static std::shared_ptr<appHandAnonType_supportedAppProtocolReq> md_CMN_CMN_SupportedAppProtocolReq_001(std::shared_ptr<appHandAppProtocolType> protocol);
 
-static std::shared_ptr<appHandAppProtocolType> md_CMN_CMN_AppProtocolType_001(std::string xmlnamespace, uint32_t major_ver, uint32_t minor_ver, uint8_t schemeID, uint8_t priority)
+static std::shared_ptr<appHandAppProtocolType> md_CMN_CMN_AppProtocolType_001(const std::string& xmlnamespace, uint32_t major_ver, uint32_t minor_ver, uint8_t schemeID, uint8_t priority)
 {
   std::shared_ptr<appHandAppProtocolType> val = std::shared_ptr<appHandAppProtocolType>(new appHandAppProtocolType);
   val->VersionNumberMajor = major_ver;
@@ -325,6 +325,7 @@ verdict_val TestBehavior_SECC_SupportedAppProtocol::f_SECC_CMN_TB_VTB_SupportedA
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<SupportedAppProtocolReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<SupportedAppProtocolRes>();
+  this->mtc->vc_versionNumberMinor = PIXIT_SECC_CMN_VersionNumberMinor + 1;
   std::shared_ptr<appHandAnonType_supportedAppProtocolReq> appProtocols = md_CMN_CMN_SupportedAppProtocolReq_001(md_CMN_CMN_AppProtocolType_001(
       this->mtc->vc_Supported_ISO_Namespace, this->mtc->vc_versionNumberMajor, this->mtc->vc_versionNumberMinor, 10, 2));
   std::static_pointer_cast<SupportedAppProtocolReq>(sendMsg)->setSupportedAppProtocolsReq(appProtocols.get());
@@ -366,7 +367,6 @@ verdict_val TestBehavior_SECC_SupportedAppProtocol::f_SECC_CMN_TB_VTB_SupportedA
     }
   };
 
-  this->mtc->vc_versionNumberMinor = PIXIT_SECC_CMN_VersionNumberMinor + 1;
   this->mtc->tc_V2G_EVCC_Msg_Timer->start(par_V2G_EVCC_Msg_Timeout_SupportedAppProtocolReq);
   if (this->mtc->vc_versionNumberMinor < this->mtc->vc_versionNumberMajor)
   {

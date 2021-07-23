@@ -172,7 +172,6 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_001(v
 verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_002()
 {
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
-  std::string v_message;
   bool isShutdownOSC = false;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<ServiceDiscoveryReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServiceDiscoveryRes>();

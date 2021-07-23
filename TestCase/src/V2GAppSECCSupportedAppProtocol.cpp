@@ -38,7 +38,7 @@ additional mandatory parameters.
 with ResponseCode 'OK_SuccessfulNegotiation' or
 'OK_SuccessfulNegotiationWithMinorDeviation' and all additional mandatory
 parameters.
-3. PICS selection: 
+3. PICS selection:
 4. PIXIT selection: PIXIT_SECC_CMN_TLS = true
 */
 verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppProtocol_001()
@@ -75,8 +75,8 @@ message with an invalid ISO namespace and all additional mandatory parameters.
 with ResponseCode 'FAILED_NoNegotiation' and all additional mandatory parameters
 and terminates the V2G communication session by closing the TCP connection
 within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppProtocol_002()
 {
@@ -112,8 +112,8 @@ with valid security option, 'transportProtocol' equals to '0x00'H and a valid
 port and IP address.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppProtocol_003()
 {
@@ -185,8 +185,8 @@ verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppPro
 'V2G_SECC_CommunicationSetup_Timeout' timer has expired on SUT side
 2. EXPECTED: Test System then checks that the SUT stops waiting for establishing the TCP/TLS
 connection and does not respond to a TCP/TLS handshake request.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppProtocol_005()
 {
@@ -222,7 +222,6 @@ verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppPro
   return this->mtc->dumpverdict();
 }
 
-
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a SupportedAppProtocolReq
 message with a list of valid AppProtocols (VersionNumberMinor does not match
@@ -231,7 +230,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SupportedAppProtocolRes message
 with ResponseCode 'OK_SuccessfulNegotiationWithMinorDeviation' and all
 additional mandatory parameters.
-3. PICS selection: 
+3. PICS selection:
 4. PIXIT selection: PIXIT_SECC_CMN_VersionNumberMinor
 */
 verdict_val TestCases_SECC_SupportedAppProtocol::TC_SECC_CMN_VTB_SupportedAppProtocol_006()

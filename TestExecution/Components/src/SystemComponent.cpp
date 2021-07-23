@@ -443,12 +443,12 @@ void on15118UDPEvent::operator()()
   switch (this->type) {
     case en_UdpClientCallbackType_CONNECT:
     {
-      Logging::debug(LogComponent_ENABLE, fmt::format("[STC]: SUT UDP {0} - {1} connected",this->parent->_pUDPIf->endpoint().address().to_string(), this->parent->_pUDPIf->endpoint().port()));
+      Logging::info(LogComponent_ENABLE, fmt::format("[STC]: SUT UDP {0} - {1} connected",this->parent->_pUDPIf->endpoint().address().to_string(), this->parent->_pUDPIf->endpoint().port()));
       break;
     }
     case en_UdpClientCallbackType_DISCONNECT:
     {
-      Logging::debug(LogComponent_ENABLE, fmt::format("[STC]: SUT UDP {0} - {1} disconnected",this->parent->_pUDPIf->endpoint().address().to_string(), this->parent->_pUDPIf->endpoint().port()));
+      Logging::info(LogComponent_ENABLE, fmt::format("[STC]: SUT UDP {0} - {1} disconnected",this->parent->_pUDPIf->endpoint().address().to_string(), this->parent->_pUDPIf->endpoint().port()));
       break;
     }
     default:
@@ -473,5 +473,5 @@ void on15118UDPEvent::operator()(size_t sent)
 void on15118UDPEvent::operator()(int error, const std::string& category, const std::string& message)
 {
   std::shared_ptr<BaseOperation> responseEvent = std::make_shared<BaseOperation>(OpType_UDP);
-  Logging::debug(LogComponent_ENABLE, fmt::format("[STC]: SUT UDP Error {0} - {1} disconnected", category, message));
+  Logging::error(LogComponent_ENABLE, fmt::format("[STC]: SUT UDP Error {0} - {1} - {2} disconnected", error, category, message));
 }
