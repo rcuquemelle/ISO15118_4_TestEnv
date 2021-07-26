@@ -197,9 +197,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 previous SessionID, ResponseCode 'OK_OldSessionJoined', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := aC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_AC_VTB_SessionSetup_001()
@@ -253,9 +253,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := aC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_AC_VTB_SessionSetup_002()
@@ -309,9 +309,9 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := aC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_AC_VTB_SessionSetup_003()
@@ -365,9 +365,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 previous SessionID, ResponseCode 'OK_OldSessionJoined', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := aC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_AC_VTB_SessionSetup_004()
@@ -421,9 +421,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := aC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_AC_VTB_SessionSetup_005()
@@ -477,9 +477,9 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := aC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_AC_VTB_SessionSetup_006()
@@ -533,9 +533,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 previous SessionID, ResponseCode 'OK_OldSessionJoined', valid EvseId and all 245
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := dC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_DC_VTB_SessionSetup_001()
@@ -589,9 +589,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := dC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_DC_VTB_SessionSetup_002()
@@ -645,9 +645,9 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := dC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_DC_VTB_SessionSetup_003()
@@ -701,9 +701,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 previous SessionID, ResponseCode 'OK_OldSessionJoined', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := dC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_DC_VTB_SessionSetup_004()
@@ -757,9 +757,9 @@ additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := dC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_DC_VTB_SessionSetup_005()
@@ -813,9 +813,9 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 current SessionID, ResponseCode 'OK_NewSessionEstablished', valid EvseId and all
 additional mandatory parameters.
-3. PICS selection: PICS_CMN_CMN_ChargingMode := dC, PICS_SECC_CMN_Pause := true,
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting := true
+PICS_CMN_CMN_CombinedTesting = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionSetup::TC_SECC_DC_VTB_SessionSetup_006()

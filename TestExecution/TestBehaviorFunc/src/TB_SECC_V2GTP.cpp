@@ -102,16 +102,19 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<SessionSetupReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<SessionSetupRes>();
+  // set ALM header session id
+  std::static_pointer_cast<SessionSetupReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
+  // set ALM SessionSetupReq message body content EVCCID value
+  std::static_pointer_cast<SessionSetupReq>(sendMsg)->setEVCCID(this->mtc->vc_eVCCID);
+  // serialize data to byte stream to remove payload length later
+  std::static_pointer_cast<SessionSetupReq>(sendMsg)->serialize();
   // set tp header version
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setTPVersion(v_v2gtpHeader.protocolVersion, v_v2gtpHeader.invProtocolVersion);
   // set tp header payload type
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setPayloadType(v_v2gtpHeader.payloadType);
   // set tp header payload length
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setPayloadLength(v_v2gtpHeader.payloadLength);
-  // set ALM header session id
-  std::static_pointer_cast<SessionSetupReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
-  // set ALM SessionSetupReq message body content EVCCID value
-  std::static_pointer_cast<SessionSetupReq>(sendMsg)->setEVCCID(this->mtc->vc_eVCCID);
+
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mEVSEID_flag = has_value;
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mResponseCode_flag = has_value;
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mTimeStamp_flag = omit;

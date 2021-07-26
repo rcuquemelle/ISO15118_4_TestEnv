@@ -36,8 +36,6 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServiceDiscoveryRes>();
   std::static_pointer_cast<ServiceDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServiceDiscoveryReq>(sendMsg)->setServiceCategory(iso1serviceCategoryType_EVCharging);
-  // auto sessionid = f_outHexString(this->mtc->vc_SessionID);
-  // Logging::debug(LogTbFnc_ENABLE ,fmt::format("Session ID send with ServiceDiscoveryReq: {0}", sessionid));
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;

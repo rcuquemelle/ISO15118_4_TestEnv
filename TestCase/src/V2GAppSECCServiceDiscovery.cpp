@@ -37,8 +37,8 @@ TestCases_SECC_ServiceDiscovery::~TestCases_SECC_ServiceDiscovery()
 with the current SessionID and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ServiceDiscoveryRes message with
 the 249
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_001()
 {
@@ -72,8 +72,8 @@ message instead of a ServiceDiscoveryReq message.
 current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_002()
 {
@@ -107,8 +107,8 @@ verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_00
 valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_003()
 {
@@ -142,8 +142,8 @@ message with a new SessionID, ResponseCode 'OK_NewSessionEstablished', valid
 EvseId and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_004()
 {
@@ -187,7 +187,7 @@ the current SessionID, ResponseCode 'Ok', all additional mandatory parameters
 and the PaymentOption and ChargeService which was selected by the EVCC in the
 previous session. Document reference
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,PICS_CMN_CMN_CombinedTesting = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_AC_VTB_ServiceDiscovery_001()
 {
@@ -240,7 +240,7 @@ mandatory parameters.
 the current SessionID, ResponseCode 'Ok', all additional mandatory parameters
 and the PaymentOption and ChargeService which was selected by the EVCC in the
 previous session.
-3. PICS selection: 
+3. PICS selection:
 4. PIXIT selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,PICS_CMN_CMN_CombinedTesting = true
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_AC_VTB_ServiceDiscovery_002()
@@ -294,8 +294,10 @@ mandatory parameters.
 the current SessionID, ResponseCode 'Ok', all additional mandatory parameters
 and the PaymentOption and ChargeService which was selected by the EVCC in the
 previous session.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
+PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,
+PICS_CMN_CMN_CombinedTesting = true
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_DC_VTB_ServiceDiscovery_001()
 {
@@ -348,8 +350,10 @@ mandatory parameters.
 the current SessionID, ResponseCode 'Ok', all additional mandatory parameters
 and the PaymentOption and ChargeService which was selected by the EVCC in the
 previous session.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
+PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,
+PICS_CMN_CMN_CombinedTesting = true
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_DC_VTB_ServiceDiscovery_002()
 {

@@ -80,15 +80,14 @@ public:
 
     const char *getTypeName();
 
+    void resetSerializeFlag(void) { serialized_flag = false;}
 protected:
     virtual int toByteStream(bitstream_t *out);
     virtual int fromByteStream(bitstream_t *in);
 
 private:
-    char mReceiveBuffer[MAX_BUFFER_SIZE];
-    char mTransmitBuffer[MAX_BUFFER_SIZE];
-
     std::vector<uint8_t> mSessionId;
+    bool serialized_flag;
 
 protected:
     V2gExiMessageType mType;

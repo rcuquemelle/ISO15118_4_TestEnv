@@ -75,12 +75,12 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_001(v
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          this->mtc->vc_SessionID = cast_received->getSessionId(); // 153 79 214 202 233 205 83 212
-          this->mtc->vc_EvseId = cast_received->getEVSEID();       // \021\"3DU
+          this->mtc->vc_SessionID = cast_received->getSessionId();
+          this->mtc->vc_EvseId = cast_received->getEVSEID();
           auto sessionid = f_outHexString(this->mtc->vc_SessionID);
           auto evseid = f_outHexString(this->mtc->vc_EvseId);
-          Logging::debug(LogTbFnc_ENABLE, fmt::format("Session ID: {0}", sessionid));
-          Logging::debug(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", evseid));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("Session ID: {0}", sessionid));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", evseid));
           // EVSETimeStamp: 1608971686
           // iso1responseCodeType_OK
           // iso1faultCodeType_ParsingError(default notification status of header)
@@ -440,7 +440,7 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_005(v
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
           this->mtc->vc_EvseId = cast_received->getEVSEID();
-          Logging::debug(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", f_outHexString(this->mtc->vc_EvseId)));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", f_outHexString(this->mtc->vc_EvseId)));
           if (this->mtc->vc_EvseId != cc_EvseId_NotSup)
           {
             bool result = fx_validateEVSEID(this->mtc->vc_EvseId, "ISO");
@@ -556,8 +556,8 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_006(b
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
           this->mtc->vc_EvseId = cast_received->getEVSEID();
           this->mtc->vc_SessionID = cast_received->getSessionId();
-          Logging::debug(LogTbFnc_ENABLE, fmt::format("Session ID: {0}", f_outHexString(this->mtc->vc_SessionID)));
-          Logging::debug(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", f_outHexString(this->mtc->vc_EvseId)));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("Session ID: {0}", f_outHexString(this->mtc->vc_SessionID)));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", f_outHexString(this->mtc->vc_EvseId)));
           if (this->mtc->vc_EvseId != cc_EvseId_NotSup)
           {
             bool result = fx_validateEVSEID(this->mtc->vc_EvseId, "ISO");

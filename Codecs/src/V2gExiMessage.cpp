@@ -68,27 +68,30 @@ V2gExiMessage::~V2gExiMessage()
 
 bool V2gExiMessage::serialize()
 {
-    uint8_t buffer[4096];
-    bitstream_t byteStream;
-    size_t pos1 = V2GTP_HEADER_LENGTH;
-    memset(buffer, 0x00, sizeof(buffer));
+    if (serialized_flag == false) {
+        uint8_t buffer[4096];
+        bitstream_t byteStream;
+        size_t pos1 = V2GTP_HEADER_LENGTH;
+        memset(buffer, 0x00, sizeof(buffer));
 
-    byteStream.data = buffer;
-    byteStream.pos = &pos1;
-    byteStream.size = 4096;
-    // deserialize data to bytestream
-    int result = this->toByteStream(&byteStream);
-    if (0 == result)
-    {
-        this->setMessage((const char *)byteStream.data, pos1);
-        this->dumpTpHeader();
-        this->dumpMsg();
-        return true;
-    }
-    else
-    {
-        Logging::error(LogMsgDump_ENABLE, fmt::format("{0} - Failed to serialized {1} message", result, this->getTypeName()));
-        return false;
+        byteStream.data = buffer;
+        byteStream.pos = &pos1;
+        byteStream.size = 4096;
+        // deserialize data to bytestream
+        int result = this->toByteStream(&byteStream);
+        if (0 == result)
+        {
+            this->setMessage((const char *)byteStream.data, pos1);
+            this->dumpTpHeader();
+            this->dumpMsg();
+            serialized_flag = true;
+            return true;
+        }
+        else
+        {
+            Logging::error(LogMsgDump_ENABLE, fmt::format("{0} - Failed to serialized {1} message", result, this->getTypeName()));
+            return false;
+        }
     }
 }
 
