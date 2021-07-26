@@ -8,7 +8,7 @@
   },
   "editor.tabSize": 2,
   "editor.trimAutoWhitespace": true,
-  // "files.trimTrailingWhitespace": false,
+  "files.trimTrailingWhitespace": true,
   "CppHelper.SourcePattern": [
     "{FILE}.cpp",
     "{FILE}.c",

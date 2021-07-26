@@ -38,6 +38,7 @@ std::shared_ptr<Configuration_15118_2> cfg;
 std::shared_ptr<TestBehavior_SECC_CommonBehavior> cmn;
 std::shared_ptr<PreConditions_SECC_15118_2> pre;
 std::shared_ptr<PostConditions_SECC_15118_2> post;
+LogLevelType log_level_cfg = LOG_INFO;
 
 typedef std::map<std::string, std::shared_ptr<V2GTestcaseBase>> MapTCType;
 
@@ -177,7 +178,7 @@ static void init_tc(const std::string &testcase_name, const std::string &tc_type
 
   Logging::setLogFile(fmt::format("/home/pi/v2glog/{}", logfile));
   Logging::LogCfg.value = LogAll_ENABLE;
-  Logging::setLogLevel(LOG_INFO);
+  Logging::setLogLevel(log_level_cfg);
   Logging::setLogOutput(LOG_OUT_BOTH);
   runenv = std::make_shared<IfRuntime>();
   stc = std::make_shared<System_SECC>(runenv, IPV6_ADDR, IPV6_PORT, "eth1", "/home/pi/pev.ini");
@@ -288,23 +289,41 @@ static void deinit_tc(const std::string &tc_type)
 
 int main(int argc, const char *argv[])
 {
-  Logging::LogCfg.value = LogAll_ENABLE;
-  Logging::setLogLevel(LOG_INFO);
-  Logging::setLogOutput(LOG_OUT_CONSOLE);
   if (argc == 1)
   {
-    Logging::error(0, "Please input testcase name and configuration file");
+    Logging::error(0, "Please input testcase name ");
     return -1;
+  }
+  Logging::LogCfg.value = LogAll_ENABLE;
+  Logging::setLogOutput(LOG_OUT_CONSOLE);
+  if (argc > 2) {
+    if (strcmp(argv[2],"D") == 0) {
+      log_level_cfg = LOG_DEBUG;
+      Logging::setLogLevel(log_level_cfg);
+      Logging::info(0, "DEBUG");
+    }
+    else if (strcmp(argv[2],"I") == 0) {
+      log_level_cfg = LOG_INFO;
+      Logging::setLogLevel(log_level_cfg);
+      Logging::info(0, "INFO");
+    }
+    else {
+      log_level_cfg = LOG_INFO;
+      Logging::setLogLevel(log_level_cfg);
+      Logging::info(0, "INFO");
+    }
   }
   // load json configuration data
   std::ifstream ifs;
-  if (argc > 2)
+  if (argc > 3)
   {
-    ifs.open(argv[2], std::ios_base::in);
+    ifs.open(argv[3], std::ios_base::in);
+    Logging::info(0, fmt::format("V2G config file {}", argv[3]));
   }
   else
   {
     ifs.open("/home/pi/testconfig.json", std::ios_base::in);
+    Logging::info(0, "V2G config file /home/pi/testconfig.json");
   }
   if (!ifs.good())
   {
@@ -519,13 +538,15 @@ int main(int argc, const char *argv[])
   }
 
   ifs.close();
-  if (argc > 3)
+  if (argc > 4)
   {
-    ifs.open(argv[3], std::ios_base::in);
+    ifs.open(argv[4], std::ios_base::in);
+    Logging::info(0, fmt::format("SLAC config file {}", argv[4]));
   }
   else
   {
     ifs.open("/home/pi/slac_config.json", std::ios_base::in);
+    Logging::info(0, "SLAC config file /home/pi/slac_config.json");
   }
   if (!ifs.good())
   {
