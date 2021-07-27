@@ -1,8 +1,8 @@
 {
   "cmake.debugConfig": {
     "args": [
-      "ServicePaymentSelectionReq",
-      "01 FE 80 01 00 00 00 13 80 98 02 00 00 40 80 C1 01 41 81 D1 32 00 10 01 00 14 50"
+      "ServiceDiscoveryRes",
+      "01 FE 80 01 00 00 00 02 80 0A"
     ]
       // "args": [
       //     "TC_SECC_CMN_VTB_Authorization_001",

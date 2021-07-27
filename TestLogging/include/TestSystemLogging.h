@@ -8,6 +8,7 @@
 // #include "time/timezone.h"
 #include <memory>
 #include <cstdio>
+#include <time.h>
 
 typedef enum En_LogLevelType {
   LOG_NONE = 0,
@@ -113,12 +114,13 @@ public:
   static void debug(uint16_t module, const std::string value) {
     // logic push log to console or file
     // and base on log level
+    std::time_t curr_time = std::time(nullptr);
     if (LOG_INFO < Logging::logLevel) {
       if ((LOG_OUT_CONSOLE == Logging::logOutDest) ||
           (LOG_OUT_BOTH == Logging::logOutDest)){
         if (module == (Logging::LogCfg.value & module)){
           // to console
-          fmt::print("[DEBUG]:{}\r\n",value);
+          fmt::print("{0:%H:%M:%S}[DEBUG]:{1}\r\n", fmt::localtime(curr_time), value);
         }
       }
       if ((LOG_OUT_FILE == Logging::logOutDest) ||
@@ -126,19 +128,22 @@ public:
         // to file
         if (Logging::outputLog != nullptr){
           if (module == (Logging::LogCfg.value & module)){
-            fmt::print(Logging::outputLog, "[DEBUG]:{}\r\n",value);
+            fmt::print(Logging::outputLog, "{0:%H:%M:%S}[DEBUG]:{1}\r\n", fmt::localtime(curr_time), value);
+            // fmt::print(Logging::outputLog, "[DEBUG]:{}\r\n",value);
           }
         }
       }
     }
   }
   static void info(uint16_t module, const std::string value) {
+    std::time_t curr_time = std::time(nullptr);
     if (LOG_ERROR < Logging::logLevel) {
       if ((LOG_OUT_CONSOLE == Logging::logOutDest) ||
           (LOG_OUT_BOTH == Logging::logOutDest)) {
         if (module == (Logging::LogCfg.value & module)){
           // to console
-          fmt::print("[ INFO]:{}\r\n",value);
+          fmt::print("{0:%H:%M:%S}[ INFO]:{1}\r\n", fmt::localtime(curr_time), value);
+          // fmt::print("[ INFO]:{}\r\n",value);
         }
       }
       if ((LOG_OUT_FILE == Logging::logOutDest) ||
@@ -146,19 +151,22 @@ public:
         // to file
         if (Logging::outputLog != nullptr){
           if (module == (Logging::LogCfg.value & module)){
-            fmt::print(Logging::outputLog, "[ INFO]:{}\r\n",value);
+            fmt::print(Logging::outputLog, "{0:%H:%M:%S}[ INFO]:{1}\r\n", fmt::localtime(curr_time), value);
+            // fmt::print(Logging::outputLog, "[ INFO]:{}\r\n",value);
           }
         }
       }
     }
   }
   static void error(uint16_t module, const std::string value) {
+    std::time_t curr_time = std::time(nullptr);
     if (LOG_NONE < Logging::logLevel) {
       if ((LOG_OUT_CONSOLE == Logging::logOutDest) ||
           (LOG_OUT_BOTH == Logging::logOutDest)) {
         if (module == (Logging::LogCfg.value & module)){
           // to console
-          fmt::print("[ERROR]:{}\r\n",value);
+          fmt::print("{0:%H:%M:%S}[ERROR]:{1}\r\n", fmt::localtime(curr_time), value);
+          // fmt::print("[ERROR]:{}\r\n",value);
         }
       }
       if ((LOG_OUT_FILE == Logging::logOutDest) ||
@@ -166,7 +174,8 @@ public:
         // to file
         if (Logging::outputLog != nullptr){
           if (module == (Logging::LogCfg.value & module)){
-            fmt::print(Logging::outputLog, "[ERROR]:{}\r\n",value);
+            fmt::print(Logging::outputLog, "{0:%H:%M:%S}[ERROR]:{1}\r\n", fmt::localtime(curr_time), value);
+            // fmt::print(Logging::outputLog, "[ERROR]:{}\r\n",value);
           }
         }
       }

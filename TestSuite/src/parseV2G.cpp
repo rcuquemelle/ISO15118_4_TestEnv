@@ -164,14 +164,14 @@ int main(int argc, const char *argv[])
     exit(0);
   }
   if (msg_type == "SupportedAppProtocolReq") {
-    std::shared_ptr<SupportedAppProtocolReq> sdp = std::make_shared<SupportedAppProtocolReq>();
+    std::shared_ptr<SupportedAppProtocolReq> apphandshake = std::make_shared<SupportedAppProtocolReq>();
     apphandshake->setMessage((const char *)data_arr, data_len);
     apphandshake->deserialize();
     apphandshake->serialize();
     exit(0);
   }
   if (msg_type == "SupportedAppProtocolRes") {
-    std::shared_ptr<SupportedAppProtocolRes> sdp = std::make_shared<SupportedAppProtocolRes>();
+    std::shared_ptr<SupportedAppProtocolRes> apphandshake = std::make_shared<SupportedAppProtocolRes>();
     apphandshake->setMessage((const char *)data_arr, data_len);
     apphandshake->deserialize();
     apphandshake->serialize();
