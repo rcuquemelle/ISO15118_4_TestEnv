@@ -30,6 +30,8 @@ public:
   void serialize(void);
   bool deserialize(void);
   void dumpMsg(void);
+  void resetSerializeFlag(void) { serialized_flag = false;}
+
   static const uint8_t V2G_SDP_SEC_TLS = 0x00;
   static const uint8_t V2G_SDP_NON_SECURED = 0x10;
   static const uint8_t V2G_SDP_TRANSPORT_TCP = 0x00;
@@ -97,6 +99,7 @@ public:
   }
 
 private:
+  bool serialized_flag = false;
   uint8_t mSecurityType = 0xFF;
   // 0x00= TCP
   // 0x01-0x0F = reserved

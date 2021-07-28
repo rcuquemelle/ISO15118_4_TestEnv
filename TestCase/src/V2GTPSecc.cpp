@@ -11,6 +11,12 @@ using namespace Pics_15118::PICS_SECC_Tester;
 using namespace Pics_15118_2::PICS_15118_2::PICS_CMN;
 using namespace Pics_15118_2::PICS_15118_2::PICS_SECC_Tester;
 
+#define TP_VER 0x01
+#define TP_VER_INVERSE 0xFE
+#define TP_PAYLOAD_V2G 0x8001
+#define TP_PAYLOAD_SDPREQ 0x9000
+#define TP_PAYLOAD_SDPRES 0x9001
+
 TestCases_SECC_V2GTPSDP::TestCases_SECC_V2GTPSDP(std::shared_ptr<SECC_Tester> &_mtc, std::shared_ptr<System_SECC> _stc,
                                   std::shared_ptr<Configuration_15118_2> _cfg, std::shared_ptr<TestBehavior_SECC_CommonBehavior> _cmn,
                                   std::shared_ptr<PreConditions_SECC_15118_2> _pre, std::shared_ptr<PostConditions_SECC_15118_2> _post)
@@ -55,13 +61,13 @@ iso1Part4_V2GTP_header_TYPE md_CMN_V2GTP_header_TYPE_001(iso1Part4_ProtocolVersi
 
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends a SessionSetupReq message with 
-the V2GTP header information 'protocolVersion' equals to '0x01'H, 
-'invProtocolVersion' equals to 'FE'H and 'payloadType' equals to '0x8001'H. (V2GTP 
-Header is matched for V2G message content). 
-2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the 
-V2GTP header information 'protocolVersion' equals to '0x01'H, 'invProtocolVersion' 
-equals to 'FE'H and 'payloadType' equals to '0x8001'H. 
+1. CONDITION: Test System executes GoodCase procedure and sends a SessionSetupReq message with
+the V2GTP header information 'protocolVersion' equals to '0x01'H,
+'invProtocolVersion' equals to 'FE'H and 'payloadType' equals to '0x8001'H. (V2GTP
+Header is matched for V2G message content).
+2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
+V2GTP header information 'protocolVersion' equals to '0x01'H, 'invProtocolVersion'
+equals to 'FE'H and 'payloadType' equals to '0x8001'H.
 3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
 4. PIXIT selection:
 */
@@ -91,10 +97,10 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadLength' equals 
-to '00000000'H in the V2GTP header of the SessionSetupReq message. 
-2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by 
-detecting a 'V2G_Msg_Timeout'. 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadLength' equals
+to '00000000'H in the V2GTP header of the SessionSetupReq message.
+2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
+detecting a 'V2G_Msg_Timeout'.
 3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
 4. PIXIT selection:
 */
@@ -109,7 +115,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(0x01, 0xFE, 0x8001, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(TP_VER, TP_VER_INVERSE, TP_PAYLOAD_V2G, 0));
   }
   else
   {
@@ -124,10 +130,10 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadType' equals 
-to '7001'H in the V2GTP header of the SessionSetupReq message. 
-2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by 
-detecting a 'V2G_Msg_Timeout'. 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadType' equals
+to '7001'H in the V2GTP header of the SessionSetupReq message.
+2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
+detecting a 'V2G_Msg_Timeout'.
 3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
 4. PIXIT selection:
 */
@@ -142,7 +148,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(0x01, 0xFE, 0x7001, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(TP_VER, TP_VER_INVERSE, 0x7001, 0));
   }
   else
   {
@@ -157,10 +163,10 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'protocolVersion' 
-equals to 'FF'H in the V2GTP header of the SessionSetupReq message. 
-2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by 
-detecting a 'V2G_Msg_Timeout'. 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'protocolVersion'
+equals to 'FF'H in the V2GTP header of the SessionSetupReq message.
+2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
+detecting a 'V2G_Msg_Timeout'.
 3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
 4. PIXIT selection:
 */
@@ -175,7 +181,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(0xFF, 0xFE, 0x8001, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(0xFF, TP_VER_INVERSE, TP_PAYLOAD_V2G, 0));
   }
   else
   {
@@ -190,10 +196,10 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'invProtocolVersion' 
-equals to 'FF'H in the V2GTP header of the SessionSetupReq message. 
-2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by 
-detecting a 'V2G_Msg_Timeout'. 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'invProtocolVersion'
+equals to 'FF'H in the V2GTP header of the SessionSetupReq message.
+2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
+detecting a 'V2G_Msg_Timeout'.
 3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
 4. PIXIT selection:
 */
@@ -208,7 +214,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(0x01, 0xFF, 0x8001, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSessionSetup_002(md_CMN_V2GTP_header_TYPE_001(TP_VER, 0xFF, TP_PAYLOAD_V2G, 0));
   }
   else
   {
@@ -224,13 +230,13 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends a valid SDP request message with 
-the V2GTP header information 'protocolVersion' equals to '0x01'H, 
-'invProtocolVersion' equals to 'FE'H and 'payloadType' equals to '0x9000'H. (V2GTP 
-Header is matched for SDP message content). 
-2. EXPECTED: Test System then checks that the SUT sends a SDP response message with the V2GTP 
-header information 'protocolVersion' equals to '0x01'H, 'invProtocolVersion' equals to 
-'FE'H, payloadType' equals to '0x9001'H and 'payloadLength' equals to '00000014'H. 
+1. CONDITION: Test System executes GoodCase procedure and sends a valid SDP request message with
+the V2GTP header information 'protocolVersion' equals to '0x01'H,
+'invProtocolVersion' equals to 'FE'H and 'payloadType' equals to '0x9000'H. (V2GTP
+Header is matched for SDP message content).
+2. EXPECTED: Test System then checks that the SUT sends a SDP response message with the V2GTP
+header information 'protocolVersion' equals to '0x01'H, 'invProtocolVersion' equals to
+'FE'H, payloadType' equals to '0x9001'H and 'payloadLength' equals to '00000014'H.
 3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
 4. PIXIT selection:
 */
@@ -259,10 +265,10 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_001()
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadLength' equals 
-to '00000000'H in the V2GTP header of the SDP request message. 
-2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting 
-an SDP message timeout. 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadLength' equals
+to '00000000'H in the V2GTP header of the SDP request message.
+2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
+an SDP message timeout.
 3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
 4. PIXIT selection:
 */
@@ -277,7 +283,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_002()
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(0x01, 0xFE, 0x9000, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(TP_VER, TP_VER_INVERSE, TP_PAYLOAD_SDPREQ, 0));
   }
   else
   {
@@ -291,10 +297,10 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_002()
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadType' equals 
-to '7000'H in the V2GTP header of the SDP request message. 
-2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting 
-an SDP message timeout. 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'payloadType' equals
+to '7000'H in the V2GTP header of the SDP request message.
+2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
+an SDP message timeout.
 3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
 4. PIXIT selection:
 */
@@ -309,7 +315,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_003()
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(0x01, 0xFE, 0x7000, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(TP_VER, TP_VER_INVERSE, 0x7000, 0));
   }
   else
   {
@@ -323,10 +329,10 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_003()
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'protocolVersion' 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'protocolVersion'
 equals to 'FF'H in the V2GTP header of the SDP request message.
-2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting 
-an SDP message timeout. 
+2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
+an SDP message timeout.
 3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
 4. PIXIT selection:
 */
@@ -341,7 +347,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_004()
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(0xFF, 0xFE, 0x9000, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(0xFF, TP_VER_INVERSE, TP_PAYLOAD_SDPREQ, 0));
   }
   else
   {
@@ -355,10 +361,10 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_004()
 }
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'invProtocolVersion' 
+1. CONDITION: Test System executes GoodCase procedure and sends an invalid 'invProtocolVersion'
 equals to 'FF'H in the V2GTP header of the SDP request message.
-2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting 
-an SDP message timeout. 
+2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
+an SDP message timeout.
 3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
 4. PIXIT selection:
 */
@@ -373,7 +379,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_005()
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
-    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(0x01, 0xFF, 0x9000, 0));
+    this->tb->f_SECC_CMN_TB_VTB_V2GTPSDP_002(md_CMN_V2GTP_header_TYPE_001(TP_VER, 0xFF, TP_PAYLOAD_SDPREQ, 0));
   }
   else
   {

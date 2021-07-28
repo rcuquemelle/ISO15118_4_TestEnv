@@ -13,6 +13,7 @@ V2gSdpResMessage::V2gSdpResMessage()
     this->mSecurityType = 0;
     this->mTransportType = 0;
     this->mIpV6Addr.fill(0);
+    serialized_flag = false;
 }
 V2gSdpResMessage::V2gSdpResMessage(const std::string &ipv6, uint16_t port, uint8_t secType, uint8_t tpType)
     : V2gTpMessage(V2gTpMessage::V2G_TP_PAYLOAD_SDP_RES)
@@ -21,6 +22,7 @@ V2gSdpResMessage::V2gSdpResMessage(const std::string &ipv6, uint16_t port, uint8
     this->mSecurityType = secType;
     this->mTransportType = tpType;
     this->mIpV6Addr = asio::ip::make_address_v6(ipv6).to_bytes();
+    serialized_flag = false;
 }
 void V2gSdpResMessage::setSecurityType(uint8_t secType)
 {
@@ -88,15 +90,18 @@ uint16_t V2gSdpResMessage::getSeccPort(void)
 
 void V2gSdpResMessage::serialize(void)
 {
-    uint8_t payload_buffer[ISO1PART2_SDP_RES_LENGTH];
-    payload_buffer[V2G_SDP_RES_SECC_SEC_INDEX] = this->mSecurityType;
-    payload_buffer[V2G_SDP_RES_SECC_TRANSPORT_INDEX] = this->mTransportType;
-    memcpy(payload_buffer, this->mIpV6Addr.data(), V2G_SDP_RES_SECC_IP_LENGTH);
-    payload_buffer[V2G_SDP_RES_SECC_PORT_INDEX] = (uint8_t)(((0xFF00) & (this->mPort)) >> 8);
-    payload_buffer[V2G_SDP_RES_SECC_PORT_INDEX + 1] = (uint8_t)(((0x00FF) & (this->mPort)));
-    this->setPayload((const char *)payload_buffer, ISO1PART2_SDP_RES_LENGTH);
-    this->dumpTpHeader();
-    this->dumpMsg();
+    if (serialized_flag == false) {
+        serialized_flag = true;
+        uint8_t payload_buffer[ISO1PART2_SDP_RES_LENGTH];
+        payload_buffer[V2G_SDP_RES_SECC_SEC_INDEX] = this->mSecurityType;
+        payload_buffer[V2G_SDP_RES_SECC_TRANSPORT_INDEX] = this->mTransportType;
+        memcpy(payload_buffer, this->mIpV6Addr.data(), V2G_SDP_RES_SECC_IP_LENGTH);
+        payload_buffer[V2G_SDP_RES_SECC_PORT_INDEX] = (uint8_t)(((0xFF00) & (this->mPort)) >> 8);
+        payload_buffer[V2G_SDP_RES_SECC_PORT_INDEX + 1] = (uint8_t)(((0x00FF) & (this->mPort)));
+        this->setPayload((const char *)payload_buffer, ISO1PART2_SDP_RES_LENGTH);
+        this->dumpTpHeader();
+        this->dumpMsg();
+    }
 }
 
 bool V2gSdpResMessage::deserialize(void)

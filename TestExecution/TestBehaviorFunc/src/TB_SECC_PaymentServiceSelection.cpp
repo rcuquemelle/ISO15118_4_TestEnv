@@ -287,6 +287,7 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedPaymentOption(selPaymentOption);
   std::shared_ptr<SelectedServiceListType> servicelist = std::shared_ptr<SelectedServiceListType>(new SelectedServiceListType);
   servicelist->SelectedService.array[0].ServiceID = 1;
+  servicelist->SelectedService.arrayLen = 1;
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedServiceList(servicelist.get());
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->mResponseCode_flag = specific;
@@ -432,6 +433,7 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedPaymentOption(selPaymentOption);
   std::shared_ptr<SelectedServiceListType> servicelist = std::shared_ptr<SelectedServiceListType>(new SelectedServiceListType);
   servicelist->SelectedService.array[0].ServiceID = v_invalidServiceID;
+  servicelist->SelectedService.arrayLen = 1;
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedServiceList(servicelist.get());
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_ServiceSelectionInvalid);
@@ -578,6 +580,7 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedPaymentOption(selPaymentOption);
   std::shared_ptr<SelectedServiceListType> servicelist = std::shared_ptr<SelectedServiceListType>(new SelectedServiceListType);
   servicelist->SelectedService.array[0].ServiceID = this->mtc->vc_ServiceId;
+  servicelist->SelectedService.arrayLen = 1;
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSelectedServiceList(servicelist.get());
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServicePaymentSelectionRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_NoChargeServiceSelected);

@@ -28,6 +28,7 @@ public:
     virtual void dumpMsg(void) = 0;
     AppHandMessageType getMessageType();
     std::string getMessageName();
+    void resetSerializeFlag(void) { serialized_flag = false;}
     struct appHandEXIDocument *getAppHandEXI()
     {
         return &mAppHandshakeData;
@@ -41,6 +42,7 @@ protected:
     AppHandMessageType mMessageType;
 
 public:
+    bool serialized_flag = false;
     // supportedAppProtocolReq_isUsed
     // appHandAnonType_supportedAppProtocolReq
     // supportedAppProtocolRes_isUsed

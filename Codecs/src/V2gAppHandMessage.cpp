@@ -28,30 +28,36 @@ V2gAppHandMessage::~V2gAppHandMessage()
 /* Serialize structure data to byte stream */
 bool V2gAppHandMessage::serialize()
 {
-    // allocate 4kb buffer for msg byte stream
-    uint8_t buffer[4096];
-    bitstream_t byteStream;
-    size_t pos1 = V2GTP_HEADER_LENGTH;
-    memset(buffer, 0x00, sizeof(buffer));
+    if (serialized_flag == false) {
+        serialized_flag = true;
+        // allocate 4kb buffer for msg byte stream
+        uint8_t buffer[4096];
+        bitstream_t byteStream;
+        size_t pos1 = V2GTP_HEADER_LENGTH;
+        memset(buffer, 0x00, sizeof(buffer));
 
-    byteStream.data = buffer;
-    // buffer position counter
-    byteStream.pos = &pos1;
-    byteStream.size = 4096;
-    // encode msg to bytestream
-    int result = this->toByteStream(&byteStream);
-    if (0 == result)
-    {
-        // copy data of byte stream to base class TP data for current object
-        this->setMessage((const char *)byteStream.data, pos1);
-        this->dumpTpHeader();
-        this->dumpMsg();
-        return true;
+        byteStream.data = buffer;
+        // buffer position counter
+        byteStream.pos = &pos1;
+        byteStream.size = 4096;
+        // encode msg to bytestream
+        int result = this->toByteStream(&byteStream);
+        if (0 == result)
+        {
+            // copy data of byte stream to base class TP data for current object
+            this->setMessage((const char *)byteStream.data, pos1);
+            this->dumpTpHeader();
+            this->dumpMsg();
+            return true;
+        }
+        else
+        {
+            Logging::error(LogMsgDump_ENABLE, fmt::format("{0} - Failed to serialized {1} message", result, MSG_NAME[this->getMessageType()]));
+            return false;
+        }
     }
-    else
-    {
-        Logging::error(LogMsgDump_ENABLE, fmt::format("{0} - Failed to serialized {1} message", result, MSG_NAME[this->getMessageType()]));
-        return false;
+    else {
+        return true;
     }
 }
 

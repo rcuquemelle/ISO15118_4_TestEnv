@@ -40,6 +40,8 @@ public:
   void serialize(void);
   bool deserialize(void);
   void dumpMsg(void);
+  void resetSerializeFlag(void) { serialized_flag = false;}
+
   const uint32_t V2G_SDP_RES_SECC_IP_LENGTH = 16;
   const uint32_t V2G_SDP_RES_SECC_PORT_LENGTH = 2;
   const uint32_t V2G_SDP_RES_SECC_IP_INDEX = 0;
@@ -166,6 +168,7 @@ public:
   }
 
 private:
+  bool serialized_flag = false;
   uint8_t mSecurityType = 0xFF;
   uint8_t mTransportType = 0xFF;
   std::array<uint8_t, 16> mIpV6Addr;

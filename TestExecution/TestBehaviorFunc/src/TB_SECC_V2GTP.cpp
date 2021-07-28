@@ -6,6 +6,19 @@
 #include "TimerCfg.h"
 using namespace Timer_15118::Timer_par_15118;
 using namespace Timer_15118_2::Timer_par_15118_2;
+#define SECURITY_TLS 0x00 // secured with TLS
+// 0x01-0x0F = reserved
+#define SECURITY_NONE 0x10 // No transport layer security
+// 0x11-0xFF = reserved
+#define TRANSPORT_TCP 0x00 // TCP
+// 0x01-0x0F = reserved
+#define TRANSPORT_UDP 0x10 // reserved for UDP
+// 0x11-0xFF = reserved
+#define TP_VER 0x01
+#define TP_VER_INVERSE 0xFE
+#define TP_PAYLOAD_V2G 0x8001
+#define TP_PAYLOAD_SDPREQ 0x9000
+#define TP_PAYLOAD_SDPRES 0x9001
 
 verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionSetup_001()
 {
@@ -14,8 +27,8 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<SessionSetupReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<SessionSetupRes>();
   // md_CMN_V2GTP_header_TYPE_001('01'H,'FE'H,'8001'H, omit)
-  sendMsg->setTPVersion(0x01, 0xFE);
-  sendMsg->setPayloadType(0x8001);
+  sendMsg->setTPVersion(TP_VER, TP_VER_INVERSE);
+  sendMsg->setPayloadType(TP_PAYLOAD_V2G);
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setEVCCID(this->mtc->vc_eVCCID);
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mEVSEID_flag = has_value;
@@ -34,7 +47,7 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
     {
       char V2GTPHeader[8];
       cast_received->getHeader(V2GTPHeader);
-      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x8001)
+      if ((V2GTPHeader[0] == TP_VER) && (V2GTPHeader[1] == TP_VER_INVERSE) && (cast_received->getPayloadType() == TP_PAYLOAD_V2G)
         && (cast_received->getPayloadLength() != 0)) {
         // compare cast_received and cast_expected
         if ((*cast_expected) == (*cast_received))
@@ -131,7 +144,7 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
     {
       char V2GTPHeader[8];
       cast_received->getHeader(V2GTPHeader);
-      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x8001)
+      if ((V2GTPHeader[0] == TP_VER) && (V2GTPHeader[1] == TP_VER_INVERSE) && (cast_received->getPayloadType() == TP_PAYLOAD_V2G)
         && (cast_received->getPayloadLength() != 0)) {
         if ((*cast_expected) == (*cast_received))
         {
@@ -195,12 +208,12 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_001()
   int v_count = 0;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<V2gSdpMessage>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<V2gSdpResMessage>();
-  sendMsg->setTPVersion(0x01, 0xFE);
-  sendMsg->setPayloadType(0x9000);
-  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setSecurityType(0x10);
-  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(0x00);
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(0x10);
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(0x00);
+  sendMsg->setTPVersion(TP_VER, TP_VER_INVERSE);
+  sendMsg->setPayloadType(TP_PAYLOAD_SDPREQ);
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setSecurityType(SECURITY_NONE);
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(TRANSPORT_TCP);
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(SECURITY_NONE);
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(TRANSPORT_TCP);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mIpV6Addr_flag = has_value;
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mPort_flag = has_value;
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mSecurity_flag = has_value;
@@ -217,7 +230,7 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_001()
     {
       char V2GTPHeader[8];
       cast_received->getHeader(V2GTPHeader);
-      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x9001)
+      if ((V2GTPHeader[0] == TP_VER) && (V2GTPHeader[1] == TP_VER_INVERSE) && (cast_received->getPayloadType() == TP_PAYLOAD_SDPRES)
         && (cast_received->getPayloadLength() == 20)) {
         if ((*cast_expected) == (*cast_received))
         {
@@ -283,13 +296,15 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_002(iso1Part4
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<V2gSdpMessage>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<V2gSdpResMessage>();
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setSecurityType(SECURITY_NONE);
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(TRANSPORT_TCP);
+  // serialize data then change the header value
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->serialize();
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTPVersion(v_v2gtpHeader.protocolVersion, v_v2gtpHeader.invProtocolVersion);
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setPayloadType(v_v2gtpHeader.payloadType);
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setPayloadLength(v_v2gtpHeader.payloadLength);
-  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setSecurityType(0x10);
-  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(0x00);
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(0x10);
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(0x00);
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(SECURITY_NONE);
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(TRANSPORT_TCP);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mIpV6Addr_flag = has_value;
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mPort_flag = has_value;
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mSecurity_flag = has_value;
@@ -298,11 +313,12 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_002(iso1Part4
   {
     std::shared_ptr<V2gSdpResMessage> cast_expected = std::dynamic_pointer_cast<V2gSdpResMessage>(expected);
     std::shared_ptr<V2gSdpResMessage> cast_received = std::dynamic_pointer_cast<V2gSdpResMessage>(received);
+    // expected invalid SDP msg shall be ignore
     if (cast_received->deserialize())
     {
       char V2GTPHeader[8];
       cast_received->getHeader(V2GTPHeader);
-      if ((V2GTPHeader[0] == 0x01) && (V2GTPHeader[1] == 0xFE) && (cast_received->getPayloadType() == 0x9001)
+      if ((V2GTPHeader[0] == TP_VER) && (V2GTPHeader[1] == TP_VER_INVERSE) && (cast_received->getPayloadType() == TP_PAYLOAD_SDPRES)
         && (cast_received->getPayloadLength() == 20)) {
         if ((*cast_expected) == (*cast_received))
         {
@@ -349,5 +365,4 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_002(iso1Part4
     }
   }
   return this->mtc->getverdict();
-  ;
 }

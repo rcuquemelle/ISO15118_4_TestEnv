@@ -8,6 +8,16 @@
 using namespace Timer_15118::Timer_par_15118;
 using namespace Timer_15118_2::Timer_par_15118_2;
 
+#define SECURITY_TLS 0x00 // secured with TLS
+// 0x01-0x0F = reserved
+#define SECURITY_NONE 0x10 // No transport layer security
+// 0x11-0xFF = reserved
+
+#define TRANSPORT_TCP 0x00 // TCP
+// 0x01-0x0F = reserved
+#define TRANSPORT_UDP 0x10 // reserved for UDP
+// 0x11-0xFF = reserved
+
 verdict_val TestBehavior_SECC_SDP::f_SECC_CMN_TB_VTB_SDP_001(iso1Part4_Security_TYPE v_security, verdict_val v_vct)
 {
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
@@ -17,9 +27,9 @@ verdict_val TestBehavior_SECC_SDP::f_SECC_CMN_TB_VTB_SDP_001(iso1Part4_Security_
   // expected SdpResponseMessage
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<V2gSdpResMessage>();
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setSecurityType(v_security);
-  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(0x00);
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTransportType(TRANSPORT_TCP);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(v_security);
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(0x00);
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(TRANSPORT_TCP);
 
   auto receive_handler = [this, &v_count](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -111,9 +121,9 @@ verdict_val TestBehavior_SECC_SDP::f_SECC_CMN_TB_VTB_SDP_002(iso1Part4_Security_
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<V2gSdpMessage>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<V2gSdpResMessage>();
   std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setSecurityType(v_security);
-  std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setTransportType(0x00);
+  std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setTransportType(TRANSPORT_TCP);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(v_security);
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(0x00);
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(TRANSPORT_TCP);
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     std::shared_ptr<V2gSdpResMessage> cast_expected = std::dynamic_pointer_cast<V2gSdpResMessage>(expected);
@@ -158,10 +168,10 @@ verdict_val TestBehavior_SECC_SDP::f_SECC_CMN_TB_VTB_SDP_003()
   int v_count = 0;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<V2gSdpMessage>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<V2gSdpResMessage>();
-  std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setSecurityType(0x00);     // TLS
-  std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setTransportType(0x00);    // TCP
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(0x10); // expected no TLS
-  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(0x00);
+  std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setSecurityType(SECURITY_TLS);     // TLS
+  std::static_pointer_cast<V2gSdpResMessage>(sendMsg)->setTransportType(TRANSPORT_TCP);    // TCP
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(SECURITY_NONE); // expected no TLS
+  std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(TRANSPORT_TCP);
   auto receive_handler = [this, &v_count](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     // if compare msg correct

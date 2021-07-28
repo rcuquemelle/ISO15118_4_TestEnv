@@ -12,38 +12,38 @@ int main(int argc, const char *argv[])
   Logging::setLogLevel(LOG_DEBUG);
   Logging::setLogOutput(LOG_OUT_CONSOLE);
 
-  IfRuntime rm;
-  auto service = rm.getService();
-  PATimerManager tm(service);
-  std::shared_ptr<PATimer> t1 = tm.createTimer("local", 15);
-  std::atomic<bool> end_flag = false;
-  service->Dispatch([&t1, &end_flag]() {
-    while (end_flag == false)
-    {
-      t1->start();
-      std::this_thread::sleep_for(std::chrono::milliseconds(100));
-      t1->start();
-      if (t1->running())
-      {
-        Logging::info(0,"Timer running");
-      }
-      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-      t1->stop();
-    }
-   });
+  // IfRuntime rm;
+  // auto service = rm.getService();
+  // PATimerManager tm(service);
+  // std::shared_ptr<PATimer> t1 = tm.createTimer("local", 15);
+  // std::atomic<bool> end_flag = false;
+  // service->Dispatch([&t1, &end_flag]() {
+  //   while (end_flag == false)
+  //   {
+  //     t1->start();
+  //     std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  //     t1->start();
+  //     if (t1->running())
+  //     {
+  //       Logging::info(0,"Timer running");
+  //     }
+  //     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+  //     t1->stop();
+  //   }
+  //  });
 
-  while(t1->running());
-  Logging::info(0,"Timer stop");
-  std::cin.get();
+  // while(t1->running());
+  // Logging::info(0,"Timer stop");
+  // std::cin.get();
 
-  // std::vector<uint8_t> sessionid{1, 2, 3, 4, 5, 6, 7, 8};
+  std::vector<uint8_t> sessionid{1, 2, 3, 4, 5, 6, 7, 8};
   // std::vector<uint8_t> challenge{2, 3, 4, 5,1};
-  // std::shared_ptr<AuthorizationReq> msgReq1 = std::make_shared<AuthorizationReq>();
-  // msgReq1->setSessionId(sessionid);
+  std::shared_ptr<AuthorizationReq> msgReq1 = std::make_shared<AuthorizationReq>();
+  msgReq1->setSessionId(sessionid);
   // msgReq1->setGenChallenge(challenge);
   // msgReq1->setId("testid");
-  // msgReq1->serialize();
-  // msgReq1->deserialize();
+  msgReq1->serialize();
+  msgReq1->deserialize();
 
   // std::shared_ptr<AuthorizationRes> msgRes1 = std::make_shared<AuthorizationRes>();
   // msgRes1->setSessionId(sessionid);
@@ -90,7 +90,7 @@ int main(int argc, const char *argv[])
   // msgReq3->setACEVChargeParamter(&ac_evcharge);
   // msgReq3->serialize();
   // msgReq3->deserialize();
-  
+
   // msgReq3 = std::make_shared<ChargeParameterDiscoveryReq>();
   // msgReq3->setSessionId(sessionid);
   // msgReq3->setMaxEntriesSAScheduleTuple(34);

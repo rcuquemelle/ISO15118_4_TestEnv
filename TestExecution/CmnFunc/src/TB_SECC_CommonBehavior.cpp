@@ -199,6 +199,7 @@ bool TestBehavior_SECC_CommonBehavior::a_SECC_TCPConnection_Status_Listener(verd
 }
 bool TestBehavior_SECC_CommonBehavior::a_SECC_TCP_Connection_Termination_Timeout()
 {
+  // TODO: add checking TCPPort to makesure no msg is available??
   if (this->mtc->tc_CMN_TCP_Connection_Termination_Timer->timeout())
   {
     this->mtc->setverdict(fail, "TCP connection was >>NOT<< terminated by the SUT, tc_CMN_TCP_Connection_Termination_Timer was triggered.");

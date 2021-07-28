@@ -16,6 +16,7 @@ V2gSdpMessage::V2gSdpMessage() : V2gTpMessage(V2gTpMessage::V2G_TP_PAYLOAD_SDP_R
   payload[0] = mSecurityType;
   payload[1] = mTransportType;
   setPayload(payload, V2G_SDP_PAYLOAD_LEN);
+  serialized_flag = false;
 }
 
 V2gSdpMessage::V2gSdpMessage(uint8_t security, uint8_t transport)
@@ -27,6 +28,7 @@ V2gSdpMessage::V2gSdpMessage(uint8_t security, uint8_t transport)
   payload[0] = mSecurityType;
   payload[1] = mTransportType;
   setPayload(payload, V2G_SDP_PAYLOAD_LEN);
+  serialized_flag = false;
 }
 
 void V2gSdpMessage::setSecurityType(uint8_t type)
@@ -52,13 +54,16 @@ uint8_t V2gSdpMessage::getTransportType()
 
 void V2gSdpMessage::serialize()
 {
-  // set payload type
-  setPayloadType(V2gTpMessage::V2G_TP_PAYLOAD_SDP_REQ);
-  // set payload data
-  uint8_t buffer[ISO1PART2_SDP_REQ_LENGTH] = {this->mSecurityType, this->mTransportType};
-  setPayload((char *)buffer, ISO1PART2_SDP_REQ_LENGTH);
-  this->dumpTpHeader();
-  this->dumpMsg();
+  if (serialized_flag == false) {
+    serialized_flag = true;
+    // set payload type
+    setPayloadType(V2gTpMessage::V2G_TP_PAYLOAD_SDP_REQ);
+    // set payload data
+    uint8_t buffer[ISO1PART2_SDP_REQ_LENGTH] = {this->mSecurityType, this->mTransportType};
+    setPayload((char *)buffer, ISO1PART2_SDP_REQ_LENGTH);
+    this->dumpTpHeader();
+    this->dumpMsg();
+  }
 }
 
 bool V2gSdpMessage::deserialize()

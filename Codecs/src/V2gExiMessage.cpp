@@ -53,13 +53,18 @@ V2gExiMessage::V2gExiMessage() : V2gTpMessage(V2gTpMessage::V2G_TP_PAYLOAD_EXI)
     init_iso1BodyType(&mExiData.V2G_Message.Body);
     init_iso1MessageHeaderType(&mExiData.V2G_Message.Header);
     mType = V2G_MSG_UNKNOWN_TYPE;
+    serialized_flag = false;
 }
 
-V2gExiMessage::V2gExiMessage(V2gExiMessageType type) : V2gTpMessage(V2gTpMessage::V2G_TP_PAYLOAD_EXI), mType(type)
+V2gExiMessage::V2gExiMessage(V2gExiMessageType type) : V2gTpMessage(V2gTpMessage::V2G_TP_PAYLOAD_EXI)
 {
     ALMsgType = ALM_EXI;
     init_iso1EXIDocument(&mExiData);
     mExiData.V2G_Message_isUsed = 1u;
+    init_iso1BodyType(&mExiData.V2G_Message.Body);
+    init_iso1MessageHeaderType(&mExiData.V2G_Message.Header);
+    mType = type;
+    serialized_flag = false;
 }
 
 V2gExiMessage::~V2gExiMessage()
@@ -92,6 +97,9 @@ bool V2gExiMessage::serialize()
             Logging::error(LogMsgDump_ENABLE, fmt::format("{0} - Failed to serialized {1} message", result, this->getTypeName()));
             return false;
         }
+    }
+    else {
+        return true;
     }
 }
 
