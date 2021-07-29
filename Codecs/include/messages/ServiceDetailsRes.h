@@ -21,8 +21,8 @@ public:
   int getServiceID();
   void setServiceID(int id);
   void dumpMsg(void) override;
+  comparision_indicate_flag mResponseCode_flag = specific;
   comparision_indicate_flag mServiceID_flag = has_value;
-  comparision_indicate_flag mResponseCode_flag = has_value;
   comparision_indicate_flag pServiceParameterList_flag = omit;
 
   bool operator==(ServiceDetailsRes &object_compare)

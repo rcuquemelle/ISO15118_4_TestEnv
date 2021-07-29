@@ -21,9 +21,9 @@ public:
   uint64_t getEVSETimeStamp();
   void setEVSETimeStamp(uint64_t timestamp);
   void dumpMsg(void) override;
+  comparision_indicate_flag mResponseCode_flag = specific;
   comparision_indicate_flag mEVSEID_flag = has_value;
   comparision_indicate_flag mTimeStamp_flag = omit;
-  comparision_indicate_flag mResponseCode_flag = has_value;
 
   bool operator==(SessionSetupRes &object_compare)
   {

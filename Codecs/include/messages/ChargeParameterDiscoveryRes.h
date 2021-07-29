@@ -25,8 +25,8 @@ public:
   EVSEChargeParameterType *getEVSEChargeParamter();
   void setEVSEChargeParameter(EVSEChargeParameterType *params);
   void dumpMsg(void) override;
-  comparision_indicate_flag mResponseCode_flag = has_value;
-  comparision_indicate_flag mEVSEProcessing_flag = has_value;
+  comparision_indicate_flag mResponseCode_flag = specific;
+  comparision_indicate_flag mEVSEProcessing_flag = specific;
   comparision_indicate_flag pSASchedules_flag = omit;
   comparision_indicate_flag pAC_EVSEChargeParameter_flag = omit;
   comparision_indicate_flag pDC_EVSEChargeParameter_flag = omit;

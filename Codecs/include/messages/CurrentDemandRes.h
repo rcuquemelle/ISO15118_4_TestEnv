@@ -54,7 +54,7 @@ public:
     void setReceiptRequired(bool value);
 
     void dumpMsg(void) override;
-    comparision_indicate_flag mResponseCode_flag = has_value;
+    comparision_indicate_flag mResponseCode_flag = specific;
     comparision_indicate_flag pDCEVSEStatus_flag = has_value;
     comparision_indicate_flag pEVSEPresentVoltage_flag = has_value;
     comparision_indicate_flag pEVSEPresentCurrent_flag = has_value;

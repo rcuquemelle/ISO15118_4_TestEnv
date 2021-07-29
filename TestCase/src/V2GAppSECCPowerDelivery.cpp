@@ -67,7 +67,7 @@ TupleID and all additional mandatory parameters and signals CP State C.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
 current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC,PICS_SECC_CMN_EvStateInChargeProgress = C
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_001()
 {
@@ -101,7 +101,7 @@ parameters and signals CP State D.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
 current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC,PICS_SECC_CMN_EvStateInChargeProgress = D
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_002()
 {
@@ -205,7 +205,7 @@ parameters and signals CP State B.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
 current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_005()
 {
@@ -240,7 +240,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_006()
 {
@@ -275,7 +275,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 343
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_007()
 {
@@ -311,7 +311,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_008()
 {
@@ -347,7 +347,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_009()
 {
@@ -384,7 +384,7 @@ current SessionID, ResponseCode 'FAILED_ChargingProfileInvalid' and all
 additional mandatory parameters and terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_010()
 {
@@ -421,7 +421,7 @@ additional 345 mandatory parameters and terminates the V2G communication session
 by closing the TCP connection within
 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_011()
 {
@@ -457,7 +457,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_012()
 {
@@ -491,7 +491,7 @@ ChargingStatusRes or MeteringReceipt message.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_013()
 {
@@ -528,7 +528,7 @@ current SessionID, ResponseCode 'FAILED' and all additional mandatory parameters
 and terminates the V2G communication session by closing the TCP connection
 within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_014()
 {
@@ -562,7 +562,7 @@ TupleID and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
 current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_001()
 {
@@ -597,7 +597,7 @@ PowerDeliveryRes message.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
 current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_002()
 {
@@ -633,7 +633,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_003()
 {
@@ -668,7 +668,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_004()
 {
@@ -705,7 +705,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'. 349
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_005()
 {
@@ -741,7 +741,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_006()
 {
@@ -777,7 +777,7 @@ current SessionID, ResponseCode 'FAILED_ChargingProfileInvalid' and all
 additional mandatory parameters and terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_007()
 {
@@ -813,7 +813,7 @@ current SessionID, ResponseCode 'FAILED_TariffSelectionInvalid' and all
 additional mandatory parameters and terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_008()
 {
@@ -883,7 +883,7 @@ CurrentDemandRes or MeteringReceipt message.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_010()
 {
@@ -990,7 +990,7 @@ current SessionID, ResponseCode 'FAILED' and all additional mandatory parameters
 and terminates the V2G communication session by closing the TCP connection
 within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_013()
 {
@@ -1025,7 +1025,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_014()
 {
@@ -1034,12 +1034,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_014()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_RESSTemperatureInhibit;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_RESSTemperatureInhibit;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1062,7 +1062,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters. Test objective 354
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_015()
 {
@@ -1071,12 +1071,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_015()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_EVShiftPosition;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_EVShiftPosition;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1099,7 +1099,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_016()
 {
@@ -1108,12 +1108,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_016()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargerConnectorLockFault;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargerConnectorLockFault;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1136,7 +1136,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 355 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_017()
 {
@@ -1145,12 +1145,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_017()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_EVRESSMalfunction;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_EVRESSMalfunction;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1173,7 +1173,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_018()
 {
@@ -1182,12 +1182,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_018()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargingCurrentdifferential;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargingCurrentdifferential;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1210,7 +1210,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_019()
 {
@@ -1219,12 +1219,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_019()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargingVoltageOutOfRange;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargingVoltageOutOfRange;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1247,7 +1247,7 @@ ChargeProgressType 'Stop_' and all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_020()
 {
@@ -1256,12 +1256,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_020()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargingSystemIncompatibility;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::fAILED_ChargingSystemIncompatibility;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else
@@ -1284,7 +1284,7 @@ all additional mandatory parameters.
 process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_021()
 {
@@ -1293,12 +1293,12 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_021()
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::noData;
   preConVerdict = this->pre->f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_001(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
     this->mtc->vc_DC_EVStatus.EVReady = false;
+    this->mtc->vc_DC_EVStatus.EVErrorCode = (DC_EVErrorCodeType)iso1Part4_DC_EVErrorCodeType::noData;
     this->tb->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, true, fail);
   }
   else

@@ -28,9 +28,9 @@ public:
 
   comparision_indicate_flag mchargeProgress_flag = has_value;
   comparision_indicate_flag mSAScheduleTupleID_flag = has_value;
-  comparision_indicate_flag pChargingProfile_flag = omit;
+  comparision_indicate_flag pChargingProfile_flag = has_value;
   comparision_indicate_flag pDC_EVPowerDeliveryParameter_flag = has_value;
-  comparision_indicate_flag pEVPowerDeliveryParameter_flag = has_value;
+  comparision_indicate_flag pEVPowerDeliveryParameter_flag = omit;
 
   bool operator==(PowerDeliveryReq &object_compare)
   {

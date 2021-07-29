@@ -16,12 +16,6 @@ find_package(OpenSSL REQUIRED)
 include(CTest)
 enable_testing()
 
-# if(MSVC)
-#   add_compile_options(/W3 /WX)
-# else()
-#   add_compile_options(-W -Wall -Werror)
-# endif()
-
 # static library components
 add_subdirectory("./modules")
 

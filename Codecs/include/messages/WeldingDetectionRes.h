@@ -22,7 +22,7 @@ public:
 
   comparision_indicate_flag pEVSEPresentVoltage_flag = has_value;
   comparision_indicate_flag pDC_EVSEStatus_flag = has_value;
-  comparision_indicate_flag mResponseCode_flag = has_value;
+  comparision_indicate_flag mResponseCode_flag = specific;
 
   bool operator==(WeldingDetectionRes &object_compare)
   {

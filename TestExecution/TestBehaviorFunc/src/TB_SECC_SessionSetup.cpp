@@ -60,6 +60,8 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_001(v
 
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK_NewSessionEstablished);
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mEVSEID_flag = has_value;
+  std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mTimeStamp_flag = omit;
 
   auto receive_handler = [this, &v_vct](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -78,9 +80,8 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_001(v
           this->mtc->vc_SessionID = cast_received->getSessionId();
           this->mtc->vc_EvseId = cast_received->getEVSEID();
           auto sessionid = f_outHexString(this->mtc->vc_SessionID);
-          auto evseid = f_outHexString(this->mtc->vc_EvseId);
           Logging::info(LogTbFnc_ENABLE, fmt::format("Session ID: {0}", sessionid));
-          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", evseid));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", this->mtc->vc_EvseId));
           // EVSETimeStamp: 1608971686
           // iso1responseCodeType_OK
           // iso1faultCodeType_ParsingError(default notification status of header)
@@ -424,6 +425,8 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_005(v
 
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK_OldSessionJoined);
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mEVSEID_flag = has_value;
+  std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mTimeStamp_flag = omit;
 
   auto receive_handler = [this, &v_vct](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -440,7 +443,7 @@ verdict_val TestBehavior_SECC_SessionSetup::f_SECC_CMN_TB_VTB_SessionSetup_005(v
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
           this->mtc->vc_EvseId = cast_received->getEVSEID();
-          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", f_outHexString(this->mtc->vc_EvseId)));
+          Logging::info(LogTbFnc_ENABLE, fmt::format("EVSE ID: {0}", this->mtc->vc_EvseId);
           if (this->mtc->vc_EvseId != cc_EvseId_NotSup)
           {
             bool result = fx_validateEVSEID(this->mtc->vc_EvseId, "ISO");

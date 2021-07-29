@@ -24,7 +24,7 @@ public:
   EVSEStatusType *getEVSEStatus();
   void setEVSEStatus(EVSEStatusType *status);
   void dumpMsg(void) override;
-  comparision_indicate_flag pEVSEStatus_flag = has_value;
+  comparision_indicate_flag pEVSEStatus_flag = specific;
   comparision_indicate_flag pAC_EVSEStatus_flag = omit;
   comparision_indicate_flag pDC_EVSEStatus_flag = omit;
   comparision_indicate_flag mResponseCode_flag = omit;

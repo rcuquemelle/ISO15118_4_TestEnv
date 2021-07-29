@@ -28,7 +28,7 @@ public:
   comparision_indicate_flag pAC_EVSEStatus_flag = omit;
   comparision_indicate_flag pDC_EVSEStatus_flag = omit;
   comparision_indicate_flag pEVSEStatus_flag = omit;
-  comparision_indicate_flag mResponseCode_flag = has_value;
+  comparision_indicate_flag mResponseCode_flag = specific;
 
   bool operator==(PowerDeliveryRes &object_compare)
   {

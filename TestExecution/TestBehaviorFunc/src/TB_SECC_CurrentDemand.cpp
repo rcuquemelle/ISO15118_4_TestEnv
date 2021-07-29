@@ -354,9 +354,7 @@ verdict_val TestBehavior_SECC_CurrentDemand::f_SECC_DC_TB_VTB_CurrentDemand_003(
                                  false, this->mtc->vc_DC_remainingTimeToBulkSoC,
                                  true, this->mtc->vc_DC_remainingTimeToFullSoC);
   std::static_pointer_cast<CurrentDemandRes>(expectedMsg)->setSessionId(randomSessionID);
-  std::static_pointer_cast<CurrentDemandRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
-  std::static_pointer_cast<CurrentDemandRes>(expectedMsg)->mResponseCode_flag = specific;
-  md_CMN_DC_CurrentDemandRes_001(expectedMsg, (responseCodeType)iso1Part4_ResponseCodeType::oK,
+  md_CMN_DC_CurrentDemandRes_001(expectedMsg, (responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession,
                                  (DC_EVSEStatusType *)HAS_VAL, (PhysicalValueType *)HAS_VAL, (PhysicalValueType *)HAS_VAL, HAS_VAL, HAS_VAL, HAS_VAL, nullptr, nullptr, nullptr, (std::string *)HAS_VAL, HAS_VAL, nullptr, OMIT);
 
   f_SECC_setIsConfirmationFlagDC();
@@ -535,8 +533,6 @@ verdict_val TestBehavior_SECC_CurrentDemand::f_SECC_DC_TB_VTB_CurrentDemand_005(
                                  false, this->mtc->vc_DC_remainingTimeToBulkSoC,
                                  true, this->mtc->vc_DC_remainingTimeToFullSoC);
   std::static_pointer_cast<CurrentDemandRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  std::static_pointer_cast<CurrentDemandRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
-  std::static_pointer_cast<CurrentDemandRes>(expectedMsg)->mResponseCode_flag = specific;
   md_CMN_DC_CurrentDemandRes_001(expectedMsg, (responseCodeType)iso1Part4_ResponseCodeType::oK,
                                  (DC_EVSEStatusType *)HAS_VAL, (PhysicalValueType *)HAS_VAL, (PhysicalValueType *)HAS_VAL, HAS_VAL, HAS_VAL, HAS_VAL, nullptr, nullptr, nullptr, (std::string *)HAS_VAL, HAS_VAL, (MeterInfoType *)HAS_VAL, OMIT);
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool

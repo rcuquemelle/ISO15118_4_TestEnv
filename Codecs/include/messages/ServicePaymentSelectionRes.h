@@ -14,7 +14,7 @@ class ServicePaymentSelectionRes : public V2gExiMessage  {
     responseCodeType getResponseCode();
     void setResponseCode(responseCodeType code);
     void dumpMsg(void) override;
-    comparision_indicate_flag mResponseCode_flag = has_value;
+    comparision_indicate_flag mResponseCode_flag = specific;
 
     bool operator==(ServicePaymentSelectionRes &object_compare)
     {

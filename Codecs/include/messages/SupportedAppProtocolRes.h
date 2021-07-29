@@ -16,8 +16,8 @@ public:
   uint16_t getSchemeID();
   void setSchemeID(uint16_t id);
   void dumpMsg(void) override;
+  comparision_indicate_flag mResponseCode_flag = specific;
   comparision_indicate_flag mSchemaID_flag = has_value;
-  comparision_indicate_flag mResponseCode_flag = has_value;
 
   bool operator==(SupportedAppProtocolRes &object_compare)
   {

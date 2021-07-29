@@ -17,7 +17,7 @@ public:
   responseCodeType getResponseCode();
   void setResponseCode(responseCodeType code);
   void dumpMsg(void) override;
-  comparision_indicate_flag mResponseCode_flag = has_value;
+  comparision_indicate_flag mResponseCode_flag = specific;
 
   bool operator==(SessionStopRes &object_compare)
   {

@@ -35,7 +35,7 @@ public:
   AC_EVSEStatusType *getACEVSEStatus();
   void setACEVSEStatus(AC_EVSEStatusType *status);
   void dumpMsg(void) override;
-  comparision_indicate_flag mResponseCode_flag = has_value;
+  comparision_indicate_flag mResponseCode_flag = specific;
   comparision_indicate_flag mEVSEID_flag = has_value;
   comparision_indicate_flag mSAScheduleTupleID_flag = has_value;
   comparision_indicate_flag pEVSEMaxCurrent_flag = omit;

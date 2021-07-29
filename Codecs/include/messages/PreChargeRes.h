@@ -19,7 +19,7 @@ public:
   PhysicalValueType *getEVSEPresentVoltage();
   void setEVSEPresentVoltage(PhysicalValueType *voltage);
   void dumpMsg(void) override;
-  comparision_indicate_flag mResponseCode_flag = has_value;
+  comparision_indicate_flag mResponseCode_flag = specific;
   comparision_indicate_flag pDC_EVSEStatus_flag = has_value;
   comparision_indicate_flag pEVSEPresentVoltage_flag = has_value;
 

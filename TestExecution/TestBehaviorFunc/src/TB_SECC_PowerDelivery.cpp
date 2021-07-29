@@ -1814,7 +1814,7 @@ static void md_CMN_DC_PowerDeliveryReq_002(std::shared_ptr<V2gTpMessage> &msg, i
 {
   std::static_pointer_cast<PowerDeliveryReq>(msg)->setChargeProgress((chargeProgressType)p_chargeProgress);
   std::static_pointer_cast<PowerDeliveryReq>(msg)->setSAScheduleTupleID(p_sAScheduleTupleID);
-  if (p_chargingProfile == nullptr)
+  if (p_chargingProfile != nullptr)
   {
     std::static_pointer_cast<PowerDeliveryReq>(msg)->setChargingProfile(p_chargingProfile);
   }

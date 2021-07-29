@@ -24,10 +24,10 @@ public:
   ServiceListType *getServiceList();
   void setServiceList(ServiceListType *type);
   void dumpMsg(void) override;
+  comparision_indicate_flag mResponseCode_flag = specific;
   comparision_indicate_flag pServiceList_flag = omit;
   comparision_indicate_flag pChargeService_flag = has_value;
   comparision_indicate_flag pPaymentOptionList_flag = has_value;
-  comparision_indicate_flag mResponseCode_flag = has_value;
 
   bool operator==(ServiceDiscoveryRes &object_compare)
   {
