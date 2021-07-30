@@ -295,11 +295,12 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_002
       md_CMN_Signature_001(aSignature, md_CMN_SignedInfoType_001(msgname, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
       // write signed header data
       std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSignature(&aSignature);
+      this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg);
     }
     else
     {
+      this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg2);
     }
-    this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg);
     this->mtc->tc_V2G_EVCC_Msg_Timer->start(par_V2G_EVCC_Msg_Timeout_AuthorizationReq);
     v_cnt = v_cnt + 1;
     while (true)
@@ -498,6 +499,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_004
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSessionId(randomSessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mEVSEProcessing_flag = omit;
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -629,6 +631,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_005
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSessionId(randomSessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mEVSEProcessing_flag = omit;
   std::string msgname = "authorizationReq";
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setId(msgname);
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setGenChallenge(this->mtc->vc_GenChallenge);
@@ -642,10 +645,8 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_005
   }
   /* Signed header for msg*/
   SignatureType aSignature;
-  aSignature.Id_isUsed = 1;
-  strcpy(aSignature.Id.characters, msgname.c_str());
-  aSignature.Id.charactersLen = msgname.length();
-  // Signature aSignature = md_CMN_Signature_001(md_CMN_SignedInfoType_001(, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
+  BodyType *myAuthorizationBodyType = &(std::static_pointer_cast<AuthorizationReq>(sendMsg)->getExiData())->V2G_Message.Body;
+  md_CMN_Signature_001(aSignature, md_CMN_SignedInfoType_001(msgname, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
   // write signed header data
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSignature(&aSignature);
 
@@ -779,21 +780,30 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_006
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_ChallengeInvalid);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mEVSEProcessing_flag = omit;
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
   f_SECC_changeValidDutyCycleRange(this->systemSECC, 100, 100);
   // deactivate(vc_Default_IEC_61851_ListenerBehavior);
 
-  // this->mtc->vc_GenChallenge = fx_generateGenChallenge();
-  // BodyType myAuthorizationBodyType = md_CMN_BodyType_001( md_CMN_CMN_AuthorizationReq_002( "authorizationReq", this->mtc->vc_GenChallenge));
-  // if (isbound(this->mtc->vc_contractPrivateKey)) {
-  //   v_privateKey = this->mtc->vc_contractPrivateKey;
-  // }
-  // else {
-  //   v_privateKey = fx_loadPrivateKey("CRT_CONTRACT_LEAF_VALID");
-  // }
-  // Signature aSignature = md_CMN_Signature_001( md_CMN_SignedInfoType_001("authorizationReq", f_generateDigestFromBodyType( myAuthorizationBodyType)), v_privateKey);
+  // get invalid challenge value
+  this->mtc->vc_GenChallenge = fx_generateGenChallenge();
+  std::string msgname = "authorizationReq";
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setId(msgname);
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setGenChallenge(this->mtc->vc_GenChallenge);
+  if (isbound(this->mtc->vc_contractPrivateKey)) {
+    v_privateKey = this->mtc->vc_contractPrivateKey;
+  }
+  else {
+    v_privateKey = fx_loadPrivateKey("CRT_CONTRACT_LEAF_VALID");
+  }
+  BodyType *myAuthorizationBodyType = &(std::static_pointer_cast<AuthorizationReq>(sendMsg)->getExiData())->V2G_Message.Body;
+  /* Signed header for msg*/
+  SignatureType aSignature;
+  md_CMN_Signature_001(aSignature, md_CMN_SignedInfoType_001(msgname, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
+  // write signed header data
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSignature(&aSignature);
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -968,15 +978,24 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_008
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_SignatureError);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mEVSEProcessing_flag = omit;
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
   f_SECC_changeValidDutyCycleRange(this->systemSECC, 100, 100);
   // deactivate(vc_Default_IEC_61851_ListenerBehavior);
-  // BodyType myAuthorizationBodyType = md_CMN_BodyType_001( md_CMN_CMN_AuthorizationReq_002( "authorizationReq", this->mtc->vc_GenChallenge));
+
+  std::string msgname = "authorizationReq";
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setId(msgname);
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setGenChallenge(this->mtc->vc_GenChallenge);
   // // load wrong private key
-  // std::string v_invalidPrivateKey = fx_loadPrivateKey("CRT_OEM_LEAF_VALID");
-  // Signature aSignature = md_CMN_Signature_001( md_CMN_SignedInfoType_001("authorizationReq", f_generateDigestFromBodyType(myAuthorizationBodyType)), v_invalidPrivateKey);
+  std::string v_invalidPrivateKey = fx_loadPrivateKey("CRT_OEM_LEAF_VALID");
+  BodyType *myAuthorizationBodyType = &(std::static_pointer_cast<AuthorizationReq>(sendMsg)->getExiData())->V2G_Message.Body;
+  /* Signed header for msg*/
+  SignatureType aSignature;
+  md_CMN_Signature_001(aSignature, md_CMN_SignedInfoType_001(msgname, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_invalidPrivateKey);
+  // write signed header data
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSignature(&aSignature);
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -1103,12 +1122,15 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_009
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_SignatureError);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg)->mEVSEProcessing_flag = omit;
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
   f_SECC_changeValidDutyCycleRange(this->systemSECC, 100, 100);
   // deactivate(vc_Default_IEC_61851_ListenerBehavior);
-  // BodyType myAuthorizationBodyType = md_CMN_BodyType_001( md_CMN_CMN_AuthorizationReq_002( "authorizationReq", this->mtc->vc_GenChallenge));
+  std::string msgname = "authorizationReq";
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setId(msgname);
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setGenChallenge(this->mtc->vc_GenChallenge);
   if (isbound(this->mtc->vc_contractPrivateKey))
   {
     v_privateKey = this->mtc->vc_contractPrivateKey;
@@ -1117,10 +1139,15 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_009
   {
     v_privateKey = fx_loadPrivateKey("CRT_CONTRACT_LEAF_VALID");
   }
-  // Signature aSignature = md_CMN_Signature_001( md_CMN_SignedInfoType_001("authorizationReq", f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
-  // // change genChallenge
-  // this->mtc->vc_GenChallenge = fx_generateGenChallenge();
-  // myAuthorizationBodyType = md_CMN_BodyType_001( md_CMN_CMN_AuthorizationReq_002( "authorizationReq", this->mtc->vc_GenChallenge));
+  BodyType *myAuthorizationBodyType = &(std::static_pointer_cast<AuthorizationReq>(sendMsg)->getExiData())->V2G_Message.Body;
+  /* Signed header for msg*/
+  SignatureType aSignature;
+  md_CMN_Signature_001(aSignature, md_CMN_SignedInfoType_001(msgname, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
+  // write signed header data
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSignature(&aSignature);
+  // change genChallenge
+  this->mtc->vc_GenChallenge = fx_generateGenChallenge();
+  std::static_pointer_cast<AuthorizationReq>(sendMsg)->setGenChallenge(this->mtc->vc_GenChallenge);
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -1495,18 +1522,18 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
       {
         v_privateKey = fx_loadPrivateKey("CRT_CONTRACT_LEAF_VALID");
       }
+      BodyType *myAuthorizationBodyType = &(std::static_pointer_cast<AuthorizationReq>(sendMsg)->getExiData())->V2G_Message.Body;
+      /* Signed header for msg*/
       SignatureType aSignature;
-      aSignature.Id_isUsed = 1;
-      strcpy(aSignature.Id.characters, msgname.c_str());
-      aSignature.Id.charactersLen = msgname.length();
-      // Signature aSignature = md_CMN_Signature_001(md_CMN_SignedInfoType_001(, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
+      md_CMN_Signature_001(aSignature, md_CMN_SignedInfoType_001(msgname, f_generateDigestFromBodyType(myAuthorizationBodyType)), v_privateKey);
       // write signed header data
       std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSignature(&aSignature);
+      this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg);
     }
     else
     {
+      this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg2);
     }
-    this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg);
     this->mtc->tc_V2G_EVCC_Msg_Timer->start(par_V2G_EVCC_Msg_Timeout_AuthorizationReq);
     v_cnt = v_cnt + 1;
     while (true)
@@ -1516,7 +1543,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
         v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
         break;
       }
-      if (this->cmn->a_SECC_TCPConnection_Status_Listener(fail, "TCP connection was misleadingly  terminated by the SUT."))
+      if (this->cmn->a_SECC_TCPConnection_Status_Listener(fail, "TCP connection was misleadingly terminated by the SUT."))
       {
         v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
         break;

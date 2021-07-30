@@ -40,7 +40,6 @@ static bool f_compareToPreviousSAScheduleTuple(SAScheduleListType &SASchedule_Li
 static void f_checkPMaxSchedulesTimeIntervals(std::shared_ptr<SECC_Tester> &_mtc, uint32_t DepartureTime, SAScheduleListType &SASchedules, verdict_val v_vct);
 static void f_checkACPMaxScheduleEntries(std::shared_ptr<SECC_Tester> &_mtc, SAScheduleListType &SASchedule_List, float v_pMax, verdict_val v_vct);
 static void f_checkPMaxSchedulesStructure(std::shared_ptr<SECC_Tester> &_mtc, SAScheduleListType &SASchedule_List, float maximum_value_physicalValue, bool isMaxEntriesLimit, verdict_val v_vct);
-static iso1Part4_idDigestValueMap *f_calculateIdDigestMapFromBodyType(BodyType *body);
 
 /* static void mdw_SECC_CMN_ChargeParameterDiscoveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode); */
 
@@ -195,14 +194,17 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
   {
     while (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
     {
+      // sending departure time value
       if (PICS_SECC_CMN_DepartureTime)
       {
         if (!PICS_SECC_CMN_MaxEntriesSAScheduleTuple)
         {
+          // not send max entry SA Schedule tuple
           md_SECC_AC_ChargeParameterDiscoveryReq_001(sendMsg, OMIT0, this->mtc->vc_requestedEnergyTransferModeAC, this->mtc->vc_DepartureTime, &this->mtc->vc_EAmount, &this->mtc->vc_EVMaxVoltage, &this->mtc->vc_EVMaxCurrent, &this->mtc->vc_EVMinCurrent);
         }
         else
         {
+          // send max number of entry SA SChedule
           md_SECC_AC_ChargeParameterDiscoveryReq_001(sendMsg, par_CMN_MaxEntriesSAScheduleTuple, this->mtc->vc_requestedEnergyTransferModeAC, this->mtc->vc_DepartureTime, &this->mtc->vc_EAmount, &this->mtc->vc_EVMaxVoltage, &this->mtc->vc_EVMaxCurrent, &this->mtc->vc_EVMinCurrent);
         }
       }
@@ -288,10 +290,15 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
   f_SECC_changeValidDutyCycleRange(this->systemSECC, 100, 100);
 
   auto randomSessionID = f_rnd_SessionID(1, 429496);
-  md_SECC_AC_ChargeParameterDiscoveryReq_001(sendMsg, OMIT0, this->mtc->vc_requestedEnergyTransferModeAC, this->mtc->vc_DepartureTime, &this->mtc->vc_EAmount, &this->mtc->vc_EVMaxVoltage, &this->mtc->vc_EVMaxCurrent, &this->mtc->vc_EVMinCurrent);
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(randomSessionID);
+  md_SECC_AC_ChargeParameterDiscoveryReq_001(sendMsg, OMIT0, this->mtc->vc_requestedEnergyTransferModeAC, this->mtc->vc_DepartureTime, &this->mtc->vc_EAmount, &this->mtc->vc_EVMaxVoltage, &this->mtc->vc_EVMaxCurrent, &this->mtc->vc_EVMinCurrent);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mEVSEProcessing_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pSASchedules_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pAC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pDC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pEVSEChargeParameter_flag = omit;
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -429,6 +436,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_WrongEnergyTransferMode);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mEVSEProcessing_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pSASchedules_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pAC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pDC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pEVSEChargeParameter_flag = omit;
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -559,6 +571,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_WrongChargeParameter);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mEVSEProcessing_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pSASchedules_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pAC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pDC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pEVSEChargeParameter_flag = omit;
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -969,7 +986,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
           if (PICS_CMN_CMN_IdentificationMode == iso1Part4_IdentificationMode::pnC)
           {
             // get digest value from msg body
-            iso1Part4_idDigestValueMap *resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType(&(cast_received->getExiData())->V2G_Message.Body);
+            std::shared_ptr<iso1Part4_idDigestValueMap> resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType((cast_received->getExiData())->V2G_Message.Body);
             if (resultIdDigestValueMap->digestValue.length() > 0)
             {
               // get signed signature of header
@@ -986,7 +1003,6 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
                 this->mtc->setverdict(v_vct, "Invalid signature of the sales tariff was received.");
               }
             }
-            delete resultIdDigestValueMap;
           }
           if (this->mtc->getverdict() == pass)
           {
@@ -1205,7 +1221,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
 
           if (PICS_CMN_CMN_IdentificationMode == iso1Part4_IdentificationMode::pnC)
           {
-            iso1Part4_idDigestValueMap *resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType(&(cast_received->getExiData())->V2G_Message.Body);
+            std::shared_ptr<iso1Part4_idDigestValueMap> resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType((cast_received->getExiData())->V2G_Message.Body);
             if (resultIdDigestValueMap->digestValue.length() > 0)
             {
               SignatureType *authSignature = cast_received->getSignature();
@@ -1220,7 +1236,6 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
                 this->mtc->setverdict(fail, "Invalid signature of the sales tariff was received.");
               }
             }
-            delete resultIdDigestValueMap;
           }
           if (this->mtc->getverdict() == pass)
           {
@@ -1590,6 +1605,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
             f_checkPMaxSchedulesStructure(this->mtc, this->mtc->vc_SASchedule_List, cc_maximum_value_physicalValue_case4, PICS_SECC_CMN_MaxEntriesSAScheduleTuple, v_vct);
             f_checkPMaxSchedulesTimeIntervals(this->mtc, this->mtc->vc_DepartureTime, this->mtc->vc_SASchedules, v_vct);
           }
+          else
+          {
+            this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
+            return false;
+          }
           if (nullptr != DCChargeParam)
           {
             // get/verify max current
@@ -1781,6 +1801,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mEVSEProcessing_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pSASchedules_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pAC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pDC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pEVSEChargeParameter_flag = omit;
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -1917,6 +1942,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_WrongEnergyTransferMode);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mEVSEProcessing_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pSASchedules_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pAC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pDC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pEVSEChargeParameter_flag = omit;
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -2045,6 +2075,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_WrongChargeParameter);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->mEVSEProcessing_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pSASchedules_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pAC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pDC_EVSEChargeParameter_flag = omit;
+  std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->pEVSEChargeParameter_flag = omit;
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -2216,6 +2251,11 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
                 this->mtc->setverdict(fail, "Invalid SAScheduleTuple was received after paused session.");
               }
             }
+          }
+          else
+          {
+            this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
+            return false;
           }
           if (nullptr != DCChargeParam)
           {
@@ -2444,9 +2484,14 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
               f_checkSalesTariffTimeIntervals(this->mtc, this->mtc->vc_DepartureTime, this->mtc->vc_SASchedules, v_vct);
             }
           }
+          else
+          {
+            this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
+            return false;
+          }
           if (PICS_CMN_CMN_IdentificationMode == iso1Part4_IdentificationMode::pnC)
           {
-            iso1Part4_idDigestValueMap *resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType(&(cast_received->getExiData())->V2G_Message.Body);
+            std::shared_ptr<iso1Part4_idDigestValueMap> resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType((cast_received->getExiData())->V2G_Message.Body);
             if (resultIdDigestValueMap->digestValue.length() > 0)
             {
               SignatureType *authSignature = cast_received->getSignature();
@@ -2461,7 +2506,6 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
                 this->mtc->setverdict(v_vct, "Invalid signature of the sales tariff was received.");
               }
             }
-            delete resultIdDigestValueMap;
           }
           // check nullptr since Charging Station not response charge param
           if (nullptr != DCChargeParam)
@@ -2694,9 +2738,14 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
               f_checkSalesTariffTimeIntervals(this->mtc, this->mtc->vc_DepartureTime, this->mtc->vc_SASchedules, fail);
             }
           }
+          else
+          {
+            this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_UNEXPECTED_MSG_CONTENT;
+            return false;
+          }
           if (PICS_CMN_CMN_IdentificationMode == iso1Part4_IdentificationMode::pnC)
           {
-            iso1Part4_idDigestValueMap *resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType(&(cast_received->getExiData())->V2G_Message.Body);
+            std::shared_ptr<iso1Part4_idDigestValueMap> resultIdDigestValueMap = f_calculateIdDigestMapFromBodyType((cast_received->getExiData())->V2G_Message.Body);
             if (resultIdDigestValueMap->digestValue.length() > 0)
             {
               SignatureType *authSignature = cast_received->getSignature();
@@ -2711,7 +2760,6 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
                 this->mtc->setverdict(fail, "Invalid signature of the sales tariff was received.");
               }
             }
-            delete resultIdDigestValueMap;
           }
           // check nullptr since Charging Station not response charge param
           if (nullptr != DCChargeParam)
@@ -3438,12 +3486,6 @@ static void f_checkEVSEChargeParameter(std::shared_ptr<SECC_Tester> &_mtc, verdi
       memcpy(&_mtc->vc_EVMaximumVoltageLimit, &_mtc->vc_EVSEMaximumVoltageLimit, sizeof(PhysicalValueType));
     }
   }
-}
-static iso1Part4_idDigestValueMap *f_calculateIdDigestMapFromBodyType(BodyType *body)
-{
-  iso1Part4_idDigestValueMap *DigestMap = new iso1Part4_idDigestValueMap;
-
-  return DigestMap;
 }
 
 static void md_SECC_AC_ChargeParameterDiscoveryReq_001(std::shared_ptr<V2gTpMessage> &msg,

@@ -41,4 +41,6 @@ extern bool isbound(const std::string &par);
 extern std::vector<uint8_t> f_generateDigestFromBodyType(BodyType *p_BodyType);
 extern void md_CMN_Signature_001(SignatureType &sign, SignedInfoType *signInfo, const std::string &privateKey);
 extern SignedInfoType *md_CMN_SignedInfoType_001(const std::string &msgName, const std::vector<uint8_t> &digestKey);
+extern std::vector<uint8_t> fx_generateGenChallenge(void);
+extern std::shared_ptr<DataStructure_Security::iso1Part4_idDigestValueMap>& f_calculateIdDigestMapFromBodyType(BodyType &body);
 #endif // __COMMONLIB_H__

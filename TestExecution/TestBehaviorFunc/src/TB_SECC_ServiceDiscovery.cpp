@@ -39,6 +39,9 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pPaymentOptionList_flag = has_value;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pChargeService_flag = has_value;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pServiceList_flag = omit;
 
   auto receive_handler = [this, &v_vct](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -55,14 +58,19 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
           auto cService = cast_received->getChargeServiceType();
+          // get supporteed energy transfer mode (used in following msg of session)
           memcpy(&this->mtc->vc_supportedEnergyTransferMode, &cService->SupportedEnergyTransferMode, sizeof(SupportedEnergyTransferModeType));
+          // get payment options
           memcpy(&this->mtc->vc_paymentOptionList, cast_received->getPaymentOptionList(), sizeof(PaymentOptionListType));
+
+          // check if configured payment options is available
           bool v_isSelected = false;
           for (int i = 0; i < this->mtc->vc_paymentOptionList.PaymentOption.arrayLen; i++)
           {
             if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
             {
-              if (this->mtc->vc_paymentOptionList.PaymentOption.array[i] == iso1paymentOptionType_Contract)
+
+              if (this->mtc->vc_paymentOptionList.PaymentOption.array[i] == (paymentOptionType)iso1Part4_PaymentOptionType::contract)
               {
                 this->mtc->vc_SelectedPaymentOption = this->mtc->vc_paymentOptionList.PaymentOption.array[i];
                 v_isSelected = true;
@@ -70,7 +78,7 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
             }
             else
             {
-              if (this->mtc->vc_paymentOptionList.PaymentOption.array[i] == iso1paymentOptionType_ExternalPayment)
+              if (this->mtc->vc_paymentOptionList.PaymentOption.array[i] == (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment)
               {
                 this->mtc->vc_SelectedPaymentOption = this->mtc->vc_paymentOptionList.PaymentOption.array[i];
                 v_isSelected = true;
@@ -83,10 +91,12 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
           }
           else
           {
+            // store additional value service info if it is available
             if (nullptr != cast_received->getServiceList())
             {
               memcpy(&this->mtc->vc_serviceList, cast_received->getServiceList(), sizeof(ServiceListType));
             }
+            // store charging service info
             memcpy(&this->mtc->vc_chargeService, cast_received->getChargeServiceType(), sizeof(ChargeServiceType));
             this->mtc->setverdict(pass, "ServiceDiscoveryRes message was correct.");
           }
@@ -297,6 +307,9 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
   std::static_pointer_cast<ServiceDiscoveryReq>(sendMsg)->setSessionId(randomSessionID);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pPaymentOptionList_flag = omit;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pChargeService_flag = omit;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pServiceList_flag = omit;
 
   std::shared_ptr<BaseOperation> sendCmd = std::make_shared<BaseOperation>(OpType_TCP);
   md_CMN_CMN_tcpTlsStatusReq_001(sendCmd, iso1Part4_V2G_TCP_TLS_Port_Control_Command_TYPE::e_getPortStatus);
@@ -467,9 +480,15 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<ServiceDiscoveryReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServiceDiscoveryRes>();
   std::static_pointer_cast<ServiceDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
+  std::static_pointer_cast<ServiceDiscoveryReq>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
-  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setChargeServiceType(&this->mtc->vc_chargeService);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  // after resume the charing session from pause, expected charge service is the same as old session
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setChargeServiceType(&this->mtc->vc_chargeService);
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pChargeService_flag = specific;
+  // payment option return shall be the same as payment option that EV selected previously (before pause)
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pPaymentOptionList_flag = has_value;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pServiceList_flag = omit;
 
   auto receive_handler = [this, &v_vct](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -487,23 +506,32 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
           auto cService = cast_received->getChargeServiceType();
           memcpy(&this->mtc->vc_supportedEnergyTransferMode, &cService->SupportedEnergyTransferMode, sizeof(SupportedEnergyTransferModeType));
-          this->mtc->vc_SelectedPaymentOption = this->mtc->vc_paymentOptionList.PaymentOption.array[0];
-          if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
-          {
-            if (this->mtc->vc_SelectedPaymentOption != iso1paymentOptionType_Contract)
+          // get payment options
+          auto paymentOptionList = cast_received->getPaymentOptionList();
+          if (paymentOptionList->PaymentOption.arrayLen > 0) {
+            // [V2G2-741] Only the payment option previously selected by the EVCC shall be provided.
+            this->mtc->vc_SelectedPaymentOption = paymentOptionList->PaymentOption.array[0];
+            if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
             {
-              this->mtc->setverdict(v_vct, "Invalid payment option was chosen by the SUT.");
+              if (this->mtc->vc_SelectedPaymentOption != (paymentOptionType)iso1Part4_PaymentOptionType::contract)
+              {
+                this->mtc->setverdict(v_vct, "Invalid payment option was chosen by the SUT.");
+              }
+            }
+            else
+            {
+              if (this->mtc->vc_SelectedPaymentOption != (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment)
+              {
+                this->mtc->setverdict(v_vct, "Invalid payment option was chosen by the SUT.");
+              }
             }
           }
-          else
-          {
-            if (this->mtc->vc_SelectedPaymentOption != iso1paymentOptionType_ExternalPayment)
-            {
-              this->mtc->setverdict(v_vct, "Invalid payment option was chosen by the SUT.");
-            }
+          else {
+            this->mtc->setverdict(v_vct, "No payment option available because SUT does not return payment option list.");
           }
           if (nullptr != cast_received->getServiceList())
           {
+            // store value added service list if it's available
             memcpy(&this->mtc->vc_serviceList, cast_received->getServiceList(), sizeof(ServiceListType));
           }
           this->mtc->setverdict(pass, "ServiceDiscoveryRes message was correct.");

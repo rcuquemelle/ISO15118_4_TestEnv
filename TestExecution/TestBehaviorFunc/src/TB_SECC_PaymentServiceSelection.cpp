@@ -136,7 +136,6 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
 verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_PaymentServiceSelection_002()
 {
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
-  std::vector<uint8_t> sessionID = this->mtc->vc_SessionID;
   bool isShutdownOSC = false;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<ServiceDiscoveryReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServiceDiscoveryRes>();
@@ -269,18 +268,17 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
 {
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
   paymentOptionType selPaymentOption;
-  std::vector<uint8_t> sessionID = this->mtc->vc_SessionID;
   bool isShutdownOSC = false;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<ServicePaymentSelectionReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServicePaymentSelectionRes>();
 
   if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
   {
-    selPaymentOption = iso1paymentOptionType_Contract;
+    selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::contract;
   }
   else
   {
-    selPaymentOption = iso1paymentOptionType_ExternalPayment;
+    selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment;
   }
   auto randomSessionID = f_rnd_SessionID(1, 429496);
   std::static_pointer_cast<ServicePaymentSelectionReq>(sendMsg)->setSessionId(randomSessionID);
@@ -421,11 +419,11 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
 
   if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
   {
-    selPaymentOption = iso1paymentOptionType_Contract;
+    selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::contract;
   }
   else
   {
-    selPaymentOption = iso1paymentOptionType_ExternalPayment;
+    selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment;
   }
   isInvalid = f_checkInvalidServiceID(this->mtc, v_invalidServiceID, this->mtc->vc_serviceList);
 
@@ -568,11 +566,11 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServicePaymentSelectionRes>();
   if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
   {
-    selPaymentOption = iso1paymentOptionType_Contract;
+    selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::contract;
   }
   else
   {
-    selPaymentOption = iso1paymentOptionType_ExternalPayment;
+    selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment;
   }
   this->mtc->vc_ServiceId = 2;
 
@@ -762,24 +760,24 @@ verdict_val TestBehavior_SECC_PaymentServiceSelection::f_SECC_CMN_TB_VTB_Payment
   {
     if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
     {
-      if (this->mtc->vc_paymentOptionList.PaymentOption.array[0] != iso1paymentOptionType_Contract)
+      if (this->mtc->vc_paymentOptionList.PaymentOption.array[0] != (paymentOptionType)iso1Part4_PaymentOptionType::contract)
       {
         this->mtc->setverdict(inconc, "Invalid payment option was selected.");
       }
       else
       {
-        selPaymentOption = iso1paymentOptionType_ExternalPayment;
+        selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment;
       }
     }
     else
     {
-      if (this->mtc->vc_paymentOptionList.PaymentOption.array[0] != iso1paymentOptionType_ExternalPayment)
+      if (this->mtc->vc_paymentOptionList.PaymentOption.array[0] != (paymentOptionType)iso1Part4_PaymentOptionType::externalPayment)
       {
         this->mtc->setverdict(inconc, "Invalid payment option was selected.");
       }
       else
       {
-        selPaymentOption = iso1paymentOptionType_Contract;
+        selPaymentOption = (paymentOptionType)iso1Part4_PaymentOptionType::contract;
       }
     }
   }

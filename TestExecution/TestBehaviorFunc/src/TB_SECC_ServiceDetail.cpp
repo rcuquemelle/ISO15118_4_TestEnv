@@ -43,7 +43,10 @@ verdict_val TestBehavior_SECC_ServiceDetail::f_SECC_CMN_TB_VTB_ServiceDetail_001
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServiceDetailsRes>();
   std::static_pointer_cast<ServiceDetailsReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->mResponseCode_flag = specific;
   std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->mServiceID_flag = specific;
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->pServiceParameterList_flag = omit;
 
   auto receive_handler = [this, &v_service, &v_vct, &counter](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -106,13 +109,13 @@ verdict_val TestBehavior_SECC_ServiceDetail::f_SECC_CMN_TB_VTB_ServiceDetail_001
     if (PIXIT_SECC_CMN_InternetAccess == DataStructure_PIXIT_15118_2::iso1Part4_InternetAccess::internetAccess)
     {
       // check if iso1serviceCategoryType_Internet is available in list of supported service
-      v_result = f_checkServiceCategory(this->mtc, iso1serviceCategoryType_Internet, this->mtc->vc_serviceList);
+      v_result = f_checkServiceCategory(this->mtc, (serviceCategoryType)iso1Part4_ServiceCategoryType::internet, this->mtc->vc_serviceList);
     }
     if (v_result)
     {
       while (counter < this->mtc->vc_serviceList.Service.arrayLen)
       {
-        v_service = this->mtc->vc_serviceList.Service.array[counter];
+        memcpy(&v_service, &this->mtc->vc_serviceList.Service.array[counter], sizeof(ServiceType));
         f_checkServiceType(this->mtc, v_service, v_vct);
         std::static_pointer_cast<ServiceDetailsReq>(sendMsg)->setServiceID(v_service.ServiceID);
         std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->setServiceID(v_service.ServiceID);
@@ -315,9 +318,11 @@ verdict_val TestBehavior_SECC_ServiceDetail::f_SECC_CMN_TB_VTB_ServiceDetail_003
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ServiceDetailsRes>();
   auto randomSessionID = f_rnd_SessionID(1, 429496);
   std::static_pointer_cast<ServiceDetailsReq>(sendMsg)->setSessionId(randomSessionID);
-  std::static_pointer_cast<ServiceDetailsReq>(sendMsg)->setServiceID(this->mtc->vc_serviceList.Service.array[0].ServiceID);
   std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->mServiceID_flag = omit;
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->pServiceParameterList_flag = omit;
+
   std::shared_ptr<BaseOperation> sendCmd = std::make_shared<BaseOperation>(OpType_TCP);
   md_CMN_CMN_tcpTlsStatusReq_001(sendCmd, iso1Part4_V2G_TCP_TLS_Port_Control_Command_TYPE::e_getPortStatus);
 
@@ -369,8 +374,9 @@ verdict_val TestBehavior_SECC_ServiceDetail::f_SECC_CMN_TB_VTB_ServiceDetail_003
   // deactivate(vc_Default_IEC_61851_ListenerBehavior);
   if (ispresent(this->mtc->vc_serviceList))
   {
-    this->mtc->tc_V2G_EVCC_Msg_Timer->start(par_V2G_EVCC_Msg_Timeout_ServiceDetailReq);
+    std::static_pointer_cast<ServiceDetailsReq>(sendMsg)->setServiceID(this->mtc->vc_serviceList.Service.array[0].ServiceID);
     this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->send(sendMsg);
+    this->mtc->tc_V2G_EVCC_Msg_Timer->start(par_V2G_EVCC_Msg_Timeout_ServiceDetailReq);
     while (true)
     {
       if (a_CMN_shutdownOscillator(this->mtc->pt_HAL_61851_Internal_Port))
@@ -455,6 +461,9 @@ verdict_val TestBehavior_SECC_ServiceDetail::f_SECC_CMN_TB_VTB_ServiceDetail_004
   std::static_pointer_cast<ServiceDetailsReq>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_ServiceIDInvalid);
   std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->mServiceID_flag = omit;
+  std::static_pointer_cast<ServiceDetailsRes>(expectedMsg)->pServiceParameterList_flag = omit;
+
   std::shared_ptr<BaseOperation> sendCmd = std::make_shared<BaseOperation>(OpType_TCP);
   md_CMN_CMN_tcpTlsStatusReq_001(sendCmd, iso1Part4_V2G_TCP_TLS_Port_Control_Command_TYPE::e_getPortStatus);
 
@@ -640,21 +649,24 @@ static void f_checkServiceType(std::shared_ptr<SECC_Tester> &_mtc, ServiceType &
   }
   else if (v_service.ServiceID == 2)
   {
-    if (v_service.ServiceCategory != iso1serviceCategoryType_ContractCertificate)
+    // ServiceID 2 for Certificate update/installation
+    if (v_service.ServiceCategory != (serviceCategoryType)iso1Part4_ServiceCategoryType::contractCertificate)
     {
       _mtc->setverdict(v_vct, "Invalid service category was used.");
     }
   }
   else if (v_service.ServiceID == 3)
   {
-    if (v_service.ServiceCategory != iso1serviceCategoryType_Internet)
+    // ServiceID 3 for Internet Access
+    if (v_service.ServiceCategory != (serviceCategoryType)iso1Part4_ServiceCategoryType::internet)
     {
       _mtc->setverdict(v_vct, "Invalid service category was used.");
     }
   }
   else if (v_service.ServiceID == 4)
   {
-    if (v_service.ServiceCategory != iso1serviceCategoryType_OtherCustom)
+    // ServiceID 4 for other value added service
+    if (v_service.ServiceCategory != (serviceCategoryType)iso1Part4_ServiceCategoryType::otherCustom)
     {
       _mtc->setverdict(v_vct, "Invalid service category was used.");
     }
@@ -672,6 +684,7 @@ static void f_checkServiceParameterList(std::shared_ptr<SECC_Tester> &_mtc, Serv
 {
   if (v_service.ServiceID == 2)
   {
+    // Certificate update/installation
     for (int i = 0; i < v_serviceParameterList.ParameterSet.arrayLen; i = i + 1)
     {
       if (v_serviceParameterList.ParameterSet.array[i].ParameterSetID == 1)
@@ -702,6 +715,7 @@ static void f_checkServiceParameterList(std::shared_ptr<SECC_Tester> &_mtc, Serv
   }
   if (v_service.ServiceID == 3)
   {
+    // Internet Access
     for (int i = 0; i < v_serviceParameterList.ParameterSet.arrayLen; i = i + 1)
     {
       if (v_serviceParameterList.ParameterSet.array[i].ParameterSetID == 1)
