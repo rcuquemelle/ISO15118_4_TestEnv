@@ -480,7 +480,7 @@ verdict_val TestCases_SECC_MeteringReceipt::TC_SECC_DC_VTB_MeteringReceipt_005()
 with an invalid signature (wrong private key used), current sessionID, valid
 SAScheduleTupleId, metering information and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a MeteringReceiptRes message with the
-current SessionID, ResponseCode 'FAILED_MeteringSignatureNotValid' and all 389
+current SessionID, ResponseCode 'FAILED_MeteringSignatureNotValid' and all
 additional mandatory parameters and terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC,PICS_CMN_CMN_ChargingMode = dC,

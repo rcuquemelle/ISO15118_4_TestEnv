@@ -71,7 +71,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_WeldingDetection::TC_SECC_DC_VTB_WeldingDetection_002()
 {
@@ -105,9 +105,8 @@ with an invalid SessionID and all additional mandatory parameters.
 valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_DC_WeldingDetection = trueConfig
-IdCF_04_001
-4. PIXIT selection: 
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_DC_WeldingDetection = true
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_WeldingDetection::TC_SECC_DC_VTB_WeldingDetection_003()
 {
@@ -142,7 +141,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_WeldingDetection::TC_SECC_DC_VTB_WeldingDetection_004()
 {
@@ -178,7 +177,7 @@ the current SessionID, ResponseCode 'FAILED' and all additional mandatory
 parameters and terminates the V2G communication session by closing the TCP
 connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_WeldingDetection::TC_SECC_DC_VTB_WeldingDetection_005()
 {

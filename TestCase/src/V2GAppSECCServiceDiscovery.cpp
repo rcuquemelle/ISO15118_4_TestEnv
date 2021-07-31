@@ -36,7 +36,8 @@ TestCases_SECC_ServiceDiscovery::~TestCases_SECC_ServiceDiscovery()
 1. CONDITION: Test System executes GoodCase procedure and sends a ServiceDiscoveryReq message
 with the current SessionID and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ServiceDiscoveryRes message with
-the 249
+the current SessionID, ResponseCode 'Ok', PaymentOption, valid
+SupportedEnergyTransferMode and all additional mandatory parameters.
 3. PICS selection:
 4. PIXIT selection:
 */
@@ -102,7 +103,7 @@ verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_00
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a ServiceDiscoveryReq message
-250 with an sinvalid SessionID and all additional mandatory parameters.
+with an sinvalid SessionID and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends an ServiceDiscoveryRes message with a
 valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
@@ -174,7 +175,7 @@ verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_CMN_VTB_ServiceDiscovery_00
 1. CONDITION: Test System executes GoodCase procedure and initiates a paused V2G communication
 session by sending a SessionStopReq message with the current SessionID,
 ChargingSession 'Pause' and all additional mandatory parameters. After receipt
-of a valid SessionStopRes message, Test 251 System waits for termination of the
+of a valid SessionStopRes message, Test System waits for termination of the
 logical network by the SUT. Furthermore Test System checks that the SUT turns
 off the oscillator for the entire sleep mode. After 'PICS_CMN_CMN_WakeUp' Test
 System resumes the previously paused session by initiating a BCB toggle and
@@ -240,8 +241,8 @@ mandatory parameters.
 the current SessionID, ResponseCode 'Ok', all additional mandatory parameters
 and the PaymentOption and ChargeService which was selected by the EVCC in the
 previous session.
-3. PICS selection:
-4. PIXIT selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,PICS_CMN_CMN_CombinedTesting = true
+3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_Pause = true,PIXIT_CMN_CMN_WakeUp < PICS_CMN_CMN_WakeUp,PICS_CMN_CMN_CombinedTesting = true
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ServiceDiscovery::TC_SECC_AC_VTB_ServiceDiscovery_002()
 {

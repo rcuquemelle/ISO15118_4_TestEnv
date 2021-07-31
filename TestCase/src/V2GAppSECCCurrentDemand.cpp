@@ -113,7 +113,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CurrentDemand::TC_SECC_DC_VTB_CurrentDemand_003()
 {
@@ -149,7 +149,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CurrentDemand::TC_SECC_DC_VTB_CurrentDemand_004()
 {
@@ -184,7 +184,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CurrentDemand::TC_SECC_DC_VTB_CurrentDemand_005()
 {
@@ -323,7 +323,7 @@ verdict_val TestCases_SECC_CurrentDemand::TC_SECC_DC_VTB_CurrentDemand_008()
 with the current SessionID, target voltage and current and all additional
 mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a CurrentDemandRes message with the
-401 current SessionID, ResponseCode 'OK', ReceiptRequired 'true', a MeterInfo
+current SessionID, ResponseCode 'OK', ReceiptRequired 'true', a MeterInfo
 including MeterReading and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC,PICS_CMN_CMN_ChargingMode = dC,
 PICS_CMN_CMN_PkiName = PKI_1

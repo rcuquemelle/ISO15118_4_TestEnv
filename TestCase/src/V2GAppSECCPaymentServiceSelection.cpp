@@ -41,7 +41,7 @@ all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a PaymentServiceSelectionRes message
 with the current SessionID, ResponseCode 'OK' and all additional mandatory
 parameters.
-3. PICS selection: 
+3. PICS selection:
 4. PIXIT selection: PIXIT_SECC_CMN_VAS = none_
 */
 verdict_val TestCases_SECC_PaymentServiceSelection::TC_SECC_CMN_VTB_PaymentServiceSelection_001()
@@ -146,8 +146,8 @@ message instead of a PaymentServiceSelectionReq message.
 the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PaymentServiceSelection::TC_SECC_CMN_VTB_PaymentServiceSelection_004()
 {
@@ -182,8 +182,8 @@ all additional mandatory parameters.
 with a valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PaymentServiceSelection::TC_SECC_CMN_VTB_PaymentServiceSelection_005()
 {
@@ -219,8 +219,8 @@ with the current SessionID, ResponseCode 'FAILED_ServiceSelectionInvalid' and
 all additional mandatory parameters and terminates the V2G communication session
 by closing the TCP connection within
 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PaymentServiceSelection::TC_SECC_CMN_VTB_PaymentServiceSelection_006()
 {
@@ -256,8 +256,8 @@ with the current SessionID, ResponseCode 'FAILED_NoChargeServiceSelected' and
 all additional mandatory parameters and terminates the V2G communication session
 by closing the TCP connection within
 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PaymentServiceSelection::TC_SECC_CMN_VTB_PaymentServiceSelection_007()
 {
@@ -291,8 +291,8 @@ message with the current SessionID, ResponseCode 'OK', requested ServiceID and
 all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: 
-4. PIXIT selection: 
+3. PICS selection:
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_PaymentServiceSelection::TC_SECC_CMN_VTB_PaymentServiceSelection_008()
 {

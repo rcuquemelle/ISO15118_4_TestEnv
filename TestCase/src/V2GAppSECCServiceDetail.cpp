@@ -374,7 +374,7 @@ valid SupportedEnergyTransferMode and ServiceList and all additional mandatory
 parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName259 = PKI_1
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName = PKI_1
 4. PIXIT selection: PIXIT_SECC_CMN_VAS = serviceDetail, PIXIT_CMN_CMN_PkiName = PKI_1
 */
 verdict_val TestCases_SECC_ServiceDetail::TC_SECC_CMN_VTB_ServiceDetail_010()

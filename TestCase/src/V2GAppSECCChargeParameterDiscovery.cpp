@@ -186,7 +186,7 @@ with a valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParameterDiscovery_003()
 {
@@ -222,7 +222,7 @@ all additional mandatory parameters and terminates the V2G communication session
 by closing the TCP connection within
 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParameterDiscovery_004()
 {
@@ -257,7 +257,7 @@ with the current SessionID, ResponseCode 'FAILED_WrongChargeParameter' and all
 additional mandatory parameters and terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParameterDiscovery_005()
 {
@@ -527,7 +527,7 @@ message. This message sequence will be repeated until the processing of the
 charging information has finished or 'V2G_EVCC_Ongoing_Timer' has expired.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_DepartureTime = false,
 PICS_SECC_CMN_Pause = true, PIXIT_CMN_CMN_WakeUp> PICS_CMN_CMN_WakeUp,
-PICS_CMN_CMN_CombinedTesting = true,289PICS_SECC_CMN_MaxEntriesSAScheduleTuple = false
+PICS_CMN_CMN_CombinedTesting = true,PICS_SECC_CMN_MaxEntriesSAScheduleTuple = false
 4. PIXIT selection: PIXIT_SECC_CMN_SalesTariff = salesTariff
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParameterDiscovery_011()
@@ -607,7 +607,7 @@ verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParame
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a ChargeParameterDiscoveryReq
-message with the current SessionID, a valid RequestedEnergyTransferType, a 
+message with the current SessionID, a valid RequestedEnergyTransferType, a
 MaxEntriesSAScheduleTuple, without DepartureTime and all additional mandatory
 parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
@@ -773,7 +773,7 @@ verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParame
 session by sending a SessionStopReq message with the current SessionID,
 ChargingSession 'Pause' and all additional mandatory parameters. After receipt
 of a valid SessionStopRes message, Test System waits for termination of the
-logical network 293 by the SUT. Furthermore Test System checks that the SUT
+logical network by the SUT. Furthermore Test System checks that the SUT
 turns off the oscillator for the entire sleep mode. After 'PICS_CMN_CMN_WakeUp'
 Test System resumes the previously paused session by initiating a BCB toggle and
 waits for successful link detection (old logical network parameter) triggered by
@@ -904,7 +904,7 @@ RequestedEnergyTransferType, a MaxEntriesSAScheduleTuple, without DepartureTime
 and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
-valid 295 scheduleList (MaxEntriesSAScheduleTuple is considered), all additional
+valid scheduleList (MaxEntriesSAScheduleTuple is considered), all additional
 mandatory parameters and the SAScheduleTuple which was selected by the EVCC in
 the previous session. If a valid ChargeParameterDiscoveryRes message with
 EVSEProcessing 'Ongoing' was received before, the Test System sends another
@@ -970,7 +970,7 @@ additional mandatory parameters and the SAScheduleTuple which was selected by
 the EVCC in the previous session. If a valid ChargeParameterDiscoveryRes message
 with EVSEProcessing 'Ongoing' was received before, the Test System sends another
 ChargeParameterDiscoveryReq message. This message sequence will be repeated
-until the processing of the charging information has finished or 'V2G_EVCC_Ongoing_Timer' has expired. 
+until the processing of the charging information has finished or 'V2G_EVCC_Ongoing_Timer' has expired.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC, PICS_SECC_CMN_DepartureTime = false, PICS_SECC_CMN_Pause = true,
   PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp, PICS_CMN_CMN_CombinedTesting = true,
   PICS_SECC_CMN_MaxEntriesSAScheduleTuple = true
@@ -1451,7 +1451,7 @@ verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_AC_VTB_ChargeParame
 1. CONDITION: Test System executes GoodCase procedure and initiates a paused V2G communication
 session by sending a SessionStopReq message with the current SessionID,
 ChargingSession 'Pause' and all additional mandatory parameters. After receipt
-of a 304 valid SessionStopRes message, Test System waits for termination of the
+of a valid SessionStopRes message, Test System waits for termination of the
 logical network by the SUT. Furthermore Test System checks that the SUT turns
 off the oscillator for the entire sleep mode. After 'PIXIT_CMN_CMN_WakeUp' the
 SUT resumes the previously paused session by initiating a B1/B2 transition and
@@ -1516,7 +1516,7 @@ logical network by the SUT. Furthermore Test System checks that the SUT turns
 off the oscillator for the entire sleep mode. After 'PIXIT_CMN_CMN_WakeUp' the
 SUT resumes the previously paused session by initiating a B1/B2 transition and
 waits for successful link detection (old logical network parameter) triggered by
-the SUT. Test System then 305 executes Goodcase procedure and sends a
+the SUT. Test System then executes Goodcase procedure and sends a
 ChargeParameterDiscoveryReq message the current SessionID, a valid
 RequestedEnergyTransferType, without MaxEntriesSAScheduleTuple, a DepartureTime
 and all additional mandatory parameters.
@@ -1646,7 +1646,7 @@ with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
 valid scheduleList (MaxEntriesSAScheduleTuple is considered), all additional
 mandatory parameters and the SAScheduleTuple which was selected by the EVCC in
 the previous session. If a valid ChargeParameterDiscoveryRes message with
-EVSEProcessing 'Ongoing' was received before, the Test System sends another 307
+EVSEProcessing 'Ongoing' was received before, the Test System sends another
 ChargeParameterDiscoveryReq message. This message sequence will be repeated
 until the processing of the charging information has finished or
 'V2G_EVCC_Ongoing_Timer' has expired.
@@ -1921,7 +1921,7 @@ with a valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_DC_VTB_ChargeParameterDiscovery_002()
 {
@@ -1992,7 +1992,7 @@ with the current SessionID, ResponseCode 'FAILED_WrongChargeParameter' and all
 additional mandatory parameters and terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_DC_VTB_ChargeParameterDiscovery_004()
 {
@@ -2386,7 +2386,7 @@ MaxEntriesSAScheduleTuple, without DepartureTime and all additional mandatory
 parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
-valid 319 scheduleList and salesTariff (MaxEntriesSAScheduleTuple is considered)
+valid scheduleList and salesTariff (MaxEntriesSAScheduleTuple is considered)
 and all additional mandatory parameters. If a valid ChargeParameterDiscoveryRes
 message with EVSEProcessing 'Ongoing' was received before, the Test System sends
 another ChargeParameterDiscoveryReq message. This message sequence will be
@@ -2615,7 +2615,7 @@ ChargeParameterDiscoveryReq message the current SessionID, a valid
 RequestedEnergyTransferType, without MaxEntriesSAScheduleTuple, a DepartureTime
 and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
-323 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
+with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
 valid scheduleList and salesTariff all additional mandatory parameters and the
 SAScheduleTuple which was selected by the EVCC in the previous session. If a
 valid ChargeParameterDiscoveryRes message with EVSEProcessing 'Ongoing' was
@@ -2678,7 +2678,7 @@ and all additional mandatory parameters.
 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
 valid scheduleList (MaxEntriesSAScheduleTuple is considered), all additional
 mandatory parameters and the SAScheduleTuple which was selected by the EVCC in
-the previous 324 session. If a valid ChargeParameterDiscoveryRes message with
+the previous session. If a valid ChargeParameterDiscoveryRes message with
 EVSEProcessing 'Ongoing' was received before, the Test System sends another
 ChargeParameterDiscoveryReq message. This message sequence will be repeated
 until the processing of the charging information has finished or
@@ -2741,7 +2741,7 @@ additional mandatory parameters and the SAScheduleTuple which was selected by
 the EVCC in the previous session. If a valid ChargeParameterDiscoveryRes message
 with EVSEProcessing 'Ongoing' was received before, the Test System sends another
 ChargeParameterDiscoveryReq message. This message sequence will be repeated
-until 325 Test objective
+until
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_DepartureTime = false,
 PICS_SECC_CMN_Pause = true, PIXIT_CMN_CMN_WakeUp> PICS_CMN_CMN_WakeUp,
 PICS_CMN_CMN_CombinedTesting = true,PICS_SECC_CMN_MaxEntriesSAScheduleTuple = true
@@ -2802,7 +2802,7 @@ the EVCC in the previous session. If a valid ChargeParameterDiscoveryRes message
 with EVSEProcessing 'Ongoing' was received before, the Test System sends another
 ChargeParameterDiscoveryReq message. This message sequence will be repeated
 until the processing of the charging information has finished or
-'V2G_EVCC_Ongoing_Timer' has expired. 326
+'V2G_EVCC_Ongoing_Timer' has expired.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_DepartureTime = true,
 PICS_SECC_CMN_Pause = true, PIXIT_CMN_CMN_WakeUp >PICS_CMN_CMN_WakeUp,
 PICS_CMN_CMN_CombinedTesting = true,PICS_SECC_CMN_MaxEntriesSAScheduleTuple = true
@@ -3275,7 +3275,7 @@ verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_DC_VTB_ChargeParame
 1. CONDITION: Test System executes GoodCase procedure and initiates a paused V2G communication
 session by sending a SessionStopReq message with the current SessionID,
 ChargingSession 'Pause' and all additional mandatory parameters. After receipt
-of a 334 valid SessionStopRes message, Test System waits for termination of the
+of a valid SessionStopRes message, Test System waits for termination of the
 logical network by the SUT. Furthermore Test System checks that the SUT turns
 off the oscillator for the entire sleep mode. After 'PIXIT_CMN_CMN_WakeUp' the
 SUT resumes the previously paused session by initiating a B1/B2 transition and
@@ -3338,7 +3338,7 @@ of a valid SessionStopRes message, Test System waits for termination of the
 logical network by the SUT. Furthermore Test System checks that the SUT turns
 off the oscillator for the entire sleep mode. After 'PIXIT_CMN_CMN_WakeUp' the
 SUT resumes the previously paused session by initiating a B1/B2 transition and
-waits for successful link 335 detection (old logical network parameter)
+waits for successful link detection (old logical network parameter)
 triggered by the SUT. Test System then executes Goodcase procedure and sends a
 ChargeParameterDiscoveryReq message the current SessionID, a valid
 RequestedEnergyTransferType, without MaxEntriesSAScheduleTuple, a DepartureTime
@@ -3401,7 +3401,7 @@ SUT resumes the previously paused session by initiating a B1/B2 transition and
 waits for successful link detection (old logical network parameter) triggered by
 the SUT. Test System then executes Goodcase procedure and sends a
 ChargeParameterDiscoveryReq message the current SessionID, a valid
-RequestedEnergyTransferType, a Test objective 336 MaxEntriesSAScheduleTuple,
+RequestedEnergyTransferType, a MaxEntriesSAScheduleTuple,
 without DepartureTime and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
@@ -3464,7 +3464,7 @@ ChargeParameterDiscoveryReq message the current SessionID, a valid
 RequestedEnergyTransferType, a MaxEntriesSAScheduleTuple, without DepartureTime
 and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
-337 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
+with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
 valid scheduleList and salesTariff (MaxEntriesSAScheduleTuple is considered) all
 additional mandatory parameters and the SAScheduleTuple which was selected by
 the EVCC in the previous session. If a valid ChargeParameterDiscoveryRes message
@@ -3527,7 +3527,7 @@ all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a ChargeParameterDiscoveryRes message
 with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
 valid scheduleList and salesTariff (MaxEntriesSAScheduleTuple is considered) all
-additional Test objective 338 mandatory parameters and the SAScheduleTuple which
+additional mandatory parameters and the SAScheduleTuple which
 was selected by the EVCC in the previous session. If a valid
 ChargeParameterDiscoveryRes message with EVSEProcessing 'Ongoing' was received
 before, the Test System sends another ChargeParameterDiscoveryReq message. This
@@ -3590,7 +3590,7 @@ with the current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished', a
 valid scheduleList (MaxEntriesSAScheduleTuple is considered), all additional
 mandatory parameters and the SAScheduleTuple which was selected by the EVCC in
 the previous session. If a valid ChargeParameterDiscoveryRes message with
-EVSEProcessing 339 'Ongoing' was received before, the Test System sends another
+EVSEProcessing 'Ongoing' was received before, the Test System sends another
 ChargeParameterDiscoveryReq message. This message sequence will be repeated
 until the processing of the charging information has finished or
 'V2G_EVCC_Ongoing_Timer' has expired.
@@ -3640,7 +3640,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_CMN_VTB_ChargeParameterDiscovery_001()
 {
@@ -3674,7 +3674,7 @@ and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargeParameterDiscovery::TC_SECC_CMN_VTB_ChargeParameterDiscovery_002()
 {

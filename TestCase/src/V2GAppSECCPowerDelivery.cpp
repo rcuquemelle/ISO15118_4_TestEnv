@@ -273,7 +273,7 @@ message instead of a PowerDeliveryReq message with chargeProgressType 'Stop_'.
 2. EXPECTED: Test System then checks that the SUT sends a ServiceDiscoveryRes message with
 the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
-343
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
 4. PIXIT selection:
 */
@@ -417,7 +417,7 @@ the current SessionID, ChargeProgress 'Start_', valid charging profile, invalid
 TupleID and all additional mandatory parameters and signals CP State C or D.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
 current SessionID, ResponseCode 'FAILED_TariffSelectionInvalid' and all
-additional 345 mandatory parameters and terminates the V2G communication session
+additional mandatory parameters and terminates the V2G communication session
 by closing the TCP connection within
 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
@@ -520,7 +520,7 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_AC_VTB_PowerDelivery_013()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a PowerDeliveryReq message
-with the current SessionID, ChargeProgress 'Renogotiate' and all additional
+with the current SessionID, ChargeProgress 'Renegotiate' and all additional
 mandatory parameters but no PowerDeliveryReq with ChargeProgress 'Start' was
 sent before.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
@@ -703,7 +703,7 @@ TupleID and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with a
 valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
-TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'. 349
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
 4. PIXIT selection:
 */
@@ -982,7 +982,7 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_012()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a PowerDeliveryReq message
-with the current SessionID, ChargeProgress 'Renogotiate' and all additional
+with the current SessionID, ChargeProgress 'Renegotiate' and all additional
 mandatory parameters but no PowerDeliveryReq with ChargeProgress 'Start' was
 sent before.
 2. EXPECTED: Test System then checks that the SUT sends a PowerDeliveryRes message with the
@@ -1060,7 +1060,7 @@ with the current SessionID, EVErrorCode 'FAILED_EVShiftPosition',
 ChargeProgressType 'Stop_' and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the EVErrorCode not influences the EVSE charging
 process by receiving a PowerDeliveryRes message with the current SessionID,
-ResponseCode 'OK' and all additional mandatory parameters. Test objective 354
+ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
 4. PIXIT selection:
 */
@@ -1133,7 +1133,7 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_016()
 with the current SessionID, EVErrorCode 'FAILED_EVRESSMalfunction',
 ChargeProgressType 'Stop_' and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the EVErrorCode not influences the EVSE charging
-355 process by receiving a PowerDeliveryRes message with the current SessionID,
+process by receiving a PowerDeliveryRes message with the current SessionID,
 ResponseCode 'OK' and all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
 4. PIXIT selection:
@@ -1203,7 +1203,7 @@ verdict_val TestCases_SECC_PowerDelivery::TC_SECC_DC_VTB_PowerDelivery_018()
 
 
 /**
-1. CONDITION: Test System executes GoodCase procedure and sends a PowerDeliveryReq message 356
+1. CONDITION: Test System executes GoodCase procedure and sends a PowerDeliveryReq message
 with the current SessionID, EVErrorCode 'FAILED_ChargingVoltageOutOfRange',
 ChargeProgressType 'Stop_' and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the EVErrorCode not influences the EVSE charging

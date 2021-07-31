@@ -199,7 +199,7 @@ mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CertificateHandling = certUpdate,
 PICS_CMN_CMN_PkiName = PKI_1
-4. PIXIT selection: PIXIT_CMN_CMN_PkiName = PKI_1360
+4. PIXIT selection: PIXIT_CMN_CMN_PkiName = PKI_1
 */
 verdict_val TestCases_SECC_CertificateUpdate::TC_SECC_CMN_VTB_CertificateUpdate_005()
 {
@@ -570,7 +570,7 @@ verdict_val TestCases_SECC_CertificateUpdate::TC_SECC_CMN_VTB_CertificateUpdate_
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a CertificateUpdateReq message
 with a valid signature, current SessionID, contract certificate chain, invalid
-EMAID 365 (contract certificate) and all additional mandatory parameters.
+EMAID(contract certificate) and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a CertificateUpdateRes message with
 the current SessionID, ResponseCode 'FAILED', 'FAILED_NoCertificateAvailable' or
 'FAILED_ContractCanceled' and all additional mandatory parameters and terminates

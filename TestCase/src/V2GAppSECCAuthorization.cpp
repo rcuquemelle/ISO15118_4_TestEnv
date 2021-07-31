@@ -125,7 +125,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_Authorization::TC_SECC_CMN_VTB_Authorization_003()
 {
@@ -195,7 +195,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_Authorization::TC_SECC_CMN_VTB_Authorization_005()
 {
@@ -302,7 +302,7 @@ and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_Authorization::TC_SECC_CMN_VTB_Authorization_008()
 {
@@ -372,7 +372,7 @@ GenChallenge and all additional mandatory parameters.
 the current SessionID, ResponseCode 'FAILED_SignatureError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName = PKI_1276
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName = PKI_1
 4. PIXIT selection: PIXIT_CMN_CMN_PkiName = PKI_1
 */
 verdict_val TestCases_SECC_Authorization::TC_SECC_CMN_VTB_Authorization_010()
@@ -518,12 +518,12 @@ with the current SessionID and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends an AuthorizationRes message with the
 current SessionID, ResponseCode 'OK', EVSEProcessing 'Finished' and all
 additional mandatory parameters. Furthermore the repetition of the Authorization
-message Test objective 278 sequence will be checked (EVSEProcessing = 'Ongoing_WaitingForCustomerInteraction') until the 'V2G_SECC_Ongoing_Timer' has
-expired on SUT side. Test system then checks that the SUT terminates the V2G
-communication session by closing the TCP connection within
-'par_CMN_TCP_Connection_Termination_Timeout'.
+message sequence will be checked (EVSEProcessing = 'Ongoing_WaitingForCustomerInteraction')
+until the 'V2G_SECC_Ongoing_Timer' has expired on SUT side.
+Test system then checks that the SUT terminates the V2G communication session by
+closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM, PICS_SECC_CMN_EIMDone = v2gAuthorization
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_Authorization::TC_SECC_CMN_VTB_Authorization_014()
 {
@@ -561,7 +561,7 @@ message sequence will be checked (EVSEProcessing = 'Ongoing') until the
 the SUT terminates the V2G communication session by closing the TCP connection
 within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName = PKI_1
-4. PIXIT selection: PIXIT_CMN_CMN_PkiName = PKI_1,PIXIT_SECC_CMN_AuthorizationOngoing = ongoing279
+4. PIXIT selection: PIXIT_CMN_CMN_PkiName = PKI_1,PIXIT_SECC_CMN_AuthorizationOngoing = ongoing
 */
 verdict_val TestCases_SECC_Authorization::TC_SECC_CMN_VTB_Authorization_015()
 {
@@ -635,7 +635,7 @@ additional mandatory parameters. Furthermore the repetition of the Authorization
 message sequence will be checked (EVSEProcessing = 'Ongoing') until the
 'V2G_SECC_Ongoing_Timer' has expired on SUT side. Test system then checks that
 the SUT terminates the V2G communication session by closing the TCP connection
-within 'par_CMN_TCP_Connection_Termination_Timeout'. Test objective 280
+within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName = PKI_1
 4. PIXIT selection: PIXIT_SECC_CMN_CertificateHandling = certUpdate,PIXIT_CMN_CMN_PkiName = PKI_1,PIXIT_SECC_CMN_AuthorizationOngoing = ongoing
 */

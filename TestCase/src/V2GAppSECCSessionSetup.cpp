@@ -531,7 +531,7 @@ the SUT. Test System then executes Goodcase procedure and sends a
 SessionSetupReq message with the previous sessionID, valid EvccID and all
 additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
-previous SessionID, ResponseCode 'OK_OldSessionJoined', valid EvseId and all 245
+previous SessionID, ResponseCode 'OK_OldSessionJoined', valid EvseId and all
 additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC, PICS_SECC_CMN_Pause = true,
 PIXIT_CMN_CMN_WakeUp > PICS_CMN_CMN_WakeUp,

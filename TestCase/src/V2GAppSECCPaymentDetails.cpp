@@ -252,7 +252,7 @@ with the current SessionID, valid EMAID, invalid contract certificate chain
 2. EXPECTED: Test System then checks that the SUT sends a PaymentDetailsRes message with the
 current SessionID, ResponseCode 'FAILED_CertificateExpired' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
-269 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC, PICS_CMN_CMN_PkiName = PKI_1
 4. PIXIT selection: PIXIT_SECC_CMN_CertificateHandling = _none,PIXIT_CMN_CMN_PkiName = PKI_1
 */
@@ -326,7 +326,7 @@ verdict_val TestCases_SECC_PaymentDetails::TC_SECC_CMN_VTB_PaymentDetails_008()
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a PaymentDetailsReq message
 with the current SessionID, valid EMAID, invalid contract certificate chain
-(Expired 270 issuer Sub CA 1) and all additional mandatory parameters.
+(Expired issuer Sub CA 1) and all additional mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a PaymentDetailsRes message with the
 current SessionID, ResponseCode 'FAILED', 'fAILED_NoCertificateAvailable' or
 'fAILED_CertificateNotAllowedAtThisEVSE' and all additional mandatory parameters

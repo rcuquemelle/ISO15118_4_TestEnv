@@ -111,7 +111,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargingStatus::TC_SECC_AC_VTB_ChargingStatus_003()
 {
@@ -146,7 +146,7 @@ valid SessionID, ResponseCode 'FAILED_UnknownSession' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargingStatus::TC_SECC_AC_VTB_ChargingStatus_004()
 {
@@ -181,7 +181,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_ChargingStatus::TC_SECC_AC_VTB_ChargingStatus_005()
 {
@@ -250,7 +250,7 @@ with the current SessionID and all additional mandatory parameters.
 current SessionID, ResponseCode 'OK', ReceiptRequired 'true', a MeterInfo and
 all additional mandatory parameters.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC,PICS_CMN_CMN_ChargingMode = aC,
-PICS_CMN_CMN_PkiName = PKI_1381
+PICS_CMN_CMN_PkiName = PKI_1
 4. PIXIT selection: PIXIT_SECC_CMN_ReceiptRequired = true, PIXIT_CMN_CMN_PkiName = PKI_1,
 PIXIT_SECC_CMN_MeterInfo = meterInfo,PIXIT_CMN_CMN_MeterReading = unknown
 */

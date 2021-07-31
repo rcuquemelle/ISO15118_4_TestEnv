@@ -45,7 +45,7 @@ current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 Furthermore Test System checks that the SUT terminates the data link connection
 within 'par_TP_match_leave'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_AC_VTB_SessionStop_001()
 {
@@ -80,7 +80,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_AC_VTB_SessionStop_002()
 {
@@ -116,7 +116,7 @@ SessionID, ResponseCode 'FAILED_UnknownSession' and all additional mandatory
 parameters and terminates the V2G communication session by closing the TCP
 connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_AC_VTB_SessionStop_003()
 {
@@ -151,7 +151,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = aC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_AC_VTB_SessionStop_004()
 {
@@ -180,14 +180,14 @@ verdict_val TestCases_SECC_SessionStop::TC_SECC_AC_VTB_SessionStop_004()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends a SessionStopReq message with
-373 the current SessionID, ChargingSession 'Terminate' and all additional
+the current SessionID, ChargingSession 'Terminate' and all additional
 mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT sends a SessionStopRes message with the
 current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 Furthermore Test System checks that the SUT terminates the data link connection
 within 'par_TP_match_leave'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = false
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_001()
 {
@@ -223,7 +223,7 @@ current SessionID, ResponseCode 'OK' and all additional mandatory parameters.
 Furthermore Test System checks that the SUT terminates the data link connection
 within 'par_TP_match_leave'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_002()
 {
@@ -258,7 +258,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = false
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_003()
 {
@@ -294,7 +294,7 @@ SessionID, ResponseCode 'FAILED_UnknownSession' and all additional mandatory
 parameters and terminates the V2G communication session by closing the TCP
 connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = false
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_004()
 {
@@ -329,7 +329,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = false
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_005()
 {
@@ -365,7 +365,7 @@ current SessionID, ResponseCode 'FAILED' and all additional mandatory parameters
 and terminates the V2G communication session by closing the TCP connection
 within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = false
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_006()
 {
@@ -400,7 +400,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_007()
 {
@@ -436,7 +436,7 @@ SessionID, ResponseCode 'FAILED_UnknownSession' and all additional mandatory
 parameters and terminates the V2G communication session by closing the TCP
 connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_008()
 {
@@ -471,7 +471,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = true
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_009()
 {
