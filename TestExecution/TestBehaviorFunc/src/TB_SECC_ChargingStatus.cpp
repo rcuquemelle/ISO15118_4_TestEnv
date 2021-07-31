@@ -321,14 +321,7 @@ verdict_val TestBehavior_SECC_ChargingStatus::f_SECC_AC_TB_VTB_ChargingStatus_00
   auto randomSessionID = f_rnd_SessionID(1, 429496);
   std::static_pointer_cast<ChargingStatusReq>(sendMsg)->setSessionId(randomSessionID);
   std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->setSessionId(randomSessionID);
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->mResponseCode_flag = specific;
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->mEVSEID_flag = omit;
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->mSAScheduleTupleID_flag = omit;
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->pEVSEMaxCurrent_flag = omit;
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->pMeterInfo_flag = omit;
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->mReceiptRequired_flag = omit;
-  std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->pAC_EVSEStatus_flag = omit;
+  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_UnknownSession, nullptr, OMIT, nullptr, nullptr, OMIT, nullptr);
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -651,29 +644,47 @@ static void md_CMN_AC_ChargingStatusRes_001(std::shared_ptr<V2gTpMessage> &msg,
     std::static_pointer_cast<ChargingStatusRes>(msg)->setEVSEID(*p_evseID);
     std::static_pointer_cast<ChargingStatusRes>(msg)->mEVSEID_flag = specific;
   }
+  else {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mEVSEID_flag = has_value;
+  }
   if (OMIT != p_sAScheduleTuple)
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setSAScheduleTupleID(p_sAScheduleTuple);
     std::static_pointer_cast<ChargingStatusRes>(msg)->mSAScheduleTupleID_flag = specific;
+  }
+  else {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mSAScheduleTupleID_flag = has_value;
   }
   if (nullptr != p_eVSEMaxCurrent)
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setEVSEMaxCurrent(p_eVSEMaxCurrent);
     std::static_pointer_cast<ChargingStatusRes>(msg)->pEVSEMaxCurrent_flag = specific;
   }
+  else {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pEVSEMaxCurrent_flag = omit;
+  }
   if (nullptr != p_meterInfo)
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setMeterInfo(p_meterInfo);
     std::static_pointer_cast<ChargingStatusRes>(msg)->pMeterInfo_flag = specific;
+  }
+  else {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pMeterInfo_flag = omit;
   }
   if (OMIT != p_receiptRequired)
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setReceiptRequired(p_receiptRequired);
     std::static_pointer_cast<ChargingStatusRes>(msg)->mReceiptRequired_flag = specific;
   }
+  else {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mReceiptRequired_flag = omit;
+  }
   if (nullptr != p_aCeVSEStatus)
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setACEVSEStatus(p_aCeVSEStatus);
     std::static_pointer_cast<ChargingStatusRes>(msg)->pAC_EVSEStatus_flag = specific;
+  }
+  else {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pAC_EVSEStatus_flag = has_value;
   }
 }

@@ -43,7 +43,7 @@ static void md_CMN_AC_PowerDeliveryReq_003(std::shared_ptr<V2gTpMessage> &msg,
                                            iso1Part4_ChargeProgressType p_enablePower, uint8_t p_sAScheduleTupleID, ChargingProfileType *p_CProfile);
 /* static void md_CMN_CMN_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode, EVSEStatusType *p_evsestatus); */
 static void md_CMN_AC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode, AC_EVSEStatusType *p_evsestatus);
-/* static void md_CMN_DC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode, DC_EVSEStatusType *p_evsestatus); */
+static void md_CMN_DC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode, DC_EVSEStatusType *p_evsestatus);
 static bool checkInvalidTupleID(std::shared_ptr<SECC_Tester> &_mtc, uint8_t v_id, SAScheduleListType &SAScheduleTuple_List);
 static void md_CMN_CMN_ProfileEntry_001(ProfileEntryType *profile_entry, uint32_t entryStart, PhysicalValueType *maxPower, int maxNumPhases);
 static DC_EVPowerDeliveryParameterType *md_CMN_DC_EVPowerDeliveryParameter(DC_EVStatusType &dC_EVStatus, int bulkChargingComplete, bool chargingComplete);
@@ -238,6 +238,7 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_AC_TB_VTB_PowerDelivery_001(
   {
     v_numberProfilEntries = c_numberProfilEntries;
   }
+  // create charging profile base on PMax Schedule
   ProfileEntryType *v_profileList = new ProfileEntryType[v_numberProfilEntries];
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<PowerDeliveryReq>();
   std::static_pointer_cast<PowerDeliveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
@@ -439,8 +440,7 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_AC_TB_VTB_PowerDelivery_003(
   std::static_pointer_cast<PowerDeliveryReq>(sendMsg)->setSessionId(randomSessionID);
   md_CMN_AC_PowerDeliveryReq_001(sendMsg, chargeProgress, this->mtc->vc_SAScheduleTupleId);
   std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(randomSessionID);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  md_CMN_AC_PowerDeliveryRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_UnknownSession, nullptr);
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -568,7 +568,6 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_AC_TB_VTB_PowerDelivery_004(
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<PowerDeliveryRes>();
   bool isShutdownOSC = false;
   ProfileEntryType v_profileList[7];
-  ;
   PhysicalValueType mpower;
   memcpy(&mpower, &this->mtc->vc_EVSEMaximumPowerLimit, sizeof(PhysicalValueType));
   mpower.Value = 2 * mpower.Value;
@@ -583,8 +582,7 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_AC_TB_VTB_PowerDelivery_004(
   std::static_pointer_cast<PowerDeliveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   md_CMN_AC_PowerDeliveryReq_003(sendMsg, chargeProgress, this->mtc->vc_SAScheduleTupleId, md_CMN_CMN_ChargingProfile_001(v_profileList, 7));
   std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_ChargingProfileInvalid);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  md_CMN_AC_PowerDeliveryRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_ChargingProfileInvalid, nullptr);
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -713,7 +711,6 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_AC_TB_VTB_PowerDelivery_005(
   bool isValid;
   bool isShutdownOSC = false;
   ProfileEntryType v_profileList[7];
-  ;
   md_CMN_CMN_ProfileEntry_001(&v_profileList[0], 1400, &this->mtc->vc_EVSEMaximumPowerLimit, 1);
   md_CMN_CMN_ProfileEntry_001(&v_profileList[1], 1410, &this->mtc->vc_EVSEMaximumPowerLimit, 2);
   md_CMN_CMN_ProfileEntry_001(&v_profileList[2], 1420, &this->mtc->vc_EVSEMaximumPowerLimit, 3);
@@ -1202,10 +1199,10 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_DC_TB_VTB_PowerDelivery_003(
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<PowerDeliveryRes>();
   auto randomSessionID = f_rnd_SessionID(1, 429496);
   std::static_pointer_cast<PowerDeliveryReq>(sendMsg)->setSessionId(randomSessionID);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(randomSessionID);
   md_CMN_DC_PowerDeliveryReq_002(sendMsg, chargeProgress, this->mtc->vc_SAScheduleTupleId, nullptr, md_CMN_DC_EVPowerDeliveryParameter(this->mtc->vc_DC_EVStatus, OMIT, false));
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(randomSessionID);
+  md_CMN_DC_PowerDeliveryRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_UnknownSession, nullptr);
+
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
   f_SECC_changeValidDutyCycleRange(this->systemSECC, 100, 100);
@@ -1350,8 +1347,7 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_DC_TB_VTB_PowerDelivery_004(
                                  md_CMN_CMN_ChargingProfile_001(v_profileList, 7),
                                  md_CMN_DC_EVPowerDeliveryParameter(this->mtc->vc_DC_EVStatus, OMIT, false));
   std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_ChargingProfileInvalid);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->pDC_EVSEStatus_flag = has_value;
+  md_CMN_DC_PowerDeliveryRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_ChargingProfileInvalid, nullptr);
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -1498,8 +1494,7 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_DC_TB_VTB_PowerDelivery_005(
                                  md_CMN_CMN_ChargingProfile_001(v_profileList, 7),
                                  md_CMN_DC_EVPowerDeliveryParameter(this->mtc->vc_DC_EVStatus, OMIT, false));
   std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_TariffSelectionInvalid);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->pDC_EVSEStatus_flag = has_value;
+  md_CMN_DC_PowerDeliveryRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_TariffSelectionInvalid, nullptr);
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -1641,8 +1636,7 @@ verdict_val TestBehavior_SECC_PowerDelivery::f_SECC_DC_TB_VTB_PowerDelivery_006(
   md_CMN_DC_PowerDeliveryReq_002(sendMsg, iso1Part4_ChargeProgressType::renegotiate, this->mtc->vc_SAScheduleTupleId, nullptr,
                                  md_CMN_DC_EVPowerDeliveryParameter(this->mtc->vc_DC_EVStatus, OMIT, false));
   std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED);
-  std::static_pointer_cast<PowerDeliveryRes>(expectedMsg)->pDC_EVSEStatus_flag = has_value;
+  md_CMN_DC_PowerDeliveryRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED, nullptr);
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -1866,7 +1860,7 @@ static void md_CMN_AC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, i
   std::static_pointer_cast<PowerDeliveryRes>(msg)->pEVSEStatus_flag = omit;
 }
 
-/* static void md_CMN_DC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode, DC_EVSEStatusType *p_evsestatus)
+static void md_CMN_DC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, iso1Part4_ResponseCodeType p_responseCode, DC_EVSEStatusType *p_evsestatus)
 {
   std::static_pointer_cast<PowerDeliveryRes>(msg)->setResponseCode((responseCodeType)p_responseCode);
   std::static_pointer_cast<PowerDeliveryRes>(msg)->mResponseCode_flag = specific;
@@ -1881,7 +1875,7 @@ static void md_CMN_AC_PowerDeliveryRes_001(std::shared_ptr<V2gTpMessage> &msg, i
   }
   std::static_pointer_cast<PowerDeliveryRes>(msg)->pAC_EVSEStatus_flag = omit;
   std::static_pointer_cast<PowerDeliveryRes>(msg)->pEVSEStatus_flag = omit;
-} */
+}
 
 static bool checkInvalidTupleID(std::shared_ptr<SECC_Tester> &_mtc, uint8_t v_id, SAScheduleListType &SAScheduleTuple_List)
 {
@@ -1923,6 +1917,7 @@ static DC_EVPowerDeliveryParameterType *md_CMN_DC_EVPowerDeliveryParameter(DC_EV
 
 static ChargingProfileType *md_CMN_CMN_ChargingProfile_001(ProfileEntryType *entry_list, uint8_t size)
 {
+  // update charging profile
   static ChargingProfileType Profile;
   init_iso1ChargingProfileType(&Profile);
   Profile.ProfileEntry.arrayLen = size;

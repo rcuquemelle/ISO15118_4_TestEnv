@@ -397,6 +397,8 @@ verdict_val TestBehavior_SECC_CableCheck::f_SECC_DC_TB_VTB_CableCheck_003(std::s
   std::static_pointer_cast<CableCheckReq>(sendMsg)->setDCEVStatus(&this->mtc->vc_DC_EVStatus);
   std::static_pointer_cast<CableCheckRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<CableCheckRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<CableCheckRes>(expectedMsg)->mEVSEProcessing_flag = has_value;
+  std::static_pointer_cast<CableCheckRes>(expectedMsg)->pDC_EVSEStatus_flag = has_value;
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -578,6 +580,8 @@ verdict_val TestBehavior_SECC_CableCheck::f_SECC_DC_TB_VTB_CableCheck_005()
   std::static_pointer_cast<CableCheckRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<CableCheckRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED);
   std::static_pointer_cast<CableCheckRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<CableCheckRes>(expectedMsg)->mEVSEProcessing_flag = has_value;
+  std::static_pointer_cast<CableCheckRes>(expectedMsg)->pDC_EVSEStatus_flag = has_value;
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {

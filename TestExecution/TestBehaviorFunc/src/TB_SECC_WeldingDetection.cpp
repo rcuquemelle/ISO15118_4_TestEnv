@@ -42,6 +42,8 @@ verdict_val TestBehavior_SECC_WeldingDetection::f_SECC_DC_TB_VTB_WeldingDetectio
   std::static_pointer_cast<WeldingDetectionRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<WeldingDetectionRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
   std::static_pointer_cast<WeldingDetectionRes>(expectedMsg)->mResponseCode_flag = specific;
+  std::static_pointer_cast<WeldingDetectionRes>(expectedMsg)->pDC_EVSEStatus_flag = has_value;
+  std::static_pointer_cast<WeldingDetectionRes>(expectedMsg)->pEVSEPresentVoltage_flag = has_value;
 
   auto receive_handler = [this, &v_vct](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {

@@ -304,7 +304,7 @@ std::vector<uint8_t> f_generateDigestFromBodyType(BodyType *p_BodyType) {
   return temp;
   // return fx_convertOctetstring2Base64Binary(fx_messageDigest("SHA-256", fx_canonicalExi(encvalue(p_BodyType))));
 }
-std::shared_ptr<DataStructure_Security::iso1Part4_idDigestValueMap>& f_calculateIdDigestMapFromBodyType(BodyType &body)
+std::shared_ptr<DataStructure_Security::iso1Part4_idDigestValueMap> f_calculateIdDigestMapFromBodyType(BodyType &body)
 {
   std::shared_ptr<DataStructure_Security::iso1Part4_idDigestValueMap> DigestMap = std::make_shared<DataStructure_Security::iso1Part4_idDigestValueMap>();
 
