@@ -232,6 +232,8 @@ static void init_tc(const std::string &testcase_name, const std::string &tc_type
     mapTC["TestCases_SECC_MeteringReceipt"] = createT<TestCases_SECC_MeteringReceipt>(mtc, stc, cfg, cmn, pre, post);
   if (tc_type == "TestCases_SECC_PaymentDetails")
     mapTC["TestCases_SECC_PaymentDetails"] = createT<TestCases_SECC_PaymentDetails>(mtc, stc, cfg, cmn, pre, post);
+  if (tc_type == "TestCases_SECC_Abnormal")
+    mapTC["TestCases_SECC_Abnormal"] = createT<TestCases_SECC_Abnormal>(mtc, stc, cfg, cmn, pre, post);
 }
 static void deinit_tc(const std::string &tc_type)
 {
@@ -277,6 +279,8 @@ static void deinit_tc(const std::string &tc_type)
     mapTC["TestCases_SECC_MeteringReceipt"].reset();
   if (tc_type == "TestCases_SECC_PaymentDetails")
     mapTC["TestCases_SECC_PaymentDetails"].reset();
+  if (tc_type == "TestCases_SECC_Abnormal")
+    mapTC["TestCases_SECC_Abnormal"].reset();
   post.reset();
   pre.reset();
   cmn.reset();

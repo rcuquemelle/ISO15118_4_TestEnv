@@ -40,6 +40,7 @@ sudo update-alternatives --config gcc
 To verify if it worked. Just type in your terminal
 gcc -v
 
+/usr/bin/cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=MinSizeRel -DCMAKE_C_COMPILER:FILEPATH=/bin/gcc-8 -DCMAKE_CXX_COMPILER:FILEPATH=/bin/g++-8 -H/home/pi/HLC_TestTool -B/home/pi/HLC_TestTool/build -G "Unix Makefiles"
 
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update

@@ -19,7 +19,7 @@
 #include "V2GAppSECCCurrentDemand.h"
 #include "V2GAppSECCWeldingDetection.h"
 #include "V2GAppSECCSessionStop.h"
-
+#include "V2GAppSECCAbnormal.h"
 
 #include "V2GAppSECCCertificateInstallation.h"
 #include "V2GAppSECCCertificateUpdate.h"
