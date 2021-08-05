@@ -105,7 +105,7 @@ verdict_val f_SECC_CMN_PR_PLCLinkStatus_001(std::shared_ptr<System_SECC> &system
   {
     PAsleep(5);
     cmd->SLACReq->cmd = en_DLINKCmdType::SET_DLINK_CLOSE_FD;
-    _mtc->pt_SLAC_Port->send(cmd);
+    systemSECC->_pPLC->close_interface();
     PAsleep(5);
     if (systemSECC->_pUDPIf->start()) {
       Logging::info(LogCmnLib_ENABLE, "[CMN_LIB]: SLAC - CONNECTED");
