@@ -75,8 +75,8 @@ verdict_val f_SECC_CMN_PR_PLCLinkStatus_001(std::shared_ptr<System_SECC> &system
   cmd->SLACRes->event = en_DLINKEventType::DISCONNECT;
 
   auto handler = [](std::shared_ptr<BaseOperation>& expected, std::shared_ptr<BaseOperation>& received) -> bool {
-    if (received->SLACRes->event == en_DLINKEventType::MATCHED) {
-      expected->SLACRes->event = en_DLINKEventType::MATCHED;
+    if (received->SLACRes->event == en_DLINKEventType::CHARGE) {
+      expected->SLACRes->event = en_DLINKEventType::CHARGE;
       Logging::debug(LogCfgFnc_ENABLE, "[CMN_LIB]: MATCHED Event receive");
       return true;
     }
@@ -101,7 +101,7 @@ verdict_val f_SECC_CMN_PR_PLCLinkStatus_001(std::shared_ptr<System_SECC> &system
       break;
     }
   }
-  if (cmd->SLACRes->event == en_DLINKEventType::MATCHED)
+  if (cmd->SLACRes->event == en_DLINKEventType::CHARGE)
   {
     PAsleep(5);
     cmd->SLACReq->cmd = en_DLINKCmdType::SET_DLINK_CLOSE_FD;

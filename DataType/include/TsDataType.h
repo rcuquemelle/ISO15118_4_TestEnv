@@ -72,7 +72,9 @@ typedef enum {
   UNMATCH,
   MATCHING,
   MATCHED,
-  PAUSE
+  CHARGE,
+  PAUSE,
+  MAX_NUM
 } en_DLINKEventType;
 
 typedef struct SLAC_Event_St {

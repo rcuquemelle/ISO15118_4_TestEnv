@@ -19,7 +19,8 @@ set(src_files "./src/V2GSDP.cpp"
               "./src/V2GAppSECCCertificateUpdate.cpp"
               "./src/V2GAppSECCChargingStatus.cpp"
               "./src/V2GAppSECCMeteringReceipt.cpp"
-              "./src/V2GAppSECCPaymentDetails.cpp")
+              "./src/V2GAppSECCPaymentDetails.cpp"
+              "./src/V2GAppSECCAbnormal.cpp")
 
 # file(GLOB_RECURSE src_files LIST_DIRECTORIES false CONFIGURE_DEPENDS "*.cpp" "*.h")
 

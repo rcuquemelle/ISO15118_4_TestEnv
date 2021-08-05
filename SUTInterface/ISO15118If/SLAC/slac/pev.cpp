@@ -412,7 +412,7 @@ void Plc::run(void)
     }
     case pevStateType_LOOP:
     {
-      /* code */
+      this->notifyEvent(pevStateType_LOOP);
       break;
     }
     case pevStateType_SLEEP:

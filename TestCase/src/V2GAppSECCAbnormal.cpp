@@ -34,7 +34,10 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_001(void)
 {
   Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
-  verdict_val preConVerdict;
+  verdict_val preConVerdict = none;
+  verdict_val verdict = none;
+  bool isShutdownOSC = false;
+  std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->stc);
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
   preConVerdict = this->pre->f_SECC_DC_PR_PowerDeliveryStart_001(v_HAL_61851_Listener);

@@ -11,8 +11,9 @@ typedef enum en_pevStateType {
   pevStateType_UNMATCHED,
   pevStateType_MATCHING,
   pevStateType_MATCHED,
+  pevStateType_LOOP,
   pevStateType_SLEEP,
-  pevStateType_LOOP
+  pevStateType_MAX
 } pevStateType;
 
 typedef enum en_evseDetectType {

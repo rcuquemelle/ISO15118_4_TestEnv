@@ -354,7 +354,7 @@ void System_SECC::cmdHandler(std::shared_ptr<BaseOperation> &item, std::shared_p
 void onSLACEvent::operator() (pevStateType event) {
   std::shared_ptr<BaseOperation> responseEvent = std::make_shared<BaseOperation>(OpType_SLAC);
   responseEvent->SLACRes = std::make_shared<DLINKEvent>();
-  if (event < pevStateType_LOOP) {
+  if (event < pevStateType_MAX) {
     responseEvent->SLACRes->event = (en_DLINKEventType)event;
     this->parent->pt_SLAC_Port->setEvent(responseEvent);
     Logging::debug(LogComponent_ENABLE, fmt::format("[STC]: SLAC Event receive {}", event));
