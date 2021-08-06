@@ -1,5 +1,6 @@
 #include "MainTestComponent.h"
 #include "TimerCfg.h"
+#include "PIXITCfg.h"
 // call to system component
 using namespace Timer_15118::Timer_par_15118;
 using namespace Timer_15118_2::Timer_par_15118_2;
@@ -100,14 +101,14 @@ SECC_Tester::SECC_Tester(const std::shared_ptr<IfRuntime>& runtime) {
   this->vc_EVSEPeakCurrentRipple = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=0};
 
   this->vc_EVTargetVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=500};
-  this->vc_EVTargetCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=20};
+  this->vc_EVTargetCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=2};
   this->vc_EVPreChargeTargetCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=2};
   this->vc_EVSEPresentVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=0};
   this->vc_EVSEPresentCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=0};
 
-  memccpy(&this->vc_EVMaximumVoltageLimit, &par_EVMaximumVoltageLimit, sizeof(PhysicalValueType));
+  memcpy(&this->vc_EVMaximumVoltageLimit, &par_EVMaximumVoltageLimit, sizeof(PhysicalValueType));
   // this->vc_EVMaximumVoltageLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=550};
-  memccpy(&this->vc_EVMaximumCurrentLimit, &par_EVMaximumCurrentLimit, sizeof(PhysicalValueType));
+  memcpy(&this->vc_EVMaximumCurrentLimit, &par_EVMaximumCurrentLimit, sizeof(PhysicalValueType));
   // this->vc_EVMaximumCurrentLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=110};
   this->vc_EVMaximumPowerLimit = {.Multiplier=2, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::wh, .Value=605};
   init_iso1MeterInfoType(&this->vc_MeterInfo);
