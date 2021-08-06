@@ -354,7 +354,7 @@ int SeccBasicSignaling::initRelay(void)
 // void SeccBasicSignaling::btnISRFunc(int gpio, int level, uint32_t tick, void *userdata)
 void SeccBasicSignaling::btnISRFunc(int pi, uint32_t gpio, uint32_t level, uint32_t tick, void *userdata)
 {
-  if ((gpio == INPUT_ISR_PIN) && (0 == level))
+  if ((gpio == INPUT_ISR_PIN) && (1 == level))
   {
     SeccBasicSignaling *temp = (SeccBasicSignaling *)userdata;
     temp->pressState = 0x00000001;

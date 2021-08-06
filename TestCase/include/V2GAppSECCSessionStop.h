@@ -36,6 +36,7 @@ public:
   verdict_val TC_SECC_DC_VTB_SessionStop_007(void);
   verdict_val TC_SECC_DC_VTB_SessionStop_008(void);
   verdict_val TC_SECC_DC_VTB_SessionStop_009(void);
+  verdict_val TC_SECC_DC_VTB_SessionStop_010(void);
   verdict_val call(const std::string &testcase_name) override {
     if (this->testcase_map.end() != this->testcase_map.find(testcase_name)){
       return (this->*testcase_map[testcase_name])();

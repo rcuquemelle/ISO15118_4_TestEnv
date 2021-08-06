@@ -30,6 +30,7 @@ TestCases_SECC_SessionStop::TestCases_SECC_SessionStop(std::shared_ptr<SECC_Test
   this->testcase_map.emplace(std::make_pair(std::string("TC_SECC_DC_VTB_SessionStop_007"), &TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_007));
   this->testcase_map.emplace(std::make_pair(std::string("TC_SECC_DC_VTB_SessionStop_008"), &TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_008));
   this->testcase_map.emplace(std::make_pair(std::string("TC_SECC_DC_VTB_SessionStop_009"), &TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_009));
+  this->testcase_map.emplace(std::make_pair(std::string("TC_SECC_DC_VTB_SessionStop_010"), &TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_010));
 }
 TestCases_SECC_SessionStop::~TestCases_SECC_SessionStop()
 {
@@ -485,6 +486,36 @@ verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_009()
   if (preConVerdict == pass)
   {
     this->tb->f_SECC_CMN_TB_VTB_SessionStop_004();
+  }
+  else
+  {
+    Logging::info(LogTc_ENABLE, "PreCondition was unsuccessful.");
+  }
+  //------------- Post Conditions--------------------------------------------------------
+  this->post->f_SECC_CMN_PO_InitialState_001(v_HAL_61851_Listener);
+  this->cfg->f_SECC_CMN_PO_ShutdownConfiguration_001(v_HAL_61851_Listener, this->stc);
+  Logging::info(LogTc_ENABLE, "----- TEST CASE END -----");
+  return this->mtc->dumpverdict();
+}
+
+/**
+1. CONDITION: Test System executes aging
+2. EXPECTED: Test System then checks aging
+3. PICS selection: PICS_CMN_CMN_ChargingMode = dC,PICS_SECC_DC_WeldingDetection = true
+4. PIXIT selection:
+*/
+verdict_val TestCases_SECC_SessionStop::TC_SECC_DC_VTB_SessionStop_010()
+{
+  Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
+  std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
+  verdict_val preConVerdict;
+  // -------------- Pre Conditions-------------------------------------------------------
+  this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
+  preConVerdict = this->pre->f_SECC_DC_PR_WeldingDetection_002(v_HAL_61851_Listener);
+  //-------------- Test behavior---------------------------------------------------------
+  if (preConVerdict == pass)
+  {
+    this->tb->f_SECC_CMN_TB_VTB_SessionStop_001(iso1Part4_ChargingSessionType::terminate, v_HAL_61851_Listener, fail);
   }
   else
   {

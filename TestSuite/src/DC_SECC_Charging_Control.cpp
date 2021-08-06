@@ -80,15 +80,15 @@ int main(int argc, char *argv[])
   if (stc->_pBCIf->getBtnPressCounter() == 1){
     // 30kw
     Logging::info(LogTc_ENABLE, "------ DC 30KW AGING TEST ------");
-    mtc->vc_EVTargetCurrent.Value = 0;
+    mtc->vc_EVTargetCurrent.Value = 55;
   }
   else {
     // 60kw
     Logging::info(LogTc_ENABLE, "------ DC 60KW AGING TEST ------");
-    mtc->vc_EVTargetCurrent.Value = 0;
+    mtc->vc_EVTargetCurrent.Value = 110;
   }
   stc->_pBCIf->resetBtnCounter();
-    tc16->TC_SECC_DC_VTB_SessionStop_002();
+  tc16->TC_SECC_DC_VTB_SessionStop_010();
   stc->_pBCIf->resetBtnCounter();
   tc16.reset();
   deinit_tc();

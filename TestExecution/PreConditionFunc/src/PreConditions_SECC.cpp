@@ -995,6 +995,131 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
   return verdict;
 }
 
+/* DC charging loop until stop */
+verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_002(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
+{
+  std::shared_ptr<TestBehavior_SECC_ChargeParameterDiscovery> tb_chargParam = std::make_shared<TestBehavior_SECC_ChargeParameterDiscovery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_CableCheck> tb_cableCheck = std::make_shared<TestBehavior_SECC_CableCheck>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_PreCharge> tb_preCharge = std::make_shared<TestBehavior_SECC_PreCharge>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_MeteringReceipt> tb_meterRe = std::make_shared<TestBehavior_SECC_MeteringReceipt>(this->mtc, this->systemSECC);
+  static float SOC = 0;
+  verdict_val verdict = f_SECC_CMN_PR_Authorization_001(v_HAL_61851_Listener);
+  if (verdict == pass)
+  {
+    uint32_t loopCounter = 0;
+    uint32_t renegotiationLoopInd = PICS_CMN_CMN_RenegotiationLoopIndication;
+    if (!PICS_CMN_CMN_Renegotiation)
+    {
+      renegotiationLoopInd = -1;
+    };
+    while (this->mtc->vc_ChargeProgress != iso1Part4_ChargeProgressType::stop_)
+    {
+      // ChargeParameterDiscovery for 1st start, skip with renegotiation phase
+      if (verdict == pass)
+      {
+        if ((this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_) && (loopCounter == 0))
+        {
+          if (PIXIT_SECC_CMN_SalesTariff == iso1Part4_SalesTariff::unknown)
+          {
+            verdict = tb_chargParam->f_SECC_DC_TB_VTB_ChargeParameterDiscovery_001(inconc);
+          }
+          else
+          {
+            verdict = tb_chargParam->f_SECC_DC_TB_VTB_ChargeParameterDiscovery_006(inconc);
+          }
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      // CableCheck
+      if (verdict == pass)
+      {
+        if (this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_)
+        {
+          verdict = tb_cableCheck->f_SECC_DC_TB_VTB_CableCheck_001(v_HAL_61851_Listener, inconc);
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      // PreCharge
+      if (verdict == pass)
+      {
+        if (this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_)
+        {
+          verdict = tb_preCharge->f_SECC_DC_TB_VTB_PreCharge_001(inconc);
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      // PowerDelivery
+      if (verdict == pass)
+      {
+        if (this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_)
+        {
+          verdict = tb_powerDeli->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::start_, v_HAL_61851_Listener, false, true, inconc);
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      /* run charging loop until renegotion loop or endloop or request from evse */
+      while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (this->systemSECC->_pBCIf->getBtnPressCounter() == 0))
+      {
+        // CurrentDemand
+        if (verdict == pass)
+        {
+          // increase SOC
+          SOC += 100.0/(float)PICS_CMN_CMN_LoopCounter;
+          this->mtc->vc_DC_EVStatus.EVRESSSOC = (int8_t)SOC;
+          Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
+          if (SOC >= 99)
+          {
+            SOC = 0;
+          }
+          if (this->mtc->vc_EVTargetCurrent.Value < this->mtc->vc_EVMaximumCurrentLimit.Value)
+          {
+            this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
+          }
+          verdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
+        }
+        else
+        {
+          return verdict;
+        }
+        // MeteringReceipt
+        if (verdict == pass)
+        {
+          if ((this->mtc->vc_receiptRequired) && (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC))
+          {
+            verdict = tb_meterRe->f_SECC_DC_TB_VTB_MeteringReceipt_001(inconc);
+          }
+        }
+        else
+        {
+          return verdict;
+        }
+        loopCounter = loopCounter + 1;
+        if (verdict == pass)
+        {
+          Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> CurrentDemand: {}", loopCounter));
+          PAsleep(par_SECC_chargingLoop_pause);
+        }
+      }
+    }
+  }
+  Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  return verdict;
+}
+
 verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringReceiptRenegotiation_001(std::shared_ptr<HAL_61851_Listener> &v_HAL_61851_Listener)
 {
   std::shared_ptr<TestBehavior_SECC_ChargeParameterDiscovery> tb_chargParam = std::make_shared<TestBehavior_SECC_ChargeParameterDiscovery>(this->mtc, this->systemSECC);
@@ -1371,6 +1496,34 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_WeldingDetection_001(std::s
   verdict_val verdict;
   std::shared_ptr<TestBehavior_SECC_WeldingDetection> tb_weldDetect = std::make_shared<TestBehavior_SECC_WeldingDetection>(this->mtc, this->systemSECC);
   verdict = f_SECC_DC_PR_PowerDeliveryStop_001(v_HAL_61851_Listener, true);
+  // SECC_WeldingDetection Behavior
+  if (verdict == pass)
+  {
+    verdict = tb_weldDetect->f_SECC_DC_TB_VTB_WeldingDetection_001(inconc);
+  }
+  Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  return verdict;
+}
+
+verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_PowerDeliveryStop_002(std::shared_ptr<HAL_61851_Listener> &v_HAL_61851_Listener, bool v_setState)
+{
+  verdict_val verdict;
+  std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
+  verdict = f_SECC_DC_PR_CurrentDemandOrMeteringReceiptStop_002(v_HAL_61851_Listener);
+  // SECC_PowerDeliveryStopDC Behavior
+  if (verdict == pass)
+  {
+    this->mtc->vc_DC_EVStatus.EVReady = false;
+    verdict = tb_powerDeli->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, true, v_setState, inconc);
+  }
+  Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  return verdict;
+}
+verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_WeldingDetection_002(std::shared_ptr<HAL_61851_Listener> &v_HAL_61851_Listener)
+{
+  verdict_val verdict;
+  std::shared_ptr<TestBehavior_SECC_WeldingDetection> tb_weldDetect = std::make_shared<TestBehavior_SECC_WeldingDetection>(this->mtc, this->systemSECC);
+  verdict = f_SECC_DC_PR_PowerDeliveryStop_002(v_HAL_61851_Listener, true);
   // SECC_WeldingDetection Behavior
   if (verdict == pass)
   {

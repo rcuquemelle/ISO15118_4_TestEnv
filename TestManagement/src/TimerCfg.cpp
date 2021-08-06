@@ -53,7 +53,7 @@ namespace Timer_15118_2
     // ------------------ Sequence CableCheck timeouts -------------------
     float par_V2G_EVCC_CableCheck_Timeout = 40.0;
     // ------------------ Sequence PreCharge timeouts --------------------
-    float par_V2G_EVCC_PreCharge_Timeout = 7.0;
+    float par_V2G_EVCC_PreCharge_Timeout = 17.0;
     // ------------------ SDP timeout ------------------------------------
     float par_EVCC_SDP_Timeout = 1.25;  // 0.25
     // ------------------ Non-standardised SECC Processing timeouts ------
