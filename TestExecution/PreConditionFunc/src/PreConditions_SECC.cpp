@@ -334,7 +334,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_CMN_PR_CertificateUpdate_001(std:
 verdict_val PreConditions_SECC_15118_2::f_SECC_CMN_PR_PaymentDetails_001(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
 {
   /* Implement when Plug and Charge function is available */
-  verdict_val verdict;
+  verdict_val verdict = none;
   std::shared_ptr<TestBehavior_SECC_PaymentDetails> tb_pmentDetail = std::make_shared<TestBehavior_SECC_PaymentDetails>(this->mtc, this->systemSECC);
   if ((PIXIT_SECC_CMN_CertificateHandling == DataStructure_PIXIT_15118_2::iso1Part4_CertificateHandlingSECC::certUpdate) &&
     (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC))
@@ -362,7 +362,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_CMN_PR_PaymentDetails_001(std::sh
 
 verdict_val PreConditions_SECC_15118_2::f_SECC_CMN_PR_Authorization_001(std::shared_ptr<HAL_61851_Listener> &v_HAL_61851_Listener)
 {
-  verdict_val verdict;
+  verdict_val verdict = none;
   std::shared_ptr<TestBehavior_SECC_Authorization> tb = std::make_shared<TestBehavior_SECC_Authorization>(this->mtc, this->systemSECC);
 
   if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC)
@@ -835,7 +835,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
   std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
   std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->systemSECC);
   std::shared_ptr<TestBehavior_SECC_MeteringReceipt> tb_meterRe = std::make_shared<TestBehavior_SECC_MeteringReceipt>(this->mtc, this->systemSECC);
-
+  static float SOC = 0;
   verdict_val verdict = f_SECC_CMN_PR_Authorization_001(v_HAL_61851_Listener);
   if (verdict == pass)
   {
@@ -909,10 +909,12 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
         if (verdict == pass)
         {
           // increase SOC
-          if ((this->mtc->vc_DC_EVStatus.EVRESSSOC+100/PICS_CMN_CMN_LoopCounter)  <= 100)
+          SOC += 100.0/(float)PICS_CMN_CMN_LoopCounter;
+          this->mtc->vc_DC_EVStatus.EVRESSSOC = (int8_t)SOC;
+          Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
+          if (this->mtc->vc_EVTargetCurrent.Value < this->mtc->vc_EVMaximumCurrentLimit.Value)
           {
-            this->mtc->vc_DC_EVStatus.EVRESSSOC += 100/PICS_CMN_CMN_LoopCounter;
-            Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
+            this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
           }
           verdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
         }
@@ -1001,7 +1003,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
   std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
   std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->systemSECC);
   std::shared_ptr<TestBehavior_SECC_MeteringReceipt> tb_meterRe = std::make_shared<TestBehavior_SECC_MeteringReceipt>(this->mtc, this->systemSECC);
-
+  static float SOC = 0;
   verdict_val verdict = f_SECC_CMN_PR_Authorization_001(v_HAL_61851_Listener);
   if (verdict == pass)
   {
@@ -1058,10 +1060,17 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
         // CurrentDemand
         if (verdict == pass)
         {
-          if ((this->mtc->vc_DC_EVStatus.EVRESSSOC+100/PICS_CMN_CMN_LoopCounter)  <= 100)
+          // if ((this->mtc->vc_DC_EVStatus.EVRESSSOC+100/PICS_CMN_CMN_LoopCounter)  <= 100)
+          // {
+          //   this->mtc->vc_DC_EVStatus.EVRESSSOC += 100/PICS_CMN_CMN_LoopCounter;
+          //   Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
+          // }
+          SOC += 100.0/(float)PICS_CMN_CMN_LoopCounter;
+          this->mtc->vc_DC_EVStatus.EVRESSSOC = (int8_t)SOC;
+          Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
+          if (this->mtc->vc_EVTargetCurrent.Value < this->mtc->vc_EVMaximumCurrentLimit.Value)
           {
-            this->mtc->vc_DC_EVStatus.EVRESSSOC += 100/PICS_CMN_CMN_LoopCounter;
-            Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
+            this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
           }
           verdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
         }
@@ -1118,7 +1127,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
   verdict_val verdict = f_SECC_CMN_PR_Authorization_001(v_HAL_61851_Listener);
   if (verdict == pass)
   {
-    int moduloValueSOC;
+    int moduloValueSOC = 1;
     if (PICS_CMN_CMN_LoopCounter >= 100)
     {
       //soc init values

@@ -4,6 +4,7 @@
 using namespace Timer_15118::Timer_par_15118;
 using namespace Timer_15118_2::Timer_par_15118_2;
 using namespace urn_iso_15118_2_2013_MsgDataTypes;
+using namespace Pixit_15118_2::PIXIT_15118_2::PIXIT_CMN;
 
 const char* VERDICT_RESULT[] = {
   [none] = "NONE",
@@ -84,8 +85,8 @@ SECC_Tester::SECC_Tester(const std::shared_ptr<IfRuntime>& runtime) {
   init_iso1SAScheduleListType(&this->vc_SASchedule_List);
   init_iso1SAScheduleListType(&this->vc_SASchedules);
   init_iso1PMaxScheduleType(&this->vc_PMaxSchedule);
-  this->vc_EVMaxVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=700};
-  this->vc_EVMaxCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=200};
+  this->vc_EVMaxVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=500}; // AC?
+  this->vc_EVMaxCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=32}; // AC?
   this->vc_EVMinCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=1};
   this->vc_EVSEMaxCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=0};
   this->vc_EVSENominalVoltage= {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=0};
@@ -104,8 +105,10 @@ SECC_Tester::SECC_Tester(const std::shared_ptr<IfRuntime>& runtime) {
   this->vc_EVSEPresentVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=0};
   this->vc_EVSEPresentCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=0};
 
-  this->vc_EVMaximumVoltageLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=550};
-  this->vc_EVMaximumCurrentLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=110};
+  memccpy(&this->vc_EVMaximumVoltageLimit, &par_EVMaximumVoltageLimit, sizeof(PhysicalValueType));
+  // this->vc_EVMaximumVoltageLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=550};
+  memccpy(&this->vc_EVMaximumCurrentLimit, &par_EVMaximumCurrentLimit, sizeof(PhysicalValueType));
+  // this->vc_EVMaximumCurrentLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=110};
   this->vc_EVMaximumPowerLimit = {.Multiplier=2, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::wh, .Value=605};
   init_iso1MeterInfoType(&this->vc_MeterInfo);
   init_iso1DC_EVStatusType(&this->vc_DC_EVStatus);
