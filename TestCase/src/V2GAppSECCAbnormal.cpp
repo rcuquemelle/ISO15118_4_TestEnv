@@ -248,6 +248,13 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_CMN_VTB_Abnormal_001(void)
       {
         this->mtc->setverdict(pass, "SUT does establish slac connection with lost diode");
       }
+      else
+      {
+        this->mtc->setverdict(fail, "SUT still establish slac connection with lost diode");
+        // iso1Part4_Security_TYPE v_security = cc_hexTcp;
+        // std::shared_ptr<TestBehavior_SECC_SDP> tb = std::make_shared<TestBehavior_SECC_SDP>(this->mtc, this->stc);
+        // verdict = tb->f_SECC_CMN_TB_VTB_SDP_001(v_security, pass);
+      }
     }
   }
   //------------- Post Conditions--------------------------------------------------------

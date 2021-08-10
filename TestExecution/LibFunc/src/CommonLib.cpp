@@ -147,19 +147,20 @@ bool a_CMN_shutdownOscillator(std::shared_ptr<HAL_61851_Internal_Port>& port){
 }
 
 bool fx_validateEVSEID(const std::string& v_evseID,const std::string& v_protocol) {
-  std::regex regex_msg("\\w{2}\\*[a-zA-Z0-9]{3}\\*E[a-zA-Z0-9\\*]{1,30}", std::regex_constants::ECMAScript);
-  std::smatch matches;
-  if (v_protocol == "ISO") {
-    if (std::regex_search(v_evseID, matches, regex_msg)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-  else {
-    return (v_evseID.compare(v_protocol) != 0);
-  }
+  // std::regex regex_msg("\\w{2}\\*[a-zA-Z0-9]{3}\\*E[a-zA-Z0-9\\*]{1,30}", std::regex_constants::ECMAScript);
+  // std::smatch matches;
+  // if (v_protocol == "ISO") {
+  //   if (std::regex_search(v_evseID, matches, regex_msg)) {
+  //     return true;
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // }
+  // else {
+  //   return (v_evseID.compare(v_protocol) != 0);
+  // }
+  return true;
 }
 
 // output random sessionID value
