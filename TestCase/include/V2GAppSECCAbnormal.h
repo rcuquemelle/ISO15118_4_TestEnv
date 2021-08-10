@@ -23,7 +23,11 @@ public:
     std::shared_ptr<PreConditions_SECC_15118_2> _pre, std::shared_ptr<PostConditions_SECC_15118_2> _post);
   ~TestCases_SECC_Abnormal();
 
+  verdict_val TC_SECC_CMN_VTB_Abnormal_001(void);
   verdict_val TC_SECC_DC_VTB_Abnormal_001(void);
+  verdict_val TC_SECC_DC_VTB_Abnormal_002(void);
+  verdict_val TC_SECC_AC_VTB_Abnormal_001(void);
+  verdict_val TC_SECC_AC_VTB_Abnormal_002(void);
 
   verdict_val call(const std::string &testcase_name) override {
     if (this->testcase_map.end() != this->testcase_map.find(testcase_name)){
