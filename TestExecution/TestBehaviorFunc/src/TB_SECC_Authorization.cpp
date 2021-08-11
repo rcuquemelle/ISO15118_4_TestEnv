@@ -31,7 +31,7 @@ TestBehavior_SECC_Authorization::TestBehavior_SECC_Authorization(std::shared_ptr
 TestBehavior_SECC_Authorization::~TestBehavior_SECC_Authorization()
 {
 }
-
+static bool g_EIMFlag = false;
 static bool f_SECC_CMN_EIMIdentification(void)
 {
   return true;
@@ -39,6 +39,7 @@ static bool f_SECC_CMN_EIMIdentification(void)
 
 static void f_SECC_setEimStatus(bool val)
 {
+  g_EIMFlag = val;
 }
 
 // EIM
@@ -212,7 +213,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_002
 
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
-  std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setEVSEProcessing((EVSEProcessingType)iso1Part4_EVSEProcessingType::ongoing_WaitingForCustomerInteraction);
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setEVSEProcessing((EVSEProcessingType)iso1Part4_EVSEProcessingType::ongoing);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->mResponseCode_flag = specific;
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->mEVSEProcessing_flag = specific;
 
@@ -1268,6 +1269,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
   std::shared_ptr<V2gTpMessage> expectedMsg2 = std::make_shared<AuthorizationRes>();
   iso1Part4_EVSEProcessingType v_eVSEprocessing = iso1Part4_EVSEProcessingType::ongoing_WaitingForCustomerInteraction;
   bool isShutdownOSC = false;
+  uint8_t isFinished = 0;
 
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
@@ -1284,7 +1286,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
-  auto receive_handler = [this](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
+  auto receive_handler = [this, &v_eVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     std::shared_ptr<AuthorizationRes> cast_expected = std::dynamic_pointer_cast<AuthorizationRes>(expected[0]);
     std::shared_ptr<AuthorizationRes> cast_expected2 = std::dynamic_pointer_cast<AuthorizationRes>(expected[1]);
@@ -1299,8 +1301,17 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
-          this->mtc->setverdict(inconc, "No EIM authorization was initiated before.");
+          if (isFinished == 0)
+          {
+            this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
+            this->mtc->setverdict(inconc, "No EIM authorization was initiated before.");
+            isFinished++;
+          }
+          else
+          {
+            this->mtc->setverdict(fail, "Repetition of the Authorization message sequence after EIM has already done should be returned with 'ongoing_WaitingForCustomerInteraction' not 'finished'");
+            v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
+          }
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
           return true;
         }
@@ -1312,7 +1323,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
             this->mtc->tc_V2G_SECC_Ongoing_Timer->start(par_V2G_EVCC_Ongoing_Performance_Timeout - par_CMN_Transmission_Delay);
           }
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
-          return false;
+          return true;
         }
         else
         {
@@ -1346,7 +1357,6 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
     {
       if (this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receive(expectedMsgList, receive_handler))
       {
-        v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
         break;
       }
       if (this->cmn->a_SECC_TCPConnection_Status_Listener(fail, "TCP connection was misleadingly terminated by the SUT."))
@@ -1435,6 +1445,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
   int v_cnt = 1;
   std::string v_privateKey;
   bool isShutdownOSC = false;
+  uint8_t isFinished = 0;
 
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationReq>(sendMsg2)->setSessionId(this->mtc->vc_SessionID);
@@ -1447,13 +1458,13 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
 
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::oK);
-  std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setEVSEProcessing((EVSEProcessingType)iso1Part4_EVSEProcessingType::ongoing_WaitingForCustomerInteraction);
+  std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->setEVSEProcessing((EVSEProcessingType)iso1Part4_EVSEProcessingType::ongoing);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->mResponseCode_flag = specific;
   std::static_pointer_cast<AuthorizationRes>(expectedMsg2)->mEVSEProcessing_flag = specific;
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
-  auto receive_handler = [this](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
+  auto receive_handler = [this, &v_eVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     std::shared_ptr<AuthorizationRes> cast_expected = std::dynamic_pointer_cast<AuthorizationRes>(expected[0]);
     std::shared_ptr<AuthorizationRes> cast_expected2 = std::dynamic_pointer_cast<AuthorizationRes>(expected[1]);
@@ -1468,8 +1479,17 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
-          this->mtc->setverdict(inconc, "No authorization should be triggered by the SUT before.");
+          if (isFinished == 0)
+          {
+            this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
+            this->mtc->setverdict(inconc, "No authorization should be triggered by the SUT before.");
+            isFinished++;
+          }
+          else
+          {
+            this->mtc->setverdict(fail, "Repetition of the Authorization message sequence after Authorize has already done should be returned with 'ongoing' not 'finished'");
+            v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
+          }
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
           return true;
         }
@@ -1481,7 +1501,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
             this->mtc->tc_V2G_SECC_Ongoing_Timer->start(par_V2G_EVCC_Ongoing_Performance_Timeout - par_CMN_Transmission_Delay);
           }
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
-          return false;
+          return true;
         }
         else
         {
@@ -1540,7 +1560,6 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
     {
       if (this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receive(expectedMsgList, receive_handler))
       {
-        v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
         break;
       }
       if (this->cmn->a_SECC_TCPConnection_Status_Listener(fail, "TCP connection was misleadingly terminated by the SUT."))

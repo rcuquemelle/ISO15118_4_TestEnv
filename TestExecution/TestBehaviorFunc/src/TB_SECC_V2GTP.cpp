@@ -127,7 +127,8 @@ verdict_val TestBehavior_SECC_V2GTPSessionSetup::f_SECC_CMN_TB_VTB_V2GTPSessionS
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setPayloadType(v_v2gtpHeader.payloadType);
   // set tp header payload length
   std::static_pointer_cast<SessionSetupReq>(sendMsg)->setPayloadLength(v_v2gtpHeader.payloadLength);
-
+  std::static_pointer_cast<SessionSetupReq>(sendMsg)->dumpTpHeader();
+  std::static_pointer_cast<SessionSetupReq>(sendMsg)->dumpMsg();
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mEVSEID_flag = has_value;
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mResponseCode_flag = has_value;
   std::static_pointer_cast<SessionSetupRes>(expectedMsg)->mTimeStamp_flag = omit;
@@ -303,6 +304,8 @@ verdict_val TestBehavior_SECC_V2GTPSDP::f_SECC_CMN_TB_VTB_V2GTPSDP_002(iso1Part4
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setTPVersion(v_v2gtpHeader.protocolVersion, v_v2gtpHeader.invProtocolVersion);
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setPayloadType(v_v2gtpHeader.payloadType);
   std::static_pointer_cast<V2gSdpMessage>(sendMsg)->setPayloadLength(v_v2gtpHeader.payloadLength);
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->dumpTpHeader();
+  std::static_pointer_cast<V2gSdpMessage>(sendMsg)->dumpMsg();
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setSecurityType(SECURITY_NONE);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->setTransportType(TRANSPORT_TCP);
   std::static_pointer_cast<V2gSdpResMessage>(expectedMsg)->mIpV6Addr_flag = has_value;

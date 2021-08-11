@@ -60,7 +60,6 @@ static void deinit_tc(void) {
 
 int main(int argc, char *argv[])
 {
-  uint8_t count = 0;
   // toggle relay B 5 lan
   std::shared_ptr<TestCases_SECC_SessionStop> tc16;
 
@@ -77,20 +76,21 @@ int main(int argc, char *argv[])
   while (0 == stc->_pBCIf->getBtnPressCounter()){
   }
   PAsleep(1.5);
+  int target_current = atoi(argv[1]);
   if (stc->_pBCIf->getBtnPressCounter() == 1){
     // 30kw
     Logging::info(LogTc_ENABLE, "------ DC 30KW AGING TEST ------");
-    mtc->vc_EVTargetCurrent.Value = 55;
+    mtc->vc_EVTargetCurrent.Value = target_current;
   }
   else {
     // 60kw
     Logging::info(LogTc_ENABLE, "------ DC 60KW AGING TEST ------");
-    mtc->vc_EVTargetCurrent.Value = 110;
+    mtc->vc_EVTargetCurrent.Value = target_current*2;
   }
+  Logging::info(LogTc_ENABLE, fmt::format("Target current: {}A", mtc->vc_EVTargetCurrent.Value));
   stc->_pBCIf->resetBtnCounter();
   tc16->TC_SECC_DC_VTB_SessionStop_010();
   stc->_pBCIf->resetBtnCounter();
   tc16.reset();
   deinit_tc();
-  count++;
 }

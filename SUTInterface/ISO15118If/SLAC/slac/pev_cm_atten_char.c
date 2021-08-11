@@ -72,21 +72,21 @@ signed pev_cm_atten_char (struct session_t * session, struct channel_t * channel
       session->NUM_SOUNDS = indicate->ACVarField.NUM_SOUNDS;
       session->NumGroups = indicate->ACVarField.ATTEN_PROFILE.NumGroups;
       memcpy (session->AAG, indicate->ACVarField.ATTEN_PROFILE.AAG, indicate->ACVarField.ATTEN_PROFILE.NumGroups);
-      #if SLAC_DEBUG
-      if (_anyset (session->flags, SLAC_VERBOSE))
-      {
+      // #if SLAC_DEBUG
+      // if (_anyset (session->flags, SLAC_VERBOSE))
+      // {
         char string [256];
-        slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.APPLICATION_TYPE %d", indicate->APPLICATION_TYPE);
-        slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.SECURITY_TYPE %d", indicate->SECURITY_TYPE);
-        slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.SOURCE_ADDRESS %s", HEXSTRING (string, indicate->ACVarField.SOURCE_ADDRESS));
-        slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.RunID %s", HEXSTRING (string, indicate->ACVarField.RunID));
-        slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.SOURCE_ID %s", HEXSTRING (string, indicate->ACVarField.SOURCE_ID));
-        slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.RESP_ID %s", HEXSTRING (string, indicate->ACVarField.RESP_ID));
+        // slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.APPLICATION_TYPE %d", indicate->APPLICATION_TYPE);
+        // slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.SECURITY_TYPE %d", indicate->SECURITY_TYPE);
+        // slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.SOURCE_ADDRESS %s", HEXSTRING (string, indicate->ACVarField.SOURCE_ADDRESS));
+        // slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.RunID %s", HEXSTRING (string, indicate->ACVarField.RunID));
+        // slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.SOURCE_ID %s", HEXSTRING (string, indicate->ACVarField.SOURCE_ID));
+        // slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.RESP_ID %s", HEXSTRING (string, indicate->ACVarField.RESP_ID));
         slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.NUM_SOUNDS %d", indicate->ACVarField.NUM_SOUNDS);
         slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.ATTEN_PROFILE.NumGroups %d", indicate->ACVarField.ATTEN_PROFILE.NumGroups);
         slac_debug (session, 0, __func__, "CM_ATTEN_CHAR.IND.ACVarField.ATTEN_PROFILE.AAG %s", hexstring (string, sizeof (string), indicate->ACVarField.ATTEN_PROFILE.AAG, indicate->ACVarField.ATTEN_PROFILE.NumGroups));
-      }
-      #endif
+      // }
+      // #endif
       // slac_debug (session, 0, __func__, "--> CM_ATTEN_CHAR.RSP");
       memset (message, 0, sizeof (* message));
       EthernetHeader (& response->ethernet, session->EVSE_MAC, channel->host, channel->type);

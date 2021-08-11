@@ -116,7 +116,7 @@ the current SessionID, ResponseCode 'FAILED_SequenceError' and all additional
 mandatory parameters and terminates the V2G communication session by closing the
 TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CableCheck::TC_SECC_DC_VTB_CableCheck_003()
 {
@@ -152,7 +152,7 @@ SessionID, ResponseCode 'FAILED_UnknownSession' and all additional mandatory
 parameters and terminates the V2G communication session by closing the TCP
 connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CableCheck::TC_SECC_DC_VTB_CableCheck_004()
 {
@@ -188,7 +188,7 @@ mandatory parameters.
 2. EXPECTED: Test System then checks that the SUT terminates the V2G communication session by
 closing the TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CableCheck::TC_SECC_DC_VTB_CableCheck_005()
 {
@@ -298,7 +298,7 @@ current SessionID, ResponseCode 'FAILED' and all additional mandatory parameters
 and terminates the V2G communication session by closing the TCP connection
 within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection: PICS_CMN_CMN_ChargingMode = dC
-4. PIXIT selection: 
+4. PIXIT selection:
 */
 verdict_val TestCases_SECC_CableCheck::TC_SECC_DC_VTB_CableCheck_008()
 {

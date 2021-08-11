@@ -1376,6 +1376,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
 {
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
   bool isShutdownOSC = false;
+  uint8_t isFinished = 0;
   iso1Part4_EVSEProcessingType v_EVSEprocessing = iso1Part4_EVSEProcessingType::ongoing;
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<ChargeParameterDiscoveryReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ChargeParameterDiscoveryRes>();
@@ -1391,7 +1392,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
   mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, nullptr);
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
-  auto receive_handler = [this, &v_EVSEprocessing](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
+  auto receive_handler = [this, &v_EVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     // expected 1: EVSEProcessing = finished
     std::shared_ptr<ChargeParameterDiscoveryRes> cast_expected = std::dynamic_pointer_cast<ChargeParameterDiscoveryRes>(expected[0]);
@@ -1408,9 +1409,17 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
-          v_EVSEprocessing = iso1Part4_EVSEProcessingType::finished;
-          this->mtc->setverdict(inconc, "Charge parameter information should not be available.");
+          if (isFinished == 0)
+          {
+            this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
+            this->mtc->setverdict(inconc, "Charge parameter information should not be available.");
+            isFinished++;
+          }
+          else
+          {
+            this->mtc->setverdict(fail, "Repetition of the ChargeParameterDiscovery message sequence after operation had already 'finished' should be returned with 'ongoing' not 'finished'");
+            v_EVSEprocessing = iso1Part4_EVSEProcessingType::finished;
+          }
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
           return true;
         }
@@ -2946,6 +2955,8 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
   Logging::info(LogTc_ENABLE, fmt::format("[TB][{}]", __FUNCTION__));
   iso1Part4_EVSEProcessingType v_EVSEprocessing = iso1Part4_EVSEProcessingType::ongoing;
   bool isShutdownOSC = false;
+  uint8_t isFinished = 0;
+
   std::shared_ptr<V2gTpMessage> sendMsg = std::make_shared<ChargeParameterDiscoveryReq>();
   std::shared_ptr<V2gTpMessage> expectedMsg = std::make_shared<ChargeParameterDiscoveryRes>();
   std::shared_ptr<V2gTpMessage> expectedMsg2 = std::make_shared<ChargeParameterDiscoveryRes>();
@@ -2958,7 +2969,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
-  auto receive_handler = [this, &v_EVSEprocessing](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
+  auto receive_handler = [this, &v_EVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     // expected 1: EVSEProcessing = finished
     std::shared_ptr<ChargeParameterDiscoveryRes> cast_expected = std::dynamic_pointer_cast<ChargeParameterDiscoveryRes>(expected[0]);
@@ -2975,11 +2986,19 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
-          v_EVSEprocessing = iso1Part4_EVSEProcessingType::finished;
-          if (this->mtc->getverdict() == pass)
+          if (isFinished == 0)
           {
-            this->mtc->setverdict(pass, "ChargeParameterDiscoveryRes message was correct.");
+            this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
+            if (this->mtc->getverdict() == pass)
+            {
+              this->mtc->setverdict(pass, "ChargeParameterDiscoveryRes message was correct.");
+            }
+            isFinished++;
+          }
+          else
+          {
+            this->mtc->setverdict(fail, "Repetition of the ChargeParameterDiscovery message sequence after operation had already 'finished' should be returned with 'ongoing' not 'finished'");
+            v_EVSEprocessing = iso1Part4_EVSEProcessingType::finished;
           }
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
           return true;
