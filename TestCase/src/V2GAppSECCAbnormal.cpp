@@ -39,7 +39,6 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_001(void)
   Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   verdict_val preConVerdict = none;
-  verdict_val verdict = none;
   bool isShutdownOSC = false;
   std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->stc);
   // -------------- Pre Conditions-------------------------------------------------------
@@ -52,7 +51,7 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_001(void)
     while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (loopCounter < PICS_CMN_CMN_LoopCounter))
     {
       // CurrentDemand
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
         // increase SOC
         if ((this->mtc->vc_DC_EVStatus.EVRESSSOC+100/PICS_CMN_CMN_LoopCounter)  <= 100)
@@ -60,7 +59,7 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_001(void)
           this->mtc->vc_DC_EVStatus.EVRESSSOC += 100/PICS_CMN_CMN_LoopCounter;
           Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
         }
-        verdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
+        preConVerdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
         if (loopCounter == PICS_CMN_CMN_RenegotiationLoopIndication)
         {
           this->stc->_pBCIf->setRelay(SeccBasicSignaling::RELAY_SHORT_CIRCUIT, SeccBasicSignaling::RELAY_VAL_ON);
@@ -100,10 +99,10 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_001(void)
       }
       else
       {
-        return verdict;
+        return preConVerdict;
       }
       loopCounter = loopCounter + 1;
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
         Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> CurrentDemand: {}", loopCounter));
         PAsleep(par_SECC_chargingLoop_pause);
@@ -132,7 +131,6 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_002(void)
   Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   verdict_val preConVerdict = none;
-  verdict_val verdict = none;
   bool isShutdownOSC = false;
   std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->stc);
   // -------------- Pre Conditions-------------------------------------------------------
@@ -145,7 +143,7 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_002(void)
     while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (loopCounter < PICS_CMN_CMN_LoopCounter))
     {
       // CurrentDemand
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
         // increase SOC
         if ((this->mtc->vc_DC_EVStatus.EVRESSSOC+100/PICS_CMN_CMN_LoopCounter)  <= 100)
@@ -153,7 +151,7 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_002(void)
           this->mtc->vc_DC_EVStatus.EVRESSSOC += 100/PICS_CMN_CMN_LoopCounter;
           Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
         }
-        verdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
+        preConVerdict = tb_curDemand->f_SECC_DC_TB_VTB_CurrentDemand_001(inconc);
         if (loopCounter == PICS_CMN_CMN_RenegotiationLoopIndication)
         {
           this->stc->_pBCIf->setRelay(SeccBasicSignaling::RELAY_PE_LINE, SeccBasicSignaling::RELAY_VAL_OFF);
@@ -193,10 +191,10 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_002(void)
       }
       else
       {
-        return verdict;
+        return preConVerdict;
       }
       loopCounter = loopCounter + 1;
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
         Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> CurrentDemand: {}", loopCounter));
         PAsleep(par_SECC_chargingLoop_pause);
@@ -225,26 +223,25 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_CMN_VTB_Abnormal_001(void)
   Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   verdict_val preConVerdict = none;
-  verdict_val verdict = none;
   bool isShutdownOSC = false;
   std::shared_ptr<TestBehavior_SECC_CurrentDemand> tb_curDemand = std::make_shared<TestBehavior_SECC_CurrentDemand>(this->mtc, this->stc);
   // -------------- Pre Conditions-------------------------------------------------------
   this->cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, this->stc);
-  verdict = this->pre->f_SECC_CMN_PR_SetProximityPilot_001(v_HAL_61851_Listener);
+  preConVerdict = this->pre->f_SECC_CMN_PR_SetProximityPilot_001(v_HAL_61851_Listener);
   if (!PICS_CMN_CMN_CombinedTesting)
   {
-    if (verdict == pass)
+    if (preConVerdict == pass)
     {
       // check state
       f_SECC_changeValidStateCondition(B);
       // change to state B
-      verdict = f_SECC_setState(this->stc, B, v_HAL_61851_Listener);
+      preConVerdict = f_SECC_setState(this->stc, B, v_HAL_61851_Listener);
       this->stc->_pBCIf->setRelay(SeccBasicSignaling::RELAY_DIODE, SeccBasicSignaling::RELAY_VAL_ON);
       // wait 0.5s (plug in)
       PAsleep(par_CMN_waitForNextHAL);
       // if combinedTesting enable -> this PLC function already establish DataLink and in state B
-      verdict = f_SECC_CMN_PR_PLCLinkStatus_001(this->stc, this->mtc);
-      if (verdict == fail)
+      preConVerdict = f_SECC_CMN_PR_PLCLinkStatus_001(this->stc, this->mtc);
+      if (preConVerdict == fail)
       {
         this->mtc->setverdict(pass, "SUT does establish slac connection with lost diode");
       }
@@ -276,7 +273,6 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_001(void)
   Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   verdict_val preConVerdict = none;
-  verdict_val verdict = none;
   bool isShutdownOSC = false;
   std::shared_ptr<TestBehavior_SECC_ChargingStatus> tb_chargeSts = std::make_shared<TestBehavior_SECC_ChargingStatus>(this->mtc, this->stc);
   // -------------- Pre Conditions-------------------------------------------------------
@@ -289,13 +285,13 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_001(void)
     while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (loopCounter < PICS_CMN_CMN_LoopCounter))
     {
       // ChargingStatus
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
-        verdict = tb_chargeSts->f_SECC_AC_TB_VTB_ChargingStatus_001(inconc);
+        preConVerdict = tb_chargeSts->f_SECC_AC_TB_VTB_ChargingStatus_001(inconc);
       }
       else
       {
-        return verdict;
+        return preConVerdict;
       }
       if (loopCounter == PICS_CMN_CMN_RenegotiationLoopIndication)
       {
@@ -334,7 +330,7 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_001(void)
         break;
       }
       loopCounter = loopCounter + 1;
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
         Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> ChargingStatus: {}", loopCounter));
         PAsleep(par_SECC_chargingLoop_pause);
@@ -363,7 +359,6 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_002(void)
   Logging::info(LogTc_ENABLE, fmt::format("----- TEST CASE {} START -----",__FUNCTION__));
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   verdict_val preConVerdict = none;
-  verdict_val verdict = none;
   bool isShutdownOSC = false;
   std::shared_ptr<TestBehavior_SECC_ChargingStatus> tb_chargeSts = std::make_shared<TestBehavior_SECC_ChargingStatus>(this->mtc, this->stc);
   // -------------- Pre Conditions-------------------------------------------------------
@@ -376,13 +371,13 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_002(void)
     while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (loopCounter < PICS_CMN_CMN_LoopCounter))
     {
       // ChargingStatus
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
-        verdict = tb_chargeSts->f_SECC_AC_TB_VTB_ChargingStatus_001(inconc);
+        preConVerdict = tb_chargeSts->f_SECC_AC_TB_VTB_ChargingStatus_001(inconc);
       }
       else
       {
-        return verdict;
+        return preConVerdict;
       }
       if (loopCounter == PICS_CMN_CMN_RenegotiationLoopIndication)
       {
@@ -421,7 +416,7 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_002(void)
         break;
       }
       loopCounter = loopCounter + 1;
-      if (verdict == pass)
+      if (preConVerdict == pass)
       {
         Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> ChargingStatus: {}", loopCounter));
         PAsleep(par_SECC_chargingLoop_pause);

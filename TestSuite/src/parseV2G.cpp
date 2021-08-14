@@ -128,25 +128,6 @@ int main(int argc, const char *argv[])
   if (msg_type == "WeldingDetectionRes")
       mapMsg["WeldingDetectionRes"] = createT<WeldingDetectionRes>();
 
-  // std::vector<uint8_t> ssID = {0, 1, 2, 3, 4, 5, 6, 7};
-  // std::static_pointer_cast<ServicePaymentSelectionReq>(mapMsg[msg_type])->setSessionId(ssID);
-  // std::static_pointer_cast<ServicePaymentSelectionReq>(mapMsg[msg_type])->setSelectedPaymentOption((paymentOptionType)1);
-  // SelectedServiceListType serList;
-  // serList.SelectedService.arrayLen=2;
-  // serList.SelectedService.array[0] = {.ServiceID = 1, .ParameterSetID=2, .ParameterSetID_isUsed=1};
-  // serList.SelectedService.array[1] = {.ServiceID = 10, .ParameterSetID=32, .ParameterSetID_isUsed=0};
-  // std::static_pointer_cast<ServicePaymentSelectionReq>(mapMsg[msg_type])->setSelectedServiceList(&serList);
-  // std::static_pointer_cast<ServicePaymentSelectionReq>(mapMsg[msg_type])->serialize();
-
-  // char *temptr;
-  // auto len = std::static_pointer_cast<ServicePaymentSelectionReq>(mapMsg[msg_type])->getBufferPtr(&temptr);
-  // for (size_t i = 0; i < len; i++)
-  // {
-  //   fmt::print(fmt::format("{:02X} ", temptr[i]));
-  //   temptr[i] = 0;
-  // }
-  // std::cout << std::endl;
-
   int data_len = hexstring2arr(str_val.c_str(), str_val.length(), data_arr);
 
   if (msg_type == "V2gSdpMessage") {
