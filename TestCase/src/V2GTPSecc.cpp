@@ -68,7 +68,7 @@ Header is matched for V2G message content).
 2. EXPECTED: Test System then checks that the SUT sends a SessionSetupRes message with the
 V2GTP header information 'protocolVersion' equals to '0x01'H, 'invProtocolVersion'
 equals to 'FE'H and 'payloadType' equals to '0x8001'H.
-3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
+3. PICS selection: PICS_CMN_CMN_V2gtpV2g = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_001()
@@ -101,7 +101,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 to '00000000'H in the V2GTP header of the SessionSetupReq message.
 2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
 detecting a 'V2G_Msg_Timeout'.
-3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
+3. PICS selection: PICS_CMN_CMN_V2gtpV2g = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_002()
@@ -134,7 +134,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 to '7001'H in the V2GTP header of the SessionSetupReq message.
 2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
 detecting a 'V2G_Msg_Timeout'.
-3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
+3. PICS selection: PICS_CMN_CMN_V2gtpV2g = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_003()
@@ -167,7 +167,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 equals to 'FF'H in the V2GTP header of the SessionSetupReq message.
 2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
 detecting a 'V2G_Msg_Timeout'.
-3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
+3. PICS selection: PICS_CMN_CMN_V2gtpV2g = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_004()
@@ -200,7 +200,7 @@ verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_
 equals to 'FF'H in the V2GTP header of the SessionSetupReq message.
 2. EXPECTED: Test System then checks that the SUT ignores the SessionSetupReq message by
 detecting a 'V2G_Msg_Timeout'.
-3. PICS selection: PICS_CMN_CMN_V2gtpV2g := true
+3. PICS selection: PICS_CMN_CMN_V2gtpV2g = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSessionSetup::TC_SECC_CMN_VTB_V2GTPSessionSetup_005()
@@ -237,7 +237,7 @@ Header is matched for SDP message content).
 2. EXPECTED: Test System then checks that the SUT sends a SDP response message with the V2GTP
 header information 'protocolVersion' equals to '0x01'H, 'invProtocolVersion' equals to
 'FE'H, payloadType' equals to '0x9001'H and 'payloadLength' equals to '00000014'H.
-3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
+3. PICS selection: PICS_CMN_CMN_V2gtpSdp = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_001()
@@ -269,7 +269,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_001()
 to '00000000'H in the V2GTP header of the SDP request message.
 2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
 an SDP message timeout.
-3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
+3. PICS selection: PICS_CMN_CMN_V2gtpSdp = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_002()
@@ -301,7 +301,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_002()
 to '7000'H in the V2GTP header of the SDP request message.
 2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
 an SDP message timeout.
-3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
+3. PICS selection: PICS_CMN_CMN_V2gtpSdp = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_003()
@@ -333,7 +333,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_003()
 equals to 'FF'H in the V2GTP header of the SDP request message.
 2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
 an SDP message timeout.
-3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
+3. PICS selection: PICS_CMN_CMN_V2gtpSdp = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_004()
@@ -365,7 +365,7 @@ verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_004()
 equals to 'FF'H in the V2GTP header of the SDP request message.
 2. EXPECTED: Test System then checks that the SUT ignores the SDP response message by detecting
 an SDP message timeout.
-3. PICS selection: PICS_CMN_CMN_V2gtpSdp := true
+3. PICS selection: PICS_CMN_CMN_V2gtpSdp = true
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_V2GTPSDP::TC_SECC_CMN_VTB_V2GTPSDP_005()

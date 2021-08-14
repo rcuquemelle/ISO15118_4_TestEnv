@@ -46,8 +46,8 @@ TestCases_SECC_SDP::~TestCases_SECC_SDP()
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
 equals to '0x10'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
 address.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := eIM
-4. PIXIT selection: PIXIT_SECC_CMN_TLS := false
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
+4. PIXIT selection: PIXIT_SECC_CMN_TLS = false
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_001()
 {
@@ -80,8 +80,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_001()
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
 equals to '0x00'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
 address.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := eIM
-4. PIXIT selection: PIXIT_SECC_CMN_TLS := true
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
+4. PIXIT selection: PIXIT_SECC_CMN_TLS = true
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_002()
 {
@@ -114,7 +114,7 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_002()
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
 equals to '0x00'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
 address.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := pnC
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_003()
@@ -147,8 +147,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_003()
 2. EXPECTED: Test System then checks that the SUT stops the SDP server and does not respond to a
 valid SDP request message with 'Security' equals to '0x10'H and 'TransportProtocol'
 equals to '0x00'H.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := eIM
-4. PIXIT selection: PIXIT_SECC_CMN_TLS := false
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
+4. PIXIT selection: PIXIT_SECC_CMN_TLS = false
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_004()
 {
@@ -180,8 +180,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_004()
 2. EXPECTED: Test System then checks that the SUT stops the SDP server and does not respond to a
 valid SDP request message with 'Security' equals to '0x00'H and 'TransportProtocol'
 equals to '0x00'H.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := eIM
-4. PIXIT selection: PIXIT_SECC_CMN_TLS := true
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
+4. PIXIT selection: PIXIT_SECC_CMN_TLS = true
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_005()
 {
@@ -213,7 +213,7 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_005()
 2. EXPECTED: Test System then checks that the SUT stops the SDP server and does not respond to a
 valid SDP request message with 'Security' equals to '0x00'H and 'TransportProtocol'
 equals to '0x00'H.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := pnC
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC
 4. PIXIT selection:
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_006()
@@ -246,8 +246,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_006()
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
 equals to '0x10'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
 address.
-3. PICS selection: PICS_CMN_CMN_IdentificationMode := eIM
-4. PIXIT selection: PIXIT_SECC_CMN_TLS := false
+3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
+4. PIXIT selection: PIXIT_SECC_CMN_TLS = false
 */
 verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_007()
 {

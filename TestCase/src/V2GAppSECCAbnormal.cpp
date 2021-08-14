@@ -29,8 +29,11 @@ TestCases_SECC_Abnormal::~ TestCases_SECC_Abnormal()
 }
 
 /**
-1. CONDITION: short CP-PE
-2. EXPECTED:
+1. CONDITION: Test System executes abnormal procedure, go to charging loop
+at loop counter PICS_CMN_CMN_RenegotiationLoopIndication, short CP-PE.
+2. EXPECTED: Test System then checks that the SUT go to emergency mode and
+terminates the V2G communication session by closing the
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection:
 4. PIXIT selection:
 */
@@ -121,8 +124,11 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_001(void)
 }
 
 /**
-1. CONDITION: lost pe
-2. EXPECTED:
+1. CONDITION: Test System executes abnormal procedure, go to charging loop
+at loop counter PICS_CMN_CMN_RenegotiationLoopIndication, lost PE line.
+2. EXPECTED: Test System then checks that the SUT go to emergency mode and
+terminates the V2G communication session by closing the
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection:
 4. PIXIT selection:
 */
@@ -213,8 +219,10 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_DC_VTB_Abnormal_002(void)
 }
 
 /**
-1. CONDITION: lost diode
-2. EXPECTED:
+1. CONDITION: Test System executes abnormal procedure, before proceed with SLAC
+logical link setup, remove DIODE on CP
+2. EXPECTED: Test System then checks that the SUT should check availability of
+DIODE and does not continue with logical link setup.
 3. PICS selection:
 4. PIXIT selection:
 */
@@ -263,8 +271,11 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_CMN_VTB_Abnormal_001(void)
 
 
 /**
-1. CONDITION: short CP-PE
-2. EXPECTED:
+1. CONDITION: Test System executes abnormal procedure, go to charging loop
+at loop counter PICS_CMN_CMN_RenegotiationLoopIndication, short CP-PE.
+2. EXPECTED: Test System then checks that the SUT go to emergency mode and
+terminates the V2G communication session by closing the
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection:
 4. PIXIT selection:
 */
@@ -349,8 +360,11 @@ verdict_val TestCases_SECC_Abnormal::TC_SECC_AC_VTB_Abnormal_001(void)
 }
 
 /**
-1. CONDITION: lost pe
-2. EXPECTED:
+1. CONDITION: Test System executes abnormal procedure, go to charging loop
+at loop counter PICS_CMN_CMN_RenegotiationLoopIndication, lost PE line.
+2. EXPECTED: Test System then checks that the SUT go to emergency mode and
+terminates the V2G communication session by closing the
+TCP connection within 'par_CMN_TCP_Connection_Termination_Timeout'.
 3. PICS selection:
 4. PIXIT selection:
 */
