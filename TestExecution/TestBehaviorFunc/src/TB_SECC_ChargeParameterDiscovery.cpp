@@ -77,10 +77,10 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   // expected respone processin status is finished
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, nullptr, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, (AC_EVSEStatusType *)HAS_VAL, (SalesTariffType *)OMIT);
   // expected respone processin status is ongoing
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, (AC_EVSEStatusType *)HAS_VAL);
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
   auto receive_handler = [this, &v_EVSEprocessing, &v_pMax, &v_vct](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
@@ -699,10 +699,10 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
 
   // expected respone processin status is finished
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, nullptr, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, (AC_EVSEStatusType *)HAS_VAL, (SalesTariffType *)OMIT);
   // expected respone processin status is ongoing
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, (AC_EVSEStatusType *)HAS_VAL);
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
   auto receive_handler = [this, &v_EVSEprocessing, &v_pMax](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
@@ -912,10 +912,10 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
 
   // expected respone processin status is finished
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, nullptr, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, (AC_EVSEStatusType *)HAS_VAL, (SalesTariffType *)HAS_VAL);
   // expected respone processin status is ongoing
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, (AC_EVSEStatusType *)HAS_VAL);
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
   auto receive_handler = [this, &v_EVSEprocessing, &v_pMax, &v_vct, &isSignatureOk](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
@@ -1146,10 +1146,10 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
 
   // expected respone processin status is finished
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, nullptr, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, (AC_EVSEStatusType *)HAS_VAL, (SalesTariffType *)HAS_VAL);
   // expected respone processin status is ongoing
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, (AC_EVSEStatusType *)HAS_VAL);
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
   auto receive_handler = [this, &v_EVSEprocessing, &v_pMax, &isSignatureOk](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
@@ -1386,10 +1386,10 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
 
   // expected respone processin status is finished
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, nullptr, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, (AC_EVSEStatusType *)HAS_VAL, (SalesTariffType *)OMIT);
   // expected respone processin status is ongoing
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, nullptr);
+  mdw_SECC_AC_ChargeParameterDiscoveryRes_002(expectedMsg2, (AC_EVSEStatusType *)HAS_VAL);
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
   auto receive_handler = [this, &v_EVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
@@ -1578,9 +1578,9 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, OMIT, nullptr);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, HAS_VAL, (SalesTariffType *)OMIT);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, OMIT);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, HAS_VAL);
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
@@ -2215,9 +2215,9 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, OMIT, nullptr);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, HAS_VAL, (SalesTariffType *)OMIT);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, OMIT);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, HAS_VAL);
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
@@ -2446,9 +2446,9 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, OMIT, nullptr);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, HAS_VAL, (SalesTariffType *)HAS_VAL);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, OMIT);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, HAS_VAL);
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
@@ -2701,9 +2701,9 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, OMIT, nullptr);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, HAS_VAL, (SalesTariffType *)HAS_VAL);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, OMIT);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, HAS_VAL);
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
@@ -2963,9 +2963,9 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
 
   std::static_pointer_cast<ChargeParameterDiscoveryReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, OMIT, nullptr);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_001(expectedMsg, iso1Part4_EVSEProcessingType::finished, iso1Part4_EVSENotificationType::none_, HAS_VAL, (SalesTariffType *)OMIT);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(expectedMsg2)->setSessionId(this->mtc->vc_SessionID);
-  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, OMIT);
+  mdw_SECC_DC_ChargeParameterDiscoveryRes_002(expectedMsg2, iso1Part4_EVSENotificationType::none_, HAS_VAL);
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
@@ -3564,22 +3564,36 @@ static void mdw_SECC_AC_ChargeParameterDiscoveryRes_001(std::shared_ptr<V2gTpMes
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->setEVSEProcessing((EVSEProcessingType)p_evseproc);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->mEVSEProcessing_flag = specific;
   // SAScheduleListType
-  if (nullptr != p_salesTariff)
+  if (HAS_VAL == (uintptr_t)p_salesTariff)
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = has_value;
+  }
+  else if ((OMIT == (uintptr_t)p_salesTariff) || (nullptr == p_salesTariff))
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = omit;
+  }
+  else
   {
     SAScheduleListType schedule;
     memcpy(&schedule.SAScheduleTuple.array[0].SalesTariff, p_salesTariff, sizeof(SalesTariffType));
     schedule.SAScheduleTuple.arrayLen = 1;
     std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->setSAScheduleList(&schedule);
   }
-  std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = has_value;
   // AC_EVSEChargeParameterType
-  if (nullptr != p_aCeVSEStatus)
+  if (HAS_VAL == (uintptr_t)p_aCeVSEStatus)
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = has_value;
+  }
+  else if ((OMIT == (uintptr_t)p_aCeVSEStatus) || (nullptr == p_aCeVSEStatus))
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = omit;
+  }
+  else
   {
     AC_EVSEChargeParameterType param;
     memcpy(&param.AC_EVSEStatus, p_aCeVSEStatus, sizeof(AC_EVSEStatusType));
     std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->setACEVSEChargeParameter(&param);
   }
-  std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pAC_EVSEChargeParameter_flag = has_value;
 
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pDC_EVSEChargeParameter_flag = omit;
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pEVSEChargeParameter_flag = omit;
@@ -3594,13 +3608,20 @@ static void mdw_SECC_AC_ChargeParameterDiscoveryRes_002(std::shared_ptr<V2gTpMes
   // SAScheduleListType
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = omit;
   // AC_EVSEChargeParameterType
-  if (nullptr != p_aCeVSEStatus)
+  if (HAS_VAL == (uintptr_t)p_aCeVSEStatus)
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = has_value;
+  }
+  else if ((OMIT == (uintptr_t)p_aCeVSEStatus) || (nullptr == p_aCeVSEStatus))
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = omit;
+  }
+  else
   {
     AC_EVSEChargeParameterType param;
     memcpy(&param.AC_EVSEStatus, p_aCeVSEStatus, sizeof(AC_EVSEStatusType));
     std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->setACEVSEChargeParameter(&param);
   }
-  std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pAC_EVSEChargeParameter_flag = has_value;
 
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pDC_EVSEChargeParameter_flag = omit;
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pEVSEChargeParameter_flag = omit;
@@ -3682,14 +3703,22 @@ static void mdw_SECC_DC_ChargeParameterDiscoveryRes_001(std::shared_ptr<V2gTpMes
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->mResponseCode_flag = specific;
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->setEVSEProcessing((EVSEProcessingType)p_evseproc);
   std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->mEVSEProcessing_flag = specific;
-  if (nullptr != p_salesTariff)
+
+  if (HAS_VAL == (uintptr_t)p_salesTariff)
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = has_value;
+  }
+  else if ((OMIT == (uintptr_t)p_salesTariff) || (nullptr == p_salesTariff))
+  {
+    std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = omit;
+  }
+  else
   {
     SAScheduleListType schedule;
     memcpy(&schedule.SAScheduleTuple.array[0].SalesTariff, p_salesTariff, sizeof(SalesTariffType));
     schedule.SAScheduleTuple.arrayLen = 1;
     std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->setSAScheduleList(&schedule);
   }
-  std::static_pointer_cast<ChargeParameterDiscoveryRes>(msg)->pSASchedules_flag = has_value;
 
   DC_EVSEChargeParameterType param;
   param.DC_EVSEStatus.EVSENotification = (EVSENotificationType)p_eVSENotification;

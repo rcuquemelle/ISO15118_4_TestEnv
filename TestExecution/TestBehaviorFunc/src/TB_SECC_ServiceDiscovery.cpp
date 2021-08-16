@@ -307,8 +307,8 @@ verdict_val TestBehavior_SECC_ServiceDiscovery::f_SECC_CMN_TB_VTB_ServiceDiscove
   std::static_pointer_cast<ServiceDiscoveryReq>(sendMsg)->setSessionId(randomSessionID);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->setResponseCode((responseCodeType)iso1Part4_ResponseCodeType::fAILED_UnknownSession);
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->mResponseCode_flag = specific;
-  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pPaymentOptionList_flag = omit;
-  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pChargeService_flag = omit;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pPaymentOptionList_flag = has_value;
+  std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pChargeService_flag = has_value;
   std::static_pointer_cast<ServiceDiscoveryRes>(expectedMsg)->pServiceList_flag = omit;
 
   std::shared_ptr<BaseOperation> sendCmd = std::make_shared<BaseOperation>(OpType_TCP);

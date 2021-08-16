@@ -42,9 +42,9 @@ TestCases_SECC_SDP::~TestCases_SECC_SDP()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends an SDP request message with
-'Security' equals to '0x10'H and 'TransportProtocol' equals to '0x00'H.
+'Security' equals to '0x10'H(SECURITY_NONE) and 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP).
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
-equals to '0x10'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
+equals to '0x10'H(SECURITY_NONE), 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP) and a valid port and IP
 address.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
 4. PIXIT selection: PIXIT_SECC_CMN_TLS = false
@@ -76,9 +76,9 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_001()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends an SDP request message with
-'Security' equals to '0x00'H and 'TransportProtocol' equals to '0x00'H.
+'Security' equals to '0x00'H(SECURITY_TLS) and 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP).
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
-equals to '0x00'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
+equals to '0x00'H(SECURITY_TLS), 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP) and a valid port and IP
 address.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
 4. PIXIT selection: PIXIT_SECC_CMN_TLS = true
@@ -110,9 +110,9 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_002()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends an SDP request message with
-'Security' equals to '0x00'H and 'TransportProtocol' equals to '0x00'H.
+'Security' equals to '0x00'H(SECURITY_TLS) and 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP).
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
-equals to '0x00'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
+equals to '0x00'H(SECURITY_TLS), 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP) and a valid port and IP
 address.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC
 4. PIXIT selection:
@@ -145,8 +145,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_003()
 1. CONDITION: Test System executes GoodCase procedure and waits until the
 'V2G_SECC_CommunicationSetup_Timeout' timer has expired on SUT side.
 2. EXPECTED: Test System then checks that the SUT stops the SDP server and does not respond to a
-valid SDP request message with 'Security' equals to '0x10'H and 'TransportProtocol'
-equals to '0x00'H.
+valid SDP request message with 'Security' equals to '0x10'H(SECURITY_NONE) and 'TransportProtocol'
+equals to '0x00'H(TRANSPORT_TCP).
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
 4. PIXIT selection: PIXIT_SECC_CMN_TLS = false
 */
@@ -178,8 +178,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_004()
 1. CONDITION: Test System executes GoodCase procedure and waits until the
 'V2G_SECC_CommunicationSetup_Timeout' timer has expired on SUT side.
 2. EXPECTED: Test System then checks that the SUT stops the SDP server and does not respond to a
-valid SDP request message with 'Security' equals to '0x00'H and 'TransportProtocol'
-equals to '0x00'H.
+valid SDP request message with 'Security' equals to '0x00'H(SECURITY_TLS) and 'TransportProtocol'
+equals to '0x00'H(TRANSPORT_TCP).
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
 4. PIXIT selection: PIXIT_SECC_CMN_TLS = true
 */
@@ -211,8 +211,8 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_005()
 1. CONDITION: Test System executes GoodCase procedure and waits until the
 'V2G_SECC_CommunicationSetup_Timeout' timer has expired on SUT side.
 2. EXPECTED: Test System then checks that the SUT stops the SDP server and does not respond to a
-valid SDP request message with 'Security' equals to '0x00'H and 'TransportProtocol'
-equals to '0x00'H.
+valid SDP request message with 'Security' equals to '0x00'H(SECURITY_TLS) and 'TransportProtocol'
+equals to '0x00'H(TRANSPORT_TCP).
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = pnC
 4. PIXIT selection:
 */
@@ -242,9 +242,9 @@ verdict_val TestCases_SECC_SDP::TC_SECC_CMN_VTB_SDP_006()
 
 /**
 1. CONDITION: Test System executes GoodCase procedure and sends an SDP request message with
-'Security' equals to '0x00'H and 'TransportProtocol' equals to '0x00'H.
+'Security' equals to '0x00'H(SECURITY_TLS) and 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP).
 2. EXPECTED: Test System then checks that the SUT sends an SDP response message with 'Security'
-equals to '0x10'H, 'TransportProtocol' equals to '0x00'H and a valid port and IP
+equals to '0x10'H(SECURITY_NONE), 'TransportProtocol' equals to '0x00'H(TRANSPORT_TCP) and a valid port and IP
 address.
 3. PICS selection: PICS_CMN_CMN_IdentificationMode = eIM
 4. PIXIT selection: PIXIT_SECC_CMN_TLS = false

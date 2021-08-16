@@ -39,7 +39,6 @@ TestBehavior_SECC_ChargingStatus::~TestBehavior_SECC_ChargingStatus()
 static void md_CMN_AC_ChargingStatusRes_001(std::shared_ptr<V2gTpMessage> &msg,
                                             iso1Part4_ResponseCodeType p_responseCode, std::string *p_evseID, int p_sAScheduleTuple,
                                             PhysicalValueType *p_eVSEMaxCurrent, MeterInfoType *p_meterInfo, int p_receiptRequired, AC_EVSEStatusType *p_aCeVSEStatus);
-// MeterInfoType md_CMN_AC_meterInfoType(MeterIDType p_meterID, XSDAUX.unsignedLong p_meterReading, SigMeterReadingType p_sigMeterReading, MeterStatusType p_meterStatus, XSDAUX.long p_tMeter);
 
 verdict_val TestBehavior_SECC_ChargingStatus::f_SECC_AC_TB_VTB_ChargingStatus_001(verdict_val v_vct)
 {
@@ -49,7 +48,7 @@ verdict_val TestBehavior_SECC_ChargingStatus::f_SECC_AC_TB_VTB_ChargingStatus_00
 
   std::static_pointer_cast<ChargingStatusReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::oK, &this->mtc->vc_EvseId, this->mtc->vc_SAScheduleTupleId, nullptr, nullptr, OMIT, nullptr);
+  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::oK, &this->mtc->vc_EvseId, this->mtc->vc_SAScheduleTupleId, (PhysicalValueType *)OMIT, (MeterInfoType *)OMIT, OMIT, (AC_EVSEStatusType *)HAS_VAL);
 
   auto receive_handler = [this, &v_vct](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -321,7 +320,7 @@ verdict_val TestBehavior_SECC_ChargingStatus::f_SECC_AC_TB_VTB_ChargingStatus_00
   auto randomSessionID = f_rnd_SessionID(1, 429496);
   std::static_pointer_cast<ChargingStatusReq>(sendMsg)->setSessionId(randomSessionID);
   std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->setSessionId(randomSessionID);
-  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_UnknownSession, nullptr, OMIT, nullptr, nullptr, OMIT, nullptr);
+  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::fAILED_UnknownSession, (std::string *)HAS_VAL, HAS_VAL, (PhysicalValueType *)OMIT, (MeterInfoType *)OMIT, OMIT, (AC_EVSEStatusType *)HAS_VAL);
 
   f_SECC_setIsConfirmationFlagDC();
   f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
@@ -497,7 +496,7 @@ verdict_val TestBehavior_SECC_ChargingStatus::f_SECC_AC_TB_VTB_ChargingStatus_00
 
   std::static_pointer_cast<ChargingStatusReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<ChargingStatusRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
-  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::oK, &this->mtc->vc_EvseId, this->mtc->vc_SAScheduleTupleId, nullptr, nullptr, OMIT, nullptr);
+  md_CMN_AC_ChargingStatusRes_001(expectedMsg, iso1Part4_ResponseCodeType::oK, &this->mtc->vc_EvseId, this->mtc->vc_SAScheduleTupleId, (PhysicalValueType *)OMIT, (MeterInfoType *)HAS_VAL, OMIT, (AC_EVSEStatusType *)HAS_VAL);
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
@@ -639,52 +638,86 @@ static void md_CMN_AC_ChargingStatusRes_001(std::shared_ptr<V2gTpMessage> &msg,
 {
   std::static_pointer_cast<ChargingStatusRes>(msg)->setResponseCode((responseCodeType)p_responseCode);
   std::static_pointer_cast<ChargingStatusRes>(msg)->mResponseCode_flag = specific;
-  if (nullptr != p_evseID)
+
+  if (HAS_VAL == (uintptr_t)p_evseID)
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mEVSEID_flag = has_value;
+  }
+  else if ((OMIT == (uintptr_t)p_evseID) || (nullptr == p_evseID))
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mEVSEID_flag = omit;
+  }
+  else
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setEVSEID(*p_evseID);
     std::static_pointer_cast<ChargingStatusRes>(msg)->mEVSEID_flag = specific;
   }
-  else {
-    std::static_pointer_cast<ChargingStatusRes>(msg)->mEVSEID_flag = has_value;
-  }
-  if (OMIT != p_sAScheduleTuple)
+
+  if (OMIT == p_sAScheduleTuple)
   {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mSAScheduleTupleID_flag = omit;
+  }
+  else if (HAS_VAL == p_sAScheduleTuple)
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mSAScheduleTupleID_flag = has_value;
+  }
+  else {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setSAScheduleTupleID(p_sAScheduleTuple);
     std::static_pointer_cast<ChargingStatusRes>(msg)->mSAScheduleTupleID_flag = specific;
   }
-  else {
-    std::static_pointer_cast<ChargingStatusRes>(msg)->mSAScheduleTupleID_flag = has_value;
+
+  if (HAS_VAL == (uintptr_t)p_eVSEMaxCurrent)
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pEVSEMaxCurrent_flag = has_value;
   }
-  if (nullptr != p_eVSEMaxCurrent)
+  else if ((OMIT == (uintptr_t)p_eVSEMaxCurrent) || (nullptr == p_eVSEMaxCurrent))
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pEVSEMaxCurrent_flag = omit;
+  }
+  else
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setEVSEMaxCurrent(p_eVSEMaxCurrent);
     std::static_pointer_cast<ChargingStatusRes>(msg)->pEVSEMaxCurrent_flag = specific;
   }
-  else {
-    std::static_pointer_cast<ChargingStatusRes>(msg)->pEVSEMaxCurrent_flag = omit;
+
+  if (HAS_VAL == (uintptr_t)p_meterInfo)
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pMeterInfo_flag = has_value;
   }
-  if (nullptr != p_meterInfo)
+  else if ((OMIT == (uintptr_t)p_meterInfo) || (nullptr == p_meterInfo))
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pMeterInfo_flag = omit;
+  }
+  else
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setMeterInfo(p_meterInfo);
     std::static_pointer_cast<ChargingStatusRes>(msg)->pMeterInfo_flag = specific;
   }
-  else {
-    std::static_pointer_cast<ChargingStatusRes>(msg)->pMeterInfo_flag = omit;
-  }
-  if (OMIT != p_receiptRequired)
+
+  if (OMIT == p_receiptRequired)
   {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mReceiptRequired_flag = omit;
+  }
+  else if (HAS_VAL == p_receiptRequired)
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->mReceiptRequired_flag = has_value;
+  }
+  else {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setReceiptRequired(p_receiptRequired);
     std::static_pointer_cast<ChargingStatusRes>(msg)->mReceiptRequired_flag = specific;
   }
-  else {
-    std::static_pointer_cast<ChargingStatusRes>(msg)->mReceiptRequired_flag = omit;
+
+  if (HAS_VAL == (uintptr_t)p_aCeVSEStatus)
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pAC_EVSEStatus_flag = has_value;
   }
-  if (nullptr != p_aCeVSEStatus)
+  else if ((OMIT == (uintptr_t)p_aCeVSEStatus) || (nullptr == p_aCeVSEStatus))
+  {
+    std::static_pointer_cast<ChargingStatusRes>(msg)->pAC_EVSEStatus_flag = omit;
+  }
+  else
   {
     std::static_pointer_cast<ChargingStatusRes>(msg)->setACEVSEStatus(p_aCeVSEStatus);
     std::static_pointer_cast<ChargingStatusRes>(msg)->pAC_EVSEStatus_flag = specific;
-  }
-  else {
-    std::static_pointer_cast<ChargingStatusRes>(msg)->pAC_EVSEStatus_flag = has_value;
   }
 }
