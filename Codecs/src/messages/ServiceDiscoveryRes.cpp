@@ -2,7 +2,10 @@
 
 #include <string.h>
 #include "messages/ServiceDiscoveryRes.h"
-
+#if DEPLOY_ISO1_CODEC == SUPPORT_YES
+#define PaymentOptionListType_PaymentOption_ARRAY_SIZE 3
+#define ServiceListType_Service_ARRAY_SIZE 9
+#endif
 ServiceDiscoveryRes::ServiceDiscoveryRes() : V2gExiMessage(V2gExiMessage::V2G_MSG_SERVICE_DISCOVERY_RES)
 {
     init_iso1BodyType(&mExiData.V2G_Message.Body);
@@ -106,7 +109,7 @@ void ServiceDiscoveryRes::dumpMsg(void)
 
     PaymentOptionListType *paymentList = this->getPaymentOptionList();
     std::string paymentStr = "";
-    for (size_t i = 0; i < paymentList->PaymentOption.arrayLen; i++)
+    for (size_t i = 0; (i < paymentList->PaymentOption.arrayLen)&&(paymentList->PaymentOption.arrayLen<PaymentOptionListType_PaymentOption_ARRAY_SIZE); i++)
     {
         paymentStr.append(fmt::format("{}, ", PAYMENT[paymentList->PaymentOption.array[i]]));
     }
@@ -122,7 +125,7 @@ void ServiceDiscoveryRes::dumpMsg(void)
     {
         outstr.append("  ServiceList:\n");
         ServiceListType *serviceList = this->getServiceList();
-        for (size_t i = 0; i < serviceList->Service.arrayLen; i++)
+        for (size_t i = 0; (i < serviceList->Service.arrayLen)&&(serviceList->Service.arrayLen<ServiceListType_Service_ARRAY_SIZE); i++)
         {
             outstr.append(fmt::format("{0}\n", getStrService(&serviceList->Service.array[i], "    ")));
         }

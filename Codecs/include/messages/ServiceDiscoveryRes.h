@@ -66,7 +66,7 @@ public:
     case specific:
       if ((pChargeServiceCmp != nullptr) && (this->pChargeService != nullptr))
       {
-        arr_result[1] = (0 == memcmp(pChargeServiceCmp, this->pChargeService, sizeof(ServiceListType)));
+        arr_result[1] = (0 == memcmp(pChargeServiceCmp, this->pChargeService, sizeof(ChargeServiceType)));
       }
       else
       {
@@ -89,7 +89,7 @@ public:
     case specific:
       if ((pPaymentOptionListCmp != nullptr) && (this->pPaymentOptionList != nullptr))
       {
-        arr_result[2] = (0 == memcmp(pPaymentOptionListCmp, this->pPaymentOptionList, sizeof(ServiceListType)));
+        arr_result[2] = (0 == memcmp(pPaymentOptionListCmp, this->pPaymentOptionList, sizeof(PaymentOptionListType)));
       }
       else
       {
@@ -119,7 +119,7 @@ public:
       if (object_compare.getResponseCode() > (responseCodeType)25)
       {
         arr_result[3] = false;
-      } 
+      }
       break;
     case omit:
     default:

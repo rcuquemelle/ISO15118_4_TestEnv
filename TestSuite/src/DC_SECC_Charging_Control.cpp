@@ -160,7 +160,7 @@ std::map<std::string, void *> PIXIT_MAP =
 static void init_tc(const std::string &testcase_name)
 {
   std::time_t curr_time = std::time(nullptr);
-  std::string logfile = fmt::format("{0}_{1:%Y-%m-%d-%H-%M-%S}.log", testcase_name, fmt::localtime(curr_time));
+  std::string logfile = fmt::format("{0}_{1:%Y_%m_%d-%H_%M_%S}.log", testcase_name, fmt::localtime(curr_time));
   CppCommon::Path path = CppCommon::Path("/home/pi/v2glog");
   if (!path.IsExists())
     CppCommon::Directory::Create(path);

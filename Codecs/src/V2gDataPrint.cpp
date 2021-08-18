@@ -60,6 +60,17 @@ const EnumMap UNIT_TYPE({"h", "m", "s", "A", "V", "W", "Wh"});
 const EnumMap CHARGE_PROGRESS({"Start", "Stop", "Renegotiate"});
 const EnumMap COST_TYPE({"relativePricePercentage", "RenewableGenerationPercentage", "CarbonDioxideEmission"});
 
+#if DEPLOY_ISO1_CODEC == SUPPORT_YES
+#define SupportedEnergyTransferModeType_EnergyTransferMode_ARRAY_SIZE 7
+#define ParameterSetType_Parameter_ARRAY_SIZE 17
+#define ChargingProfileType_ProfileEntry_ARRAY_SIZE 25
+#define PMaxScheduleType_PMaxScheduleEntry_ARRAY_SIZE 6
+#define SalesTariffEntryType_ConsumptionCost_ARRAY_SIZE 4
+#define ConsumptionCostType_Cost_ARRAY_SIZE 4
+#define SalesTariffType_SalesTariffEntry_ARRAY_SIZE 6
+#define SAScheduleListType_SAScheduleTuple_ARRAY_SIZE 4
+#endif
+
 static float Pow(int v_multiplier);
 
 std::string outHexString(const std::vector<uint8_t> &val)
@@ -190,7 +201,7 @@ std::string getStrChargeService(ChargeServiceType *service, const std::string &i
     service_scope.append(std::string(service->ServiceScope.characters));
   }
   std::string supported_eng_tm = "";
-  for (size_t i = 0; i < service->SupportedEnergyTransferMode.EnergyTransferMode.arrayLen; i++)
+  for (size_t i = 0; (i < service->SupportedEnergyTransferMode.EnergyTransferMode.arrayLen)&&(service->SupportedEnergyTransferMode.EnergyTransferMode.arrayLen<SupportedEnergyTransferModeType_EnergyTransferMode_ARRAY_SIZE); i++)
   {
     supported_eng_tm.append(fmt::format("{}, ", ENERGY_TRANSFER_MODE[service->SupportedEnergyTransferMode.EnergyTransferMode.array[i]]));
   }
@@ -244,7 +255,7 @@ std::string getStrParam(ParameterSetType *param, const std::string &indent)
   std::string temp;
   std::string str_param = "";
 
-  for (size_t i = 0; i < param->Parameter.arrayLen; i++)
+  for (size_t i = 0; (i < param->Parameter.arrayLen)&&(param->Parameter.arrayLen<ParameterSetType_Parameter_ARRAY_SIZE); i++)
   {
     std::string param_name = std::string(param->Parameter.array[i].Name.characters);
     std::string param_type = "";
@@ -326,7 +337,7 @@ std::string getStrChargingProfile(ChargingProfileType *profile, const std::strin
 {
   std::string temp;
   std::string profile_list = "";
-  for (size_t i = 0; i < profile->ProfileEntry.arrayLen; i++)
+  for (size_t i = 0; (i < profile->ProfileEntry.arrayLen)&&(profile->ProfileEntry.arrayLen<ChargingProfileType_ProfileEntry_ARRAY_SIZE); i++)
   {
     profile_list.append(fmt::format("{0}  Profile[{1}]: Start={2}, MaxPower={3}",
                                     indent, i, profile->ProfileEntry.array[i].ChargingProfileEntryStart,
@@ -461,7 +472,7 @@ std::string getStrPMaxSchedule(PMaxScheduleType *pmax, const std::string &indent
   //    RelativeTimeInterval: start, duration
   //    PMax
   std::string temp = fmt::format("{0}PMaxSchedule:\n",indent);
-  for (size_t i = 0; i < pmax->PMaxScheduleEntry.arrayLen; i++)
+  for (size_t i = 0; (i < pmax->PMaxScheduleEntry.arrayLen)&&(pmax->PMaxScheduleEntry.arrayLen<PMaxScheduleType_PMaxScheduleEntry_ARRAY_SIZE); i++)
   {
     std::string time_str = "";
     if (pmax->PMaxScheduleEntry.array[i].TimeInterval_isUsed == 1)
@@ -531,10 +542,10 @@ std::string getStrTariffEntry(SalesTariffEntryType *tariff_entry, const std::str
   {
     temp.append(fmt::format("{0}EPriceLevel={1}\n", indent, tariff_entry->EPriceLevel));
   }
-  for (size_t i = 0; i < tariff_entry->ConsumptionCost.arrayLen; i++)
+  for (size_t i = 0; (i < tariff_entry->ConsumptionCost.arrayLen)&&(tariff_entry->ConsumptionCost.arrayLen<SalesTariffEntryType_ConsumptionCost_ARRAY_SIZE); i++)
   {
     std::string cost_arr = "";
-    for (size_t j = 0; j < tariff_entry->ConsumptionCost.array[i].Cost.arrayLen; j++)
+    for (size_t j = 0; (j < tariff_entry->ConsumptionCost.array[i].Cost.arrayLen)&&(tariff_entry->ConsumptionCost.array[i].Cost.arrayLen<ConsumptionCostType_Cost_ARRAY_SIZE); j++)
     {
       cost_arr.append(fmt::format("{}, ", getStrCost(&tariff_entry->ConsumptionCost.array[i].Cost.array[j])));
     }
@@ -578,7 +589,7 @@ std::string getStrSalesTariff(SalesTariffType *sale_tariff, const std::string &i
   {
     temp.append(fmt::format("{0}  NumEPriceLevels={1}\n", indent, sale_tariff->NumEPriceLevels));
   }
-  for (size_t i = 0; i < sale_tariff->SalesTariffEntry.arrayLen; i++)
+  for (size_t i = 0; (i < sale_tariff->SalesTariffEntry.arrayLen)&&(sale_tariff->SalesTariffEntry.arrayLen<SalesTariffType_SalesTariffEntry_ARRAY_SIZE); i++)
   {
     temp.append(fmt::format("{0}  SalesTariffEntry[{1}]:\n"
                             "{2}\n", indent, i, getStrTariffEntry(&sale_tariff->SalesTariffEntry.array[i], fmt::format("{0}    ", indent))));
@@ -596,7 +607,7 @@ std::string getStrSAScheduleList(SAScheduleListType *schedule, const std::string
   //       SAScheduleTupleID
   //       PMaxSchedule
   //       SalesTariff
-  for (size_t i = 0; i < schedule->SAScheduleTuple.arrayLen; i++)
+  for (size_t i = 0; (i < schedule->SAScheduleTuple.arrayLen)&&(schedule->SAScheduleTuple.arrayLen<SAScheduleListType_SAScheduleTuple_ARRAY_SIZE); i++)
   {
     std::string pmax_str = getStrPMaxSchedule(&schedule->SAScheduleTuple.array[i].PMaxSchedule, fmt::format("{0}    ", indent));
     schedule_tuple.append(fmt::format("{0}  SAScheduleTuple[{1}]:\n"
@@ -619,7 +630,7 @@ std::string getStrSAScheduleList(SAScheduleListType *schedule, const std::string
   temp = fmt::format("{0}SAScheduleList:\n"
                      "{1}",
                      indent, schedule_tuple);
-  temp.pop_back(); 
+  temp.pop_back();
   return temp;
 }
 

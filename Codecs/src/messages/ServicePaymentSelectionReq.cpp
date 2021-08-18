@@ -2,7 +2,9 @@
 
 #include <string.h>
 #include "messages/ServicePaymentSelectionReq.h"
-
+#if DEPLOY_ISO1_CODEC == SUPPORT_YES
+#define SelectedServiceListType_SelectedService_ARRAY_SIZE 17
+#endif
 ServicePaymentSelectionReq::ServicePaymentSelectionReq()
     : V2gExiMessage(V2gExiMessage::V2G_MSG_PAYMENT_SERVICE_SELECTION_REQ)
 {
@@ -51,7 +53,7 @@ void ServicePaymentSelectionReq::dumpMsg(void)
     if (servList->SelectedService.arrayLen > 0)
     {
         outstr.append("  SelectedServiceList:\n");
-        for (size_t i = 0; i < servList->SelectedService.arrayLen; i++)
+        for (size_t i = 0; (i < servList->SelectedService.arrayLen)&&(servList->SelectedService.arrayLen<SelectedServiceListType_SelectedService_ARRAY_SIZE); i++)
         {
             outstr.append(fmt::format("    ServiceID={0}, ParameterSetID={1}\n", servList->SelectedService.array[i].ServiceID, servList->SelectedService.array[i].ParameterSetID));
         }

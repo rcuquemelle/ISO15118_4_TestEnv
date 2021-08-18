@@ -2,6 +2,9 @@
 
 #include <string.h>
 #include "messages/ServiceDetailsRes.h"
+#if DEPLOY_ISO1_CODEC == SUPPORT_YES
+#define ServiceParameterListType_ParameterSet_ARRAY_SIZE 6
+#endif
 
 ServiceDetailsRes::ServiceDetailsRes() : V2gExiMessage(V2gExiMessage::V2G_MSG_SERVICE_DETAILS_RES)
 {
@@ -76,7 +79,7 @@ void ServiceDetailsRes::dumpMsg(void)
     {
         ServiceParameterListType *paramList = this->getServiceParamterList();
         outstr.append("  ServiceParameterList:\n");
-        for (size_t i = 0; i < paramList->ParameterSet.arrayLen; i++)
+        for (size_t i = 0; (i < paramList->ParameterSet.arrayLen) && (paramList->ParameterSet.arrayLen < ServiceParameterListType_ParameterSet_ARRAY_SIZE); i++)
         {
             outstr.append(fmt::format("{}\n", getStrParam(&paramList->ParameterSet.array[i], "    ")));
         }
