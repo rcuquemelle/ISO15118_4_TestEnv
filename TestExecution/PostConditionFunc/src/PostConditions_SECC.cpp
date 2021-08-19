@@ -57,6 +57,17 @@ void PostConditions_SECC_15118_2::f_SECC_CMN_PO_InitialState_001(std::shared_ptr
   }
   // internal port between mtc and ptc
   this->mtc->pt_HAL_61851_Internal_Port->clear();
+
+// change bc to state A
+  f_SECC_changeValidStateCondition(B);
+  // check frequency back to 0
+  f_SECC_changeValidFrequencyRange(this->systemSECC, 0, 0);
+  // check duty back to 100
+  f_SECC_changeValidDutyCycleRange(this->systemSECC, 100, 100);
+  f_SECC_setState(this->systemSECC, B, v_HAL_61851_Listener);
+
+  PAsleep(par_SECC_waitForNextTC);
+
   // change bc to state A
   f_SECC_changeValidStateCondition(A);
   // check frequency back to 0

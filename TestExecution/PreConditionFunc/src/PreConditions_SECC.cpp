@@ -578,6 +578,225 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringRec
   }
   return verdict;
 }
+
+verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_002(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
+{
+  std::shared_ptr<TestBehavior_SECC_ChargeParameterDiscovery> tb_chargParam = std::make_shared<TestBehavior_SECC_ChargeParameterDiscovery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_ChargingStatus> tb_chargeSts = std::make_shared<TestBehavior_SECC_ChargingStatus>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_MeteringReceipt> tb_meterRe = std::make_shared<TestBehavior_SECC_MeteringReceipt>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_SDP> tbSDP = std::make_shared<TestBehavior_SECC_SDP>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_SupportedAppProtocol> tbSupApp = std::make_shared<TestBehavior_SECC_SupportedAppProtocol>(this->mtc, this->systemSECC);
+  std::shared_ptr<Configuration_15118_2> cfg = std::make_shared<Configuration_15118_2>(this->mtc);
+  std::shared_ptr<TestBehavior_SECC_SessionSetup> tbSsetup = std::make_shared<TestBehavior_SECC_SessionSetup>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_ServiceDiscovery> tbServiceDis = std::make_shared<TestBehavior_SECC_ServiceDiscovery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_ServiceDetail> tbServiceDetail = std::make_shared<TestBehavior_SECC_ServiceDetail>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_PaymentServiceSelection> tbPayment = std::make_shared<TestBehavior_SECC_PaymentServiceSelection>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_Authorization> tbAuth = std::make_shared<TestBehavior_SECC_Authorization>(this->mtc, this->systemSECC);
+  // authorization precondition
+  verdict_val verdict = none;
+  verdict = f_SECC_CMN_PR_PLCLinkStatus_001(this->systemSECC, this->mtc);
+  if (verdict == fail) return fail;
+  this->mtc->tc_V2G_EVCC_CommunicationSetup_Timer->start();
+  this->mtc->tc_V2G_SECC_CommunicationSetup_Timer->start();
+
+
+  verdict = tbSDP->f_SECC_CMN_TB_VTB_SDP_001(0x00, inconc);
+  if (this->mtc->vc_Security == cc_hexTcp)
+  {
+    // store result to vc_v2g_tcp_tls_parameter for later use/ get data from UDP var to TCP struct
+    this->mtc->vc_v2g_tcp_tls_parameter->seccIpaddress = this->mtc->vc_V2G_Port_IpAddress;
+    this->mtc->vc_v2g_tcp_tls_parameter->seccPort = this->mtc->vc_V2G_Port_PortNumber;
+    this->mtc->vc_v2g_tcp_tls_parameter->security = cc_hexTcp;
+  }
+
+  // binding operation
+  // SECC_SupportedAppProtocol Behavior
+  if (verdict == pass)
+  {
+    // connect TCP port
+    cfg->f_SECC_CMN_PR_InitConfiguration_002(this->systemSECC, pass, inconc);
+    // send supportedAppProtocolRequest message
+    verdict = this->mtc->getverdict();
+    if (pass == verdict)
+    {
+      verdict = tbSupApp->f_SECC_CMN_TB_VTB_SupportedAppProtocol_001(inconc);
+      //clear SDP Port
+      this->mtc->pt_V2G_UDP_SDP_Port->clear();
+    }
+    // this->mtc->vc_Default_SDP_Message = activate(a_SDP_Message());
+  }
+
+  // SECC_SessionSetup Behavior
+  if (verdict == pass)
+  {
+    verdict = tbSsetup->f_SECC_CMN_TB_VTB_SessionSetup_001(inconc);
+    this->mtc->tc_V2G_EVCC_CommunicationSetup_Timer->stop();
+    this->mtc->tc_V2G_SECC_CommunicationSetup_Timer->stop();
+  }
+
+  // SECC_ServiceDiscovery Behavior
+  if (verdict == pass)
+  {
+    verdict = tbServiceDis->f_SECC_CMN_TB_VTB_ServiceDiscovery_001(inconc);
+  }
+
+  // SECC_ServiceDetail Behavior
+  if ((verdict == pass) && (ispresent(this->mtc->vc_serviceList) && (PIXIT_SECC_CMN_VAS == DataStructure_PIXIT_15118_2::iso1Part4_VASSECC::serviceDetail)))
+  {
+    // if CS return service list and configuration check service details enable
+    if (!((PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::eIM) && (PIXIT_SECC_CMN_TLS == false)))
+    {  // if identification mode = P&C or TLS enable
+      verdict = tbServiceDetail->f_SECC_CMN_TB_VTB_ServiceDetail_001(inconc);
+    }
+  }
+
+  // SECC_PaymentServiceSelection Behavior
+  if (verdict == pass)
+  {
+    verdict = tbPayment->f_SECC_CMN_TB_VTB_PaymentServiceSelection_001(inconc);
+  }
+
+  // SECC_Authorization Behavior
+  if (verdict == pass)
+  {
+    if (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::eIM)
+    {
+      verdict = tbAuth->f_SECC_CMN_TB_VTB_Authorization_001(inconc);
+    }
+  }
+  if (verdict == pass)
+  {
+    uint32_t loopCounter = 0;
+    uint32_t renegotiationLoopInd = PICS_CMN_CMN_RenegotiationLoopIndication;
+    if (!PICS_CMN_CMN_Renegotiation)
+    {
+      /* if renegotiation is no enable */
+      renegotiationLoopInd = -1;
+    };
+    /* Loop until charging progress end - default MTC vc_ChargeProgress = iso1Part4_ChargeProgressType::start_ */
+    while (this->mtc->vc_ChargeProgress != iso1Part4_ChargeProgressType::stop_)
+    {
+      // ChargeParameterDiscovery
+      if (verdict == pass)
+      {
+        if ((this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_) && (loopCounter == 0))
+        {
+          if (PIXIT_SECC_CMN_SalesTariff == iso1Part4_SalesTariff::unknown)
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_001(inconc);
+          }
+          else
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_006(inconc);
+          }
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      // PowerDelivery
+      if (verdict == pass)
+      {
+        if (this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_)
+        {
+          verdict = tb_powerDeli->f_SECC_AC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::start_, v_HAL_61851_Listener, inconc);
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      /* EVSE Notification not stop or renegotiation and loop counter < max value and loop counter != renegotiation loop counter */
+      while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (loopCounter < PICS_CMN_CMN_LoopCounter) && (loopCounter != renegotiationLoopInd))
+      {
+        // ChargingStatus
+        if (verdict == pass)
+        {
+          verdict = tb_chargeSts->f_SECC_AC_TB_VTB_ChargingStatus_001(inconc);
+        }
+        else
+        {
+          return verdict;
+        }
+        // MeteringReceipt
+        if (verdict == pass)
+        {
+          /* if vc_receiptRequired status = true and P&C mode*/
+          if (this->mtc->vc_receiptRequired && (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC))
+          {
+            verdict = tb_meterRe->f_SECC_AC_TB_VTB_MeteringReceipt_001(inconc);
+          }
+        }
+        else
+        {
+          return verdict;
+        }
+        loopCounter = loopCounter + 1;
+        if (verdict == pass)
+        {
+          Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> ChargingStatus: {}", loopCounter));
+          PAsleep(par_SECC_chargingLoop_pause);
+        }
+      }
+      /* if evse status return = renegotiation or reached negotiation loop */
+      if ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::reNegotiation) || ((loopCounter == renegotiationLoopInd) && PICS_CMN_CMN_Renegotiation))
+      {
+        if (verdict == pass)
+        {
+          /* change mtc charge progress */
+          this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::renegotiate;
+        }
+        else
+        {
+          return verdict;
+        }
+        if (verdict == pass)
+        {
+          /* request renegotiation from ev */
+          verdict = tb_powerDeli->f_SECC_AC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::renegotiate, v_HAL_61851_Listener, inconc);
+        }
+        else
+        {
+          return verdict;
+        }
+        if (verdict == pass)
+        {
+          /* change max request current to 10A */
+          this->mtc->vc_EVMaxCurrent = {.Multiplier = 0, .Unit = (unitSymbolType)iso1Part4_UnitSymbolType::a, .Value = 10};
+          if (PIXIT_SECC_CMN_SalesTariff == iso1Part4_SalesTariff::unknown)
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_001(inconc);
+          }
+          else
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_006(inconc);
+          }
+          if (verdict == pass)
+          {
+            /* after renegotiation > change chargeProgress back to start_ */
+            this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::start_;
+            renegotiationLoopInd = 0;
+            this->mtc->vc_EVSENotification = iso1Part4_EVSENotificationType::none_;
+          }
+        }
+        else
+        {
+          return verdict;
+        }
+      }
+      if ((loopCounter == PICS_CMN_CMN_LoopCounter) || (this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::stopCharging))
+      {
+        /* if loopcounter = end, or evse notification = stop > change chargeProgress to stop_ and break while loop */
+        this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::stop_;
+      }
+    }
+    Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  }
+  return verdict;
+}
+
 /* AC create renegotiation precondition */
 verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringReceiptRenegotiation_001(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
 {

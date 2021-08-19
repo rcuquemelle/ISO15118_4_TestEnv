@@ -10,7 +10,7 @@ foreach(item ${src_files})
 
   target_include_directories(${target_test} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" ${INCLUDE_DIRECTORIES})
   target_link_libraries(${target_test} PUBLIC fmt asio cppcommon openv2g
-                                              Codecs DataType PlatformInterface IFRuntime TCP UDP SLAC IEC61851If 
+                                              Codecs DataType PlatformInterface IFRuntime TCP UDP SLAC IEC61851If
                                               Components CmnFunc ConfigurationFunc PreconditionFunc TestBehaviorFunc PostConditionFunc
                                               TestManagement TestLogging TestCase)
   target_compile_definitions(${target_test} PUBLIC BOOST_THREAD_USE_LIB)

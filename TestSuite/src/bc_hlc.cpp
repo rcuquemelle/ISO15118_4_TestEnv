@@ -9,6 +9,8 @@
 #include <fstream>
 #include <unordered_map>
 #include <set>
+#include <algorithm>
+#include <SeccBasicSignaling.h>
 
 using namespace Timer_15118::Timer_par_15118;
 using namespace Timer_15118_2::Timer_par_15118_2;
@@ -40,6 +42,7 @@ std::shared_ptr<TestBehavior_SECC_CommonBehavior> cmn;
 std::shared_ptr<PreConditions_SECC_15118_2> pre;
 std::shared_ptr<PostConditions_SECC_15118_2> post;
 LogLevelType log_level_cfg = LOG_INFO;
+LogOutputType log_output_cfg = LOG_OUT_FILE;
 std::map<std::string, float *> SLAC_TIMER_MAP = {
     {"TP_EV_vald_state_duration", &Plc::TP_EV_vald_state_duration},
     {"TP_EV_vald_toggle", &Plc::TP_EV_vald_toggle},
@@ -169,7 +172,7 @@ static void init_tc(const std::string &testcase_name)
   Logging::setLogFile(fmt::format("/home/pi/v2glog/{}", logfile));
   Logging::LogCfg.value = LogAll_ENABLE;
   Logging::setLogLevel(log_level_cfg);
-  Logging::setLogOutput(LOG_OUT_BOTH);
+  Logging::setLogOutput(log_output_cfg);
   runenv = std::make_shared<IfRuntime>();
   stc = std::make_shared<System_SECC>(runenv, IPV6_ADDR, IPV6_PORT, "eth1", "/home/pi/pev.ini");
   stc->start();
@@ -193,7 +196,23 @@ static void deinit_tc(const std::string &tc_type)
   Logging::closeLogFile();
 }
 
-std::set<std::string> MODE_CMD = {"A", "B", "C", "D", "START", "STOP", "BC", "HLC", "DI", "SH", "CP"};
+std::set<std::string> MODE_CMD = {"A", "B", "C", "D", "START", "STOP", "BC", "HLC", "DI", "SH", "PE"};
+std::map<std::string, DataStructure_HAL_61851::IEC_61851_States> CP_STATE_MAP = {
+  {"A", A},
+  {"B", B},
+  {"C", C},
+  {"D", D}
+};
+std::map<std::string, std::pair<SeccBasicSignaling::relay_pin_t, SeccBasicSignaling::relay_val_t>> CP_ERROR_MAP = {
+  {"SH", {SeccBasicSignaling::relay_pin_t::RELAY_SHORT_CIRCUIT, SeccBasicSignaling::relay_val_t::RELAY_VAL_ON}},
+  {"DI", {SeccBasicSignaling::relay_pin_t::RELAY_DIODE, SeccBasicSignaling::relay_val_t::RELAY_VAL_ON}},
+  {"PE", {SeccBasicSignaling::relay_pin_t::RELAY_PE_LINE, SeccBasicSignaling::relay_val_t::RELAY_VAL_OFF}}
+};
+
+void bc_start(void);
+void bc_stop(void);
+void hlc_start(void);
+void hlc_stop(void);
 
 int main(int argc, const char *argv[])
 {
@@ -201,6 +220,7 @@ int main(int argc, const char *argv[])
   if (argc > 1) {
     if (strcmp(argv[1],"D") == 0) {
       log_level_cfg = LOG_DEBUG;
+      log_output_cfg = LOG_OUT_BOTH;
     }
   }
   // load json configuration data
@@ -440,9 +460,19 @@ int main(int argc, const char *argv[])
 
   std::string cmd_input;
   std::string mode = "";
-  while(std::getline(std::cin, cmd_input))
+  std::cout << "Select charging mode: BC or HLC" << std::endl;
+  while (true)
   {
+    std::cout << fmt::format("{}> ", mode) << std::ends;
+    std::getline(std::cin, cmd_input);
+    if (cmd_input == "") continue;
     if (cmd_input == "!") break;
+    std::transform(cmd_input.begin(), cmd_input.end(), cmd_input.begin(), ::toupper);
+    if (0 == MODE_CMD.count(cmd_input))
+    {
+      std::cout << fmt::format("{}> ", mode) << "Invalid input" << std::endl;
+      continue;
+    }
   // charge mode: operation
   // BC: A unplug
   // BC: B plug
@@ -450,24 +480,117 @@ int main(int argc, const char *argv[])
   // BC: HLC >> stop BC change to HLC
     if (mode == "BC")
     {
-      if (MODE_CMD.count(cmd_input))
-        std::cout << "execute " << cmd_input << std::endl;
+      if (CP_STATE_MAP.count(cmd_input))
+      {
+        std::cout << fmt::format("{}> ", mode) << "set state " << cmd_input << std::endl;
+        stc->_pBCIf->setState(CP_STATE_MAP[cmd_input]);
+      }
+      else if (CP_ERROR_MAP.count(cmd_input))
+      {
+        std::cout << fmt::format("{}> ", mode) << "set error state " << cmd_input << std::endl;
+        stc->_pBCIf->setRelay(CP_ERROR_MAP[cmd_input].first, CP_ERROR_MAP[cmd_input].second);
+      }
+      else if (cmd_input == "START")
+      {
+        std::cout << fmt::format("{}> ", mode) << "start Basic Charging" << std::endl;
+        bc_start();
+      }
+      else if (cmd_input == "STOP")
+      {
+        std::cout << fmt::format("{}> ", mode) << "stop Basic Charging" << std::endl;
+        bc_stop();
+      }
+      else if (cmd_input == "HLC")
+      {
+        mode = cmd_input;
+        std::cout << fmt::format("{}> ", mode) << "change to charge mode " << mode << std::endl;
+      }
     }
   // HLC: START
   // HLC: STOP
   // HLC: BC >> stop HLC change to BC
     else if (mode == "HLC")
     {
-      if (MODE_CMD.count(cmd_input))
-        std::cout << "execute " << cmd_input << std::endl;
+      if (CP_STATE_MAP.count(cmd_input))
+      {
+        std::cout << fmt::format("{}> ", mode) << "set state " << cmd_input << std::endl;
+        stc->_pBCIf->setState(CP_STATE_MAP[cmd_input]);
+      }
+      else if (CP_ERROR_MAP.count(cmd_input))
+      {
+        std::cout << fmt::format("{}> ", mode) << "set error state " << cmd_input << std::endl;
+        stc->_pBCIf->setRelay(CP_ERROR_MAP[cmd_input].first, CP_ERROR_MAP[cmd_input].second);
+      }
+      else if (cmd_input == "START")
+      {
+        std::cout << fmt::format("{}> ", mode) << "start HLC" << std::endl;
+        hlc_start();
+      }
+      else if (cmd_input == "STOP")
+      {
+        std::cout << fmt::format("{}> ", mode) << "stop HLC" << std::endl;
+        hlc_stop();
+      }
+      else if (cmd_input == "BC")
+      {
+        mode = cmd_input;
+        std::cout << fmt::format("{}> ", mode) << "change to charge mode " << mode << std::endl;
+      }
     }
     else
     {
       if (cmd_input == "HLC") mode = "HLC";
       else if (cmd_input == "BC") mode = "BC";
-      std::cout << "Select charging mode: BC or HLC" << std::endl;
+      else std::cout << fmt::format("{}> ", mode) << "Invalid input" << std::endl;
     }
   }
   deinit_tc();
   return 0;
+}
+
+void bc_start(void)
+{
+  std::cout << "SET State B" << std::endl;
+  stc->_pBCIf->setState(B);
+  PAsleep(5);
+  std::cout << "SET State C - Charging..." << std::endl;
+  stc->_pBCIf->setState(C);
+}
+
+void bc_stop(void)
+{
+  std::cout << "SET State B" << std::endl;
+  stc->_pBCIf->setState(B);
+  PAsleep(2);
+  std::cout << "SET State A - Unplug" << std::endl;
+  stc->_pBCIf->setState(A);
+}
+
+void hlc_start(void)
+{
+  stc->_pPLC->init(true);
+  std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
+  std::shared_ptr<TestBehavior_SECC_SessionStop> tb = std::make_shared<TestBehavior_SECC_SessionStop>(mtc, stc);
+  verdict_val preConVerdict;
+  // -------------- Pre Conditions-------------------------------------------------------
+  cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, stc);
+  preConVerdict = pre->f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_002(v_HAL_61851_Listener);
+  //-------------- Test behavior---------------------------------------------------------
+  if (preConVerdict == pass)
+  {
+    tb->f_SECC_CMN_TB_VTB_SessionStop_002();
+  }
+  else
+  {
+    Logging::info(LogTc_ENABLE, "PreCondition was unsuccessful.");
+  }
+  //------------- Post Conditions--------------------------------------------------------
+  post->f_SECC_CMN_PO_InitialState_001(v_HAL_61851_Listener);
+  cfg->f_SECC_CMN_PO_ShutdownConfiguration_001(v_HAL_61851_Listener, stc);
+  mtc->dumpverdict();
+}
+
+void hlc_stop(void)
+{
+  stc->_pPLC->stop();
 }
