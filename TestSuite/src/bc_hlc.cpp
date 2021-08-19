@@ -184,7 +184,7 @@ static void init_tc(const std::string &testcase_name)
   post = std::make_shared<PostConditions_SECC_15118_2>(mtc, stc);
 
 }
-static void deinit_tc(const std::string &tc_type)
+static void deinit_tc()
 {
   post.reset();
   pre.reset();
@@ -568,6 +568,7 @@ void bc_stop(void)
 
 void hlc_start(void)
 {
+  std::cout << "Start HLC - logicalink setup - v2g" << std::endl;
   stc->_pPLC->init(true);
   std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   std::shared_ptr<TestBehavior_SECC_SessionStop> tb = std::make_shared<TestBehavior_SECC_SessionStop>(mtc, stc);
@@ -592,5 +593,6 @@ void hlc_start(void)
 
 void hlc_stop(void)
 {
+  std::cout << "Stop HLC" << std::endl;
   stc->_pPLC->stop();
 }

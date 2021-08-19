@@ -601,7 +601,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringRec
   this->mtc->tc_V2G_SECC_CommunicationSetup_Timer->start();
 
 
-  verdict = tbSDP->f_SECC_CMN_TB_VTB_SDP_001(0x00, inconc);
+  verdict = tbSDP->f_SECC_CMN_TB_VTB_SDP_001(cc_hexTcp, inconc);
   if (this->mtc->vc_Security == cc_hexTcp)
   {
     // store result to vc_v2g_tcp_tls_parameter for later use/ get data from UDP var to TCP struct
