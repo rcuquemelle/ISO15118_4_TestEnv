@@ -181,7 +181,7 @@ verdict_val TestBehavior_SECC_PreCharge::f_SECC_DC_TB_VTB_PreCharge_001(verdict_
       PAsleep(1);
     }
   } while (f_CMN_PhysicalValue_GetValue(this->mtc->vc_EVSEPresentVoltage) < v_EVTargetVoltageValidMinDeviation);
-  memcpy(&this->mtc->vc_EVTargetVoltage, &par_EVMaximumVoltageLimit, sizeof(PhysicalValueType));
+  memcpy(&this->mtc->vc_EVTargetVoltage, &par_EVTargetVoltage, sizeof(PhysicalValueType));
   Logging::info(LogTbFnc_ENABLE, fmt::format("AFTER this->mtc->vc_EVTargetVoltage: {}", f_CMN_PhysicalValue_GetValue(this->mtc->vc_EVTargetVoltage)));
   if (f_CMN_PhysicalValue_GetValue(this->mtc->vc_EVSEPresentVoltage) > v_EVTargetVoltageValidMaxDeviation)
   {

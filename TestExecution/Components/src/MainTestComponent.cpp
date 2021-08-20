@@ -100,7 +100,8 @@ SECC_Tester::SECC_Tester(const std::shared_ptr<IfRuntime>& runtime) {
   this->vc_EVSEMaximumPowerLimit = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::w, .Value=0};
   this->vc_EVSEPeakCurrentRipple = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=0};
 
-  this->vc_EVTargetVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=500};
+  // this->vc_EVTargetVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=500};
+  memcpy(&this->vc_EVTargetVoltage, &par_EVTargetVoltage, sizeof(PhysicalValueType));
   this->vc_EVTargetCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=2};
   this->vc_EVPreChargeTargetCurrent = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::a, .Value=2};
   this->vc_EVSEPresentVoltage = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::v, .Value=0};

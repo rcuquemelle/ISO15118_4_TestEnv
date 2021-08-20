@@ -22,6 +22,8 @@ namespace Pixit_15118_2 {
       extern iso1Part4_PkiType PIXIT_CMN_CMN_PkiName;
       extern iso1Part4_Renegotiation PIXIT_CMN_CMN_Renegotiation;
       extern iso1Part4_MeterReading PIXIT_CMN_CMN_MeterReading;
+      extern iso1Part4_PhysicalValueType par_EVTargetVoltage;
+      extern iso1Part4_PhysicalValueType par_EVTargetCurrent;
       extern iso1Part4_PhysicalValueType par_EVBatteryVoltage;
       extern iso1Part4_PhysicalValueType par_EVMaximumVoltageLimit;
       extern iso1Part4_PhysicalValueType par_EVMaximumCurrentLimit;

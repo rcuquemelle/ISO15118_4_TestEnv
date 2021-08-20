@@ -133,6 +133,8 @@ std::map<std::string, void *> PIXIT_MAP =
         {"PIXIT_CMN_CMN_PkiName", (void *)&PIXIT_CMN_CMN_PkiName},
         {"PIXIT_CMN_CMN_Renegotiation", (void *)&PIXIT_CMN_CMN_Renegotiation},
         {"PIXIT_CMN_CMN_MeterReading", (void *)&PIXIT_CMN_CMN_MeterReading},
+        {"par_EVTargetVoltage", (void *)&par_EVTargetVoltage},
+        {"par_EVTargetCurrent", (void *)&par_EVTargetCurrent},
         {"par_EVBatteryVoltage", (void *)&par_EVBatteryVoltage},
         {"par_EVMaximumVoltageLimit", (void *)&par_EVMaximumVoltageLimit},
         {"par_EVMaximumCurrentLimit", (void *)&par_EVMaximumCurrentLimit},

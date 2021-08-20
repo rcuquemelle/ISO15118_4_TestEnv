@@ -128,6 +128,8 @@ std::map<std::string, void *> PIXIT_MAP =
         {"PIXIT_CMN_CMN_PkiName", (void *)&PIXIT_CMN_CMN_PkiName},
         {"PIXIT_CMN_CMN_Renegotiation", (void *)&PIXIT_CMN_CMN_Renegotiation},
         {"PIXIT_CMN_CMN_MeterReading", (void *)&PIXIT_CMN_CMN_MeterReading},
+        {"par_EVTargetVoltage", (void *)&par_EVTargetVoltage},
+        {"par_EVTargetCurrent", (void *)&par_EVTargetCurrent},
         {"par_EVBatteryVoltage", (void *)&par_EVBatteryVoltage},
         {"par_EVMaximumVoltageLimit", (void *)&par_EVMaximumVoltageLimit},
         {"par_EVMaximumCurrentLimit", (void *)&par_EVMaximumCurrentLimit},
@@ -446,11 +448,11 @@ int main(int argc, char *argv[])
   else {
     // 60kw
     Logging::info(LogTc_ENABLE, "------ DC 60KW AGING TEST ------");
-    par_EVMaximumCurrentLimit.value_ *= 2;
+    par_EVTargetCurrent.value_ *= 2;
     mtc->vc_EVMaximumCurrentLimit.Value *= 2;
   }
-  Logging::info(LogTc_ENABLE, fmt::format("Target current: {}A", mtc->vc_EVMaximumCurrentLimit.Value));
-  Logging::info(LogTc_ENABLE, fmt::format("Target voltage: {}V", mtc->vc_EVMaximumVoltageLimit.Value));
+  Logging::info(LogTc_ENABLE, fmt::format("Target current: {}A", par_EVTargetCurrent.value_));
+  Logging::info(LogTc_ENABLE, fmt::format("Target voltage: {}V", par_EVTargetVoltage.value_));
   stc->_pBCIf->resetBtnCounter();
   tc16->TC_SECC_DC_VTB_SessionStop_010();
   stc->_pBCIf->resetBtnCounter();

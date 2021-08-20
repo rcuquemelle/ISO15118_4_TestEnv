@@ -1144,7 +1144,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
           SOC += 100.0/(float)PICS_CMN_CMN_LoopCounter;
           this->mtc->vc_DC_EVStatus.EVRESSSOC = (int8_t)SOC;
           Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
-          if (this->mtc->vc_EVTargetCurrent.Value < this->mtc->vc_EVMaximumCurrentLimit.Value)
+          if (this->mtc->vc_EVTargetCurrent.Value < f_CMN_PhysicalValue_GetValue(par_EVTargetCurrent))
           {
             this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
           }
@@ -1317,7 +1317,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
           {
             SOC = 0;
           }
-          if (this->mtc->vc_EVTargetCurrent.Value < this->mtc->vc_EVMaximumCurrentLimit.Value)
+          if (this->mtc->vc_EVTargetCurrent.Value < f_CMN_PhysicalValue_GetValue(par_EVTargetCurrent))
           {
             this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
           }
@@ -1473,7 +1473,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
           SOC += 100.0/(float)PICS_CMN_CMN_LoopCounter;
           this->mtc->vc_DC_EVStatus.EVRESSSOC = (int8_t)SOC;
           Logging::info(LogPreFnc_ENABLE, fmt::format("this->mtc->vc_DC_EVStatus.EVRESSSOC = {0}%", this->mtc->vc_DC_EVStatus.EVRESSSOC));
-          if (this->mtc->vc_EVTargetCurrent.Value < this->mtc->vc_EVMaximumCurrentLimit.Value)
+          if (this->mtc->vc_EVTargetCurrent.Value < f_CMN_PhysicalValue_GetValue(par_EVTargetCurrent))
           {
             this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
           }
@@ -1635,7 +1635,7 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
           {
             // float currentValue = fx_getCurrent();
             float currentValue = 0;
-            if (currentValue < f_CMN_PhysicalValue_GetValue(par_EVMaximumCurrentLimit))
+            if (currentValue < f_CMN_PhysicalValue_GetValue(par_EVTargetCurrent))
             {
               // fx_setCurrent(currentValue + 1.0);
               this->mtc->vc_EVTargetCurrent.Value = this->mtc->vc_EVTargetCurrent.Value + 1;
