@@ -1346,6 +1346,54 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_DC_PR_CurrentDemandOrMeteringRece
           PAsleep(par_SECC_chargingLoop_pause);
         }
       }
+      /* RENEGOTIATION */
+      if ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::reNegotiation) ||
+          ((loopCounter == renegotiationLoopInd) && PICS_CMN_CMN_Renegotiation))
+      {
+        if (verdict == pass)
+        {
+          this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::renegotiate;
+        }
+        else
+        {
+          return verdict;
+        }
+        if (verdict == pass)
+        {
+          verdict = tb_powerDeli->f_SECC_DC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::renegotiate, v_HAL_61851_Listener, false, true, inconc);
+        }
+        else
+        {
+          return verdict;
+        }
+        if (verdict == pass)
+        {
+          this->mtc->vc_EVMaximumCurrentLimit = {.Multiplier = 0, .Unit = (unitSymbolType)iso1Part4_UnitSymbolType::a, .Value = 50};
+          if (PIXIT_SECC_CMN_SalesTariff == iso1Part4_SalesTariff::unknown)
+          {
+            verdict = tb_chargParam->f_SECC_DC_TB_VTB_ChargeParameterDiscovery_001(inconc);
+          }
+          else
+          {
+            verdict = tb_chargParam->f_SECC_DC_TB_VTB_ChargeParameterDiscovery_006(inconc);
+          }
+          if (verdict == pass)
+          {
+            this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::start_;
+            renegotiationLoopInd = 0;
+            this->mtc->vc_EVSENotification = iso1Part4_EVSENotificationType::none_;
+          }
+        }
+        else
+        {
+          return verdict;
+        }
+      }
+      if ((this->systemSECC->_pBCIf->getBtnPressCounter() != 0) ||
+        (this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::stopCharging))
+      {
+        this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::stop_;
+      }
     }
   }
   Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
