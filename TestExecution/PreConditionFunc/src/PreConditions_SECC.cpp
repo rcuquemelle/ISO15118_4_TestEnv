@@ -933,6 +933,19 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_PowerDeliveryStop_001(std::
   Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
   return verdict;
 }
+verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_PowerDeliveryStop_002(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
+{
+  verdict_val verdict;
+  std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
+  verdict = f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_002(v_HAL_61851_Listener);
+  // SECC_f_SECC_PowerDeliveryStopAC Behavior
+  if (verdict == pass)
+  {
+    verdict = tb_powerDeli->f_SECC_AC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, inconc);
+  }
+  Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  return verdict;
+}
 /* run a full sequence charging then pause */
 verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_SessionStop_001(std::shared_ptr<HAL_61851_Listener> &v_HAL_61851_Listener)
 {

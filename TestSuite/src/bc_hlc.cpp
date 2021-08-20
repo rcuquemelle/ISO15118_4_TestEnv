@@ -208,6 +208,7 @@ std::map<std::string, std::pair<SeccBasicSignaling::relay_pin_t, SeccBasicSignal
   {"DI", {SeccBasicSignaling::relay_pin_t::RELAY_DIODE, SeccBasicSignaling::relay_val_t::RELAY_VAL_ON}},
   {"PE", {SeccBasicSignaling::relay_pin_t::RELAY_PE_LINE, SeccBasicSignaling::relay_val_t::RELAY_VAL_OFF}}
 };
+std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
 
 void bc_start(void);
 void bc_stop(void);
@@ -570,12 +571,11 @@ void hlc_start(void)
 {
   std::cout << "Start HLC - logicalink setup - v2g" << std::endl;
   stc->_pPLC->init(true);
-  std::shared_ptr<HAL_61851_Listener> v_HAL_61851_Listener;
   std::shared_ptr<TestBehavior_SECC_SessionStop> tb = std::make_shared<TestBehavior_SECC_SessionStop>(mtc, stc);
   verdict_val preConVerdict;
   // -------------- Pre Conditions-------------------------------------------------------
   cfg->f_SECC_CMN_PR_InitConfiguration_001(v_HAL_61851_Listener, stc);
-  preConVerdict = pre->f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_002(v_HAL_61851_Listener);
+  preConVerdict = pre->f_SECC_AC_PR_PowerDeliveryStop_002(v_HAL_61851_Listener);
   //-------------- Test behavior---------------------------------------------------------
   if (preConVerdict == pass)
   {
@@ -585,14 +585,14 @@ void hlc_start(void)
   {
     Logging::info(LogTc_ENABLE, "PreCondition was unsuccessful.");
   }
-  //------------- Post Conditions--------------------------------------------------------
-  post->f_SECC_CMN_PO_InitialState_001(v_HAL_61851_Listener);
-  cfg->f_SECC_CMN_PO_ShutdownConfiguration_001(v_HAL_61851_Listener, stc);
-  mtc->dumpverdict();
 }
 
 void hlc_stop(void)
 {
+  //------------- Post Conditions--------------------------------------------------------
   std::cout << "Stop HLC" << std::endl;
+  post->f_SECC_CMN_PO_InitialState_001(v_HAL_61851_Listener);
+  cfg->f_SECC_CMN_PO_ShutdownConfiguration_001(v_HAL_61851_Listener, stc);
+  mtc->dumpverdict();
   stc->_pPLC->stop();
 }
