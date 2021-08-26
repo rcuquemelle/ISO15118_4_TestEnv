@@ -1269,7 +1269,6 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
   std::shared_ptr<V2gTpMessage> expectedMsg2 = std::make_shared<AuthorizationRes>();
   iso1Part4_EVSEProcessingType v_eVSEprocessing = iso1Part4_EVSEProcessingType::ongoing_WaitingForCustomerInteraction;
   bool isShutdownOSC = false;
-  uint8_t isFinished = 0;
 
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationRes>(expectedMsg)->setSessionId(this->mtc->vc_SessionID);
@@ -1286,7 +1285,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
-  auto receive_handler = [this, &v_eVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
+  auto receive_handler = [this, &v_eVSEprocessing](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     std::shared_ptr<AuthorizationRes> cast_expected = std::dynamic_pointer_cast<AuthorizationRes>(expected[0]);
     std::shared_ptr<AuthorizationRes> cast_expected2 = std::dynamic_pointer_cast<AuthorizationRes>(expected[1]);
@@ -1301,17 +1300,9 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          if (isFinished == 0)
-          {
-            this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
-            this->mtc->setverdict(inconc, "No EIM authorization was initiated before.");
-            isFinished++;
-          }
-          else
-          {
-            this->mtc->setverdict(fail, "Repetition of the Authorization message sequence after EIM has already done should be returned with 'ongoing_WaitingForCustomerInteraction' not 'finished'");
-            v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
-          }
+          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
+          this->mtc->setverdict(inconc, "No EIM authorization was initiated before.");
+          v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
           return true;
         }
@@ -1445,7 +1436,6 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
   int v_cnt = 1;
   std::string v_privateKey;
   bool isShutdownOSC = false;
-  uint8_t isFinished = 0;
 
   std::static_pointer_cast<AuthorizationReq>(sendMsg)->setSessionId(this->mtc->vc_SessionID);
   std::static_pointer_cast<AuthorizationReq>(sendMsg2)->setSessionId(this->mtc->vc_SessionID);
@@ -1464,7 +1454,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
 
   std::vector<std::shared_ptr<V2gTpMessage>> expectedMsgList = {expectedMsg, expectedMsg2};
 
-  auto receive_handler = [this, &v_eVSEprocessing, &isFinished](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
+  auto receive_handler = [this, &v_eVSEprocessing](std::vector<std::shared_ptr<V2gTpMessage>> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
     std::shared_ptr<AuthorizationRes> cast_expected = std::dynamic_pointer_cast<AuthorizationRes>(expected[0]);
     std::shared_ptr<AuthorizationRes> cast_expected2 = std::dynamic_pointer_cast<AuthorizationRes>(expected[1]);
@@ -1479,17 +1469,9 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_011
         if ((*cast_expected) == (*cast_received))
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
-          if (isFinished == 0)
-          {
-            this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
-            this->mtc->setverdict(inconc, "No authorization should be triggered by the SUT before.");
-            isFinished++;
-          }
-          else
-          {
-            this->mtc->setverdict(fail, "Repetition of the Authorization message sequence after Authorize has already done should be returned with 'ongoing' not 'finished'");
-            v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
-          }
+          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
+          this->mtc->setverdict(inconc, "No authorization should be triggered by the SUT before.");
+          v_eVSEprocessing = iso1Part4_EVSEProcessingType::finished;
           this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus = ReceiveType_NONE;
           return true;
         }
