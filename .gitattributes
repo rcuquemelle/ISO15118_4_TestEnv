@@ -3,12 +3,14 @@
 * text=auto
 
 # Never modify line endings of our bash scripts
-*.sh -crlf
+*.sh text=lf
 
 #
 # The above will handle all files NOT found below
 #
 # These files are text and should be normalized (Convert crlf => lf)
+*.cpp           text
+*.h             text
 *.css           text
 *.html          text
 *.java          text
