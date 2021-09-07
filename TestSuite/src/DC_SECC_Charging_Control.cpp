@@ -438,6 +438,14 @@ int main(int argc, char *argv[])
   init_tc("dc_aging");
   tc16 = std::make_shared<TestCases_SECC_SessionStop>(mtc, stc, cfg, cmn, pre, post);
 
+  for (size_t i = 0; i < 5; i++)
+  {
+    stc->_pBCIf->setRelay(SeccBasicSignaling::relay_pin_t_En::RELAY_PE_LINE, SeccBasicSignaling::relay_val_En::RELAY_VAL_ON);
+    PAsleep(0.2);
+    stc->_pBCIf->setRelay(SeccBasicSignaling::relay_pin_t_En::RELAY_PE_LINE, SeccBasicSignaling::relay_val_En::RELAY_VAL_OFF);
+    PAsleep(0.2);
+  }
+
   while (0 == stc->_pBCIf->getBtnPressCounter()){
   }
   PAsleep(1.5);
