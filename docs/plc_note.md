@@ -14,8 +14,11 @@ open folder:
 
 sudo systemctl enable pigpiod
 sudo systemctl stop pigpiod.service
+
 sudo vim /lib/systemd/system/pigpiod.service
+thay option pigpiod
 pigpiod -x -1
+
 sudo systemctl daemon-reload
 sudo systemctl restart pigpiod.service
 

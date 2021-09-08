@@ -132,7 +132,9 @@ void PATimer::stop()
   // {
   //   std::this_thread::sleep_for(std::chrono::milliseconds(10));
   // }
-  this->tmOutFlag = false;
+  // this->tmOutFlag = false;
+  Logging::debug(LogPAIf_ENABLE, fmt::format("[TIMER]: {0} STOP", this->id));
+  this->_clean();
 }
 
 bool PATimer::timeout()

@@ -84,6 +84,7 @@ verdict_val TestBehavior_SECC_CableCheck::f_SECC_DC_TB_VTB_CableCheck_001(std::s
         {
           this->mtc->tc_V2G_EVCC_Msg_Timer->stop();
           this->mtc->tc_V2G_EVCC_CableCheck_Timer->stop();
+          this->mtc->tc_V2G_EVCC_Ongoing_Timer->stop();
           v_EVSEprocessing = iso1Part4_EVSEProcessingType::finished;
           ongoingProcess = false;
           if (1 == DCEVSEStatus->EVSEIsolationStatus_isUsed)
