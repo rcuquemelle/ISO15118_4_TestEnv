@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "urn:V2G:SLAC",
+  "comment": "V2G 1.0.0 Draft",
+  "definitions": {
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "C_EV_vald_nb_toggles": {
+      "description": "number of time that EV shall toggle BCB on CP line",
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "default": 3
+    },
+    "C_EV_match_signalattn_direct": {
+      "description": "Signal Attenuation value for direct matching (i.e less then 20 then it's a valid match)",
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "default": 20
+    },
+    "C_EV_match_signalattn_indirect": {
+      "description": "Signal Attenuation value for validation (i.e signal value larger than direct threshold, smaller than indrect then perform validation)",
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "default": 60
+    },
+    "TP_EV_vald_state_duration": {
+      "description": "Time period for each toggle state(s)",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.3
+    },
+    "TP_EV_vald_toggle": {
+      "description": "Timer value that EVSE shall monitor for BCB toggle",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 2.4
+    },
+    "TP_EV_SLAC_init": {
+      "description": "Timeout value for each init session",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 15.0
+    }
+  },
+  "required": [
+  ]
+}

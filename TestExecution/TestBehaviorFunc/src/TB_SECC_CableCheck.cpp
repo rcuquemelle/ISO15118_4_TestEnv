@@ -225,8 +225,7 @@ verdict_val TestBehavior_SECC_CableCheck::f_SECC_DC_TB_VTB_CableCheck_001(std::s
     }
     if (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
     {
-      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 0.1s wait ongoing cable check"));
-      PAsleep(0.1);
+      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing cable check"));
     }
   }
   if ((PIXIT_SECC_DC_CableCheckOngoing == iso1Part4_Ongoing::ongoing) && (!v_receivedOngoing))

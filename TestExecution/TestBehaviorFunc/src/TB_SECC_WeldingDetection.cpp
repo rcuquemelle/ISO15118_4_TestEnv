@@ -479,8 +479,8 @@ verdict_val TestBehavior_SECC_WeldingDetection::f_SECC_DC_TB_VTB_WeldingDetectio
 
   auto receive_handler = [this](std::shared_ptr<V2gTpMessage> &expected, std::shared_ptr<V2gTpMessage> &received) -> bool
   {
-    std::shared_ptr<ServiceDiscoveryRes> cast_expected = std::dynamic_pointer_cast<ServiceDiscoveryRes>(expected);
-    std::shared_ptr<ServiceDiscoveryRes> cast_received = std::make_shared<ServiceDiscoveryRes>();
+    std::shared_ptr<WeldingDetectionRes> cast_expected = std::dynamic_pointer_cast<WeldingDetectionRes>(expected);
+    std::shared_ptr<WeldingDetectionRes> cast_received = std::make_shared<WeldingDetectionRes>();
     char *receive_data;
     auto size = received->getBufferPtr(&receive_data);
     cast_received->setMessage(receive_data, size);

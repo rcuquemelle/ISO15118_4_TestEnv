@@ -264,8 +264,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
       }
       if (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
   }
@@ -886,8 +885,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
       }
       if (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
   }
@@ -1120,8 +1118,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
       }
       if (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
   }
@@ -1360,8 +1357,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
       }
       if (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
   }
@@ -1546,8 +1542,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_AC_TB_VTB_ChargeP
       }
       if (v_EVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
   }
@@ -1770,8 +1765,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
       }
       if (iso1Part4_EVSEProcessingType::ongoing == v_EVSEprocessing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
     if ((PIXIT_SECC_CMN_ChargeParameterDiscoveryOngoing == iso1Part4_Ongoing::ongoing) && !(v_receivedOngoing))
@@ -2409,8 +2403,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
       }
       if (iso1Part4_EVSEProcessingType::ongoing == v_EVSEprocessing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
     if ((PIXIT_SECC_CMN_ChargeParameterDiscoveryOngoing == iso1Part4_Ongoing::ongoing) && !(v_receivedOngoing))
@@ -2664,8 +2657,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
       }
       if (iso1Part4_EVSEProcessingType::ongoing == v_EVSEprocessing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
     if ((PIXIT_SECC_CMN_ChargeParameterDiscoveryOngoing == iso1Part4_Ongoing::ongoing) && !(v_receivedOngoing))
@@ -2925,8 +2917,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
       }
       if (iso1Part4_EVSEProcessingType::ongoing == v_EVSEprocessing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
     if ((PIXIT_SECC_CMN_ChargeParameterDiscoveryOngoing == iso1Part4_Ongoing::ongoing) && !(v_receivedOngoing))
@@ -3115,8 +3106,7 @@ verdict_val TestBehavior_SECC_ChargeParameterDiscovery::f_SECC_DC_TB_VTB_ChargeP
       }
       if (iso1Part4_EVSEProcessingType::ongoing == v_EVSEprocessing)
       {
-        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing charge parameter processing"));
-        PAsleep(1);
+        Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing charge parameter processing"));
       }
     }
   }

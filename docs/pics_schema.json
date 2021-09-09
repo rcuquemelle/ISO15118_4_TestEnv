@@ -1,0 +1,250 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "urn:V2G:PICS",
+  "comment": "V2G 1.0.0 Draft",
+  "definitions": {
+    "iso1Part4_ChargingMode": {
+      "description": "Indication for testing either AC or DC charging mode",
+      "cppType": "iso1Part4_ChargingMode",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "aC",
+        "dC"
+      ],
+      "default": "dC"
+    },
+    "iso1Part4_IdentificationMode": {
+      "description": "Indication for testing either EIM or PnC identification mode",
+      "cppType": "iso1Part4_ChargingMode",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "pnC",
+        "eIM"
+      ],
+      "default": "eIM"
+    },
+    "iso1Part4_PlugType": {
+      "description": "Indication for testing either type1 or type2 plug type",
+      "cppType": "iso1Part4_ChargingMode",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "type1",
+        "type2"
+      ],
+      "default": "type2"
+    },
+    "iso1Part4_CableCapabilityACType": {
+      "description": "Indication for used AC cable type Choice: i) capability13A, ii) capability20A, iii) capability32A, iv) capability63A, v) capability70A",
+      "cppType": "iso1Part4_ChargingMode",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "capability13A",
+        "capability20A",
+        "capability32A",
+        "capability63A",
+        "capability70A"
+      ],
+      "default": "capability32A"
+    },
+    "iso1Part4_EIMDone": {
+      "description": "Indication for initiating EIM Authorization process Choice: i) beforePlugin, ii) afterPlugin, iii) duringSlac, iv) v2gAuthorization",
+      "cppType": "iso1Part4_ChargingMode",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "beforePlugin",
+        "afterPlugin",
+        "duringSlac",
+        "v2gAuthorization"
+      ],
+      "default": "v2gAuthorization"
+    },
+    "iso1Part4_ZeroPow": {
+      "description": "Indication for enabling a PmaxScheduleList with a list element pMax = 0W (triggering pause) Choice: i) sleepWithoutCharge, ii) sleepAfterCharge, iii) none_",
+      "cppType": "iso1Part4_ZeroPow",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "sleepWithoutCharge",
+        "sleepAfterCharge",
+        "none_"
+      ],
+      "default": "none_"
+    },
+    "iso1Part4_PkiType": {
+      "description": "Indication for selected PKI Choice: i) PKI_1, ii) PKI_2, iii) PKI_3, iv) PKI_4, v) PKI_5, vi) PKI_6, vii) PKI_7",
+      "cppType": "iso1Part4_PkiType",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "PKI_1",
+        "PKI_2",
+        "PKI_3",
+        "PKI_4",
+        "PKI_5",
+        "PKI_6",
+        "PKI_7",
+        "PKI_Ext",
+        "PKI_1_Testival",
+        "PKI_2_Testival"
+      ],
+      "default": "PKI_1"
+    },
+    "IEC_61851_States": {
+      "description": "Indication for explicit testing of State C/D of IEC 61851‐1:2017, Annex A during charging",
+      "cppType": "IEC_61851_States",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "NA",
+        "none_"
+      ],
+      "default": "C"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "par_CMN_MaxEntriesSAScheduleTuple": {
+      "description": "Maximum of SA Schedule tupple entries",
+      "type": "integer",
+      "default": 12
+    },
+    "PICS_CMN_CMN_CombinedTesting": {
+      "description": "Indication for enabling combined testing including SLAC association & V2G messaging - PLC_SLAC test operation ISO15118-5",
+      "type": "boolean",
+      "default": false
+    },
+    "PICS_CMN_CMN_ChargingMode": {
+      "$ref": "#/definitions/iso1Part4_ChargingMode"
+    },
+    "PICS_CMN_CMN_IdentificationMode": {
+      "$ref": "#/definitions/iso1Part4_IdentificationMode"
+    },
+    "PICS_CMN_CMN_PlugType": {
+      "$ref": "#/definitions/iso1Part4_PlugType"
+    },
+    "PICS_CMN_AC_CableCapability": {
+      "$ref": "#/definitions/iso1Part4_CableCapabilityACType"
+    },
+    "PICS_CMN_CMN_WakeUp": {
+      "description": "Indication for the sleep time within a paused session",
+      "type": "number",
+      "default": 300.0
+    },
+    "PICS_SECC_CMN_Pause": {
+      "description": "Indication for enabling a charging pause",
+      "type": "boolean",
+      "default": false
+    },
+    "PICS_SECC_CMN_EIMDone": {
+      "$ref": "#/definitions/iso1Part4_EIMDone"
+    },
+    "PICS_EVCC_CMN_PmaxSchedulewithZeroPow": {
+      "$ref": "#/definitions/iso1Part4_ZeroPow"
+    },
+    "PICS_CMN_CMN_V2gtpSdp": {
+      "description": "Indication for explicit testing V2GTP by using SDP payload",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_CMN_V2gtpV2g": {
+      "description": "Indication for explicit testing V2GTP by using V2G payload",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_CMN_Renegotiation": {
+      "description": "Indication for explicit testing V2GTP by using V2G payload",
+      "type": "boolean",
+      "default": false
+    },
+    "PICS_CMN_CMN_RenegotiationLoopIndication": {
+      "description": "Indicates the iteration of the ChargingStatus (AC) or CurrentDemand (DC) loop, when ReNegotiation shall be triggered (shall be smaller or equal to PICS_CMN_CMN_LoopCounter).",
+      "type": "integer",
+      "default": 1200
+    },
+    "PICS_CMN_CMN_LoopCounter": {
+      "description": "Indicates the number of iterations of the ChargingStatus (AC) or CurrentDemand (DC) loop",
+      "type": "integer",
+      "default": 2400
+    },
+    "PICS_CMN_CMN_InvalidV2gtpDataFields": {
+      "description": "Indication for enabling Test Group: Invalid V2GTP data fields",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_CMN_SDPTimeoutsAndInvalidData": {
+      "description": "Indication for enabling Test Group: SDP Timeouts and invalid SDP data fields",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_CMN_FailedResponseCodes": {
+      "description": "Indication for enabling Test Group: V2G fAILED response codes",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_CMN_V2gTimeouts": {
+      "description": "Indication for enabling Test Group: V2G timeouts",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_CMN_PkiName": {
+      "$ref": "#/definitions/iso1Part4_PkiType"
+    },
+    "par_EVRESSSOC": {
+      "description": "Initial EV RES SOC",
+      "type": "integer",
+      "default": 0
+    },
+    "PICS_SECC_CMN_EvStateInChargeProgress": {
+      "$ref": "#/definitions/IEC_61851_States"
+    },
+    "PICS_SECC_DC_WeldingDetection": {
+      "description": "Indication for explicit testing of WeldingDetection",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_SECC_CMN_DepartureTime": {
+      "description": "Indication for using a departure time",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_SECC_CMN_MaxEntriesSAScheduleTuple": {
+      "description": "Indication for enabling a maximal number of entries in the SAScheduleTuple",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_EVCC_CMN_ReceiptRequired": {
+      "description": "Indication for explicit testing of MeteringReceipt message",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_EVCC_CMN_InvalidStatesAndDutyCycles": {
+      "description": "Indication for enabling Test Group: Invalid states and duty cycles",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_EVCC_CMN_InvalidV2GMessages": {
+      "description": "Indication for enabling Test Group: Invalid V2G messages ",
+      "type": "boolean",
+      "default": true
+    },
+    "PICS_CMN_EVCC_SalesTariff": {
+      "description": "Indication for using a SalesTariff",
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+  ]
+}

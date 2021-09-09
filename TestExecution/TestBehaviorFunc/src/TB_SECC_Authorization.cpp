@@ -181,8 +181,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_001
     }
     if (v_eVSEprocessing == iso1Part4_EVSEProcessingType::ongoing_WaitingForCustomerInteraction)
     {
-      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 0.1s wait ongoing_WaitingForCustomerInteraction"));
-      PAsleep(0.1);
+      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing_WaitingForCustomerInteraction"));
     }
   }
   return this->mtc->getverdict();
@@ -347,8 +346,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_002
     }
     if (v_eVSEprocessing == iso1Part4_EVSEProcessingType::ongoing)
     {
-      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 0.1s wait ongoing P&C verify"));
-      PAsleep(0.1);
+      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing P&C verify"));
     }
   }
   return this->mtc->getverdict();
@@ -1415,8 +1413,7 @@ verdict_val TestBehavior_SECC_Authorization::f_SECC_CMN_TB_VTB_Authorization_010
     }
     if (v_eVSEprocessing == iso1Part4_EVSEProcessingType::ongoing_WaitingForCustomerInteraction)
     {
-      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 0.1s wait ongoing_WaitingForCustomerInteraction"));
-      PAsleep(0.1);
+      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing_WaitingForCustomerInteraction"));
     }
   }
   return this->mtc->getverdict();

@@ -1,0 +1,497 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "urn:V2G:PIXIT",
+  "comment": "V2G 1.0.0 Draft",
+  "definitions": {
+    "iso1Part4_Pause": {
+      "description": "Indication for enabling a charging pause Choice: i) pause, ii) unknown, iii) none_",
+      "cppType": "iso1Part4_Pause",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "pause",
+        "unknown",
+        "none_"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_PkiType": {
+      "description": "Indication for selected PKI Choice: i) PKI_1, ii) PKI_2, iii) PKI_3, iv) PKI_4, v) PKI_5, vi) PKI_6, vii) PKI_7",
+      "cppType": "iso1Part4_PkiType",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "PKI_1",
+        "PKI_2",
+        "PKI_3",
+        "PKI_4",
+        "PKI_5",
+        "PKI_6",
+        "PKI_7",
+        "PKI_Ext",
+        "PKI_1_Testival",
+        "PKI_2_Testival"
+      ],
+      "default": "PKI_1"
+    },
+    "iso1Part4_Renegotiation": {
+      "description": "Indication for explicit testing of Renegotiation initiated by the SUT Choice: i) renegotiation, ii) unknown",
+      "cppType": "iso1Part4_Renegotiation",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "renegotiation",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_MeterReading": {
+      "description": "Indication for explicit testing of MeterReading element Choice: i) meterReading, ii) unknown",
+      "cppType": "iso1Part4_MeterReading",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "meterReading",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_UnitSymbolType": {
+      "description": "Physical symbol",
+      "cppType": "iso1Part4_UnitSymbolType",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "h",
+        "m",
+        "s",
+        "a",
+        "v",
+        "w",
+        "wh"
+      ],
+      "default": "h"
+    },
+    "iso1Part4_VASSECC": {
+      "description": "Indication for explicit testing of ServiceDetail message (SUT shall send a serviceList within ServiceDiscoveryRes message) Choice: i) serviceDetail, ii) none_, iii) unknown",
+      "cppType": "iso1Part4_VASSECC",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "none_",
+        "serviceDetail"
+      ],
+      "default": "serviceDetail"
+    },
+    "iso1Part4_CertificateHandlingSECC": {
+      "description": "Indication for explicit testing of CertificateInstallation or CertificateUpdate message Choice: i) certInstall, ii) certUpdate, iii) none_",
+      "cppType": "iso1Part4_CertificateHandlingSECC",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "none_",
+        "certInstall",
+        "certUpdate"
+      ],
+      "default": "none_"
+    },
+    "iso1Part4_SalesTariff": {
+      "description": "Indication for explicit testing of Sales Tariff elements Choice: i) salesTariff, ii) unknown",
+      "cppType": "iso1Part4_SalesTariff",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "salesTariff",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_InternetAccess": {
+      "description": "Indication for support of InternetAccess service Choice: i) internetAccess, ii) unknown",
+      "cppType": "iso1Part4_InternetAccess",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "internetAccess",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_Ongoing": {
+      "description": "Indication for explicit testing of the repetition of the message sequence Choice: i) ongoing, ii) unknown",
+      "cppType": "iso1Part4_Ongoing",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "ongoing",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_MeterInfo": {
+      "description": "Indication for explicit testing of MeterInfo element Choice: i) meterInfo, ii) unknown",
+      "cppType": "iso1Part4_MeterInfo",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "meterInfo",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_PaymentOption": {
+      "description": "Indication for supported payment option within ServiceDiscoveryRes message (Only one payment option possible) Choice: i) externalPayment, ii) contract",
+      "cppType": "iso1Part4_PaymentOption",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "externalPayment",
+        "contract"
+      ],
+      "default": "externalPayment"
+    },
+    "iso1Part4_VASEVCC": {
+      "description": "Indication for explicit testing of ServiceDetail message (SUT shall send a ServiceDetailReq message for each service of the received serviceList) Choice: i) serviceDetail, ii) none_, iii) unknown",
+      "cppType": "iso1Part4_VASEVCC",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "none_",
+        "serviceDetail",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_WeldingDetection": {
+      "description": "Indication for explicit testing of WeldingDetection message Choice: i) weldingDetection, ii) none_, iii) unknown",
+      "cppType": "iso1Part4_WeldingDetection",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "none_",
+        "weldingDetection",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_TLS": {
+      "description": "Indication for explicit testing of TLS in EIM mode Choice: i) tls, ii) none_, iii) unknown",
+      "cppType": "iso1Part4_TLS",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "none_",
+        "tls",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_CertificateHandlingEVCC": {
+      "description": "Indication for explicit testing of CertificateInstallation or CertificateUpdate message Choice: i) certInstall, ii) certUpdate, iii) none_, iv) unknown",
+      "cppType": "iso1Part4_CertificateHandlingEVCC",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "none_",
+        "certInstall",
+        "certUpdate",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_DepartureTime": {
+      "description": "Indication for explicit testing of DepartureTime element Choice: i) departureTime, ii) none_, iii) unknown",
+      "cppType": "iso1Part4_DepartureTime",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "departureTime",
+        "unknown",
+        "none_"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_MaxNumberOfPhasesInUse": {
+      "description": "Indication for explicit testing of MaxNumberOfPhasesInUse element Choice: i) maxNumberOfPhasesInUse, ii) unknown",
+      "cppType": "iso1Part4_MaxNumberOfPhasesInUse",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "maxNumberOfPhasesInUse",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_ChargingProfileOpt": {
+      "description": "Indication for the SUTs capability to optimize charging profiles based on the charge schedule Choice: i) optimization, ii) none_, iii) unknown",
+      "cppType": "iso1Part4_ChargingProfileOpt",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "optimization",
+        "unknown",
+        "none_"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_NewSAScheduleTupleID": {
+      "description": "Indication for explicit testing of using a new SAScheduleTupleID after renegotiation by the SUT Choice: i) newSAScheduleTupleID, ii) unknown",
+      "cppType": "iso1Part4_NewSAScheduleTupleID",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "newSAScheduleTupleID",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "iso1Part4_SAScheduleTupleIDMR": {
+      "description": "Indication for explicit testing SAScheduleTupleID within MeteringReceiptReq message Choice: i) sAScheduleTupleID, ii) unknown",
+      "cppType": "iso1Part4_SAScheduleTupleIDMR",
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "sAScheduleTupleID",
+        "unknown"
+      ],
+      "default": "unknown"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "PIXIT_CMN_CMN_WakeUp": {
+      "description": "Indication for the wake‐up time (SUT) within a paused session",
+      "type": "number",
+      "default": 200.0
+    },
+    "PIXIT_EVCC_CMN_Pause": {
+      "$ref": "#/definitions/iso1Part4_Pause"
+    },
+    "PIXIT_CMN_CMN_PkiName": {
+      "$ref": "#/definitions/iso1Part4_PkiType"
+    },
+    "PIXIT_CMN_CMN_Renegotiation": {
+      "$ref": "#/definitions/iso1Part4_Renegotiation"
+    },
+    "PIXIT_CMN_CMN_MeterReading": {
+      "$ref": "#/definitions/iso1Part4_MeterReading"
+    },
+    "PIXIT_SECC_CMN_VAS": {
+      "$ref": "#/definitions/iso1Part4_VASSECC"
+    },
+    "PIXIT_SECC_CMN_ReceiptRequired": {
+      "description": "Indication for explicit testing of MeteringReceipt message",
+      "type": "boolean",
+      "default": false
+    },
+    "PIXIT_SECC_CMN_CertificateHandling": {
+      "$ref": "#/definitions/iso1Part4_CertificateHandlingSECC"
+    },
+    "PIXIT_SECC_CMN_SalesTariff": {
+      "$ref": "#/definitions/iso1Part4_SalesTariff"
+    },
+    "PIXIT_SECC_CMN_TLS": {
+      "description": "Indication for explicit testing of TLS in EIM mode",
+      "type": "boolean",
+      "default": false
+    },
+    "PIXIT_SECC_CMN_VersionNumberMinor": {
+      "description": "Indication for the supported VersionNumberMinor of the SUT",
+      "type": "integer",
+      "default": 0
+    },
+    "PIXIT_SECC_CMN_InternetAccess": {
+      "$ref": "#/definitions/iso1Part4_InternetAccess"
+    },
+    "PIXIT_SECC_DC_CableCheckOngoing": {
+      "$ref": "#/definitions/iso1Part4_Ongoing"
+    },
+    "PIXIT_SECC_CMN_AuthorizationOngoing": {
+      "$ref": "#/definitions/iso1Part4_Ongoing"
+    },
+    "PIXIT_SECC_CMN_ChargeParameterDiscoveryOngoing": {
+      "$ref": "#/definitions/iso1Part4_Ongoing"
+    },
+    "PIXIT_SECC_CMN_MeterInfo": {
+      "$ref": "#/definitions/iso1Part4_MeterInfo"
+    },
+    "PIXIT_SECC_CMN_PaymentOption": {
+      "$ref": "#/definitions/iso1Part4_PaymentOption"
+    },
+    "PIXIT_EVCC_CMN_VAS": {
+      "$ref": "#/definitions/iso1Part4_VASEVCC"
+    },
+    "PIXIT_EVCC_DC_WeldingDetection": {
+      "$ref": "#/definitions/iso1Part4_WeldingDetection"
+    },
+    "PIXIT_EVCC_CMN_TLS": {
+      "$ref": "#/definitions/iso1Part4_TLS"
+    },
+    "PIXIT_EVCC_CMN_CertificateHandling": {
+      "$ref": "#/definitions/iso1Part4_CertificateHandlingEVCC"
+    },
+    "PIXIT_EVCC_CMN_DepartureTime": {
+      "$ref": "#/definitions/iso1Part4_DepartureTime"
+    },
+    "PIXIT_EVCC_AC_MaxNumberOfPhasesInUse": {
+      "$ref": "#/definitions/iso1Part4_MaxNumberOfPhasesInUse"
+    },
+    "PIXIT_EVCC_CMN_ChargingProfileOptimization": {
+      "$ref": "#/definitions/iso1Part4_ChargingProfileOpt"
+    },
+    "PIXIT_EVCC_CMN_NewSAScheduleTupleID": {
+      "$ref": "#/definitions/iso1Part4_NewSAScheduleTupleID"
+    },
+    "PIXIT_EVCC_CMN_SAScheduleTupleIDMR": {
+      "$ref": "#/definitions/iso1Part4_SAScheduleTupleIDMR"
+    },
+    "par_ValidDeviationPerCent": {
+      "description": "Deviation percent of precharge target voltage",
+      "type": "number",
+      "default": 5.0
+    },
+    "par_LoadStartValCurrent": {
+      "description": "Load starting current",
+      "type": "number",
+      "default": 5.0
+    },
+    "par_EVBatteryStepSize": {
+      "description": "Max battery step size",
+      "type": "number",
+      "default": 99.0
+    },
+    "par_EVTargetVoltage": {
+      "description": "par_EVTargetVoltage",
+      "cppType": "iso1Part4_PhysicalValueType",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "multiplier": {
+          "description": "Multiplier value",
+          "type": "integer",
+          "default": 0
+        },
+        "unit": {
+          "$ref": "#/definitions/iso1Part4_UnitSymbolType"
+        },
+        "value_": {
+          "description": "Base value",
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "default": {
+        "multiplier": 0,
+        "unit": "v",
+        "value_": 440
+      }
+    },
+    "par_EVTargetCurrent": {
+      "description": "par_EVTargetCurrent",
+      "cppType": "iso1Part4_PhysicalValueType",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "multiplier": {
+          "description": "Multiplier value",
+          "type": "integer",
+          "default": 0
+        },
+        "unit": {
+          "$ref": "#/definitions/iso1Part4_UnitSymbolType"
+        },
+        "value_": {
+          "description": "Base value",
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "default": {
+        "multiplier": 0,
+        "unit": "a",
+        "value_": 20
+      }
+    },
+    "par_EVBatteryVoltage": {
+      "description": "par_EVBatteryVoltage",
+      "cppType": "iso1Part4_PhysicalValueType",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "multiplier": {
+          "description": "Multiplier value",
+          "type": "integer",
+          "default": 0
+        },
+        "unit": {
+          "$ref": "#/definitions/iso1Part4_UnitSymbolType"
+        },
+        "value_": {
+          "description": "Base value",
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "default": {
+        "multiplier": 0,
+        "unit": "v",
+        "value_": 300
+      }
+    },
+    "par_EVMaximumVoltageLimit": {
+      "description": "par_EVMaximumVoltageLimit",
+      "cppType": "iso1Part4_PhysicalValueType",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "multiplier": {
+          "description": "Multiplier value",
+          "type": "integer",
+          "default": 0
+        },
+        "unit": {
+          "$ref": "#/definitions/iso1Part4_UnitSymbolType"
+        },
+        "value_": {
+          "description": "Base value",
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "default": {
+        "multiplier": 0,
+        "unit": "v",
+        "value_": 500
+      }
+    },
+    "par_EVMaximumCurrentLimit": {
+      "description": "par_EVMaximumCurrentLimit",
+      "cppType": "iso1Part4_PhysicalValueType",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "multiplier": {
+          "description": "Multiplier value",
+          "type": "integer",
+          "default": 0
+        },
+        "unit": {
+          "$ref": "#/definitions/iso1Part4_UnitSymbolType"
+        },
+        "value_": {
+          "description": "Base value",
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "default": {
+        "multiplier": 0,
+        "unit": "a",
+        "value_": 110
+      }
+    }
+  },
+  "required": [
+  ]
+}

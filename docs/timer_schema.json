@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "urn:V2G:Timer",
+  "comment": "V2G 1.0.0 Draft",
+  "definitions": {
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "par_TP_EV_vald_state_duration": {
+      "description": "Time period in each BCB state",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.25
+    },
+    "par_T_conn_max_comm": {
+      "description": "Connection max timeout",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 10
+    },
+    "par_CMN_Transmission_Delay": {
+      "description": "Transmission delay between each msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.25
+    },
+    "par_CMN_HAL_Timeout": {
+      "description": "Timeout value when HAL state transition does not occur",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 2.0
+    },
+    "par_CMN_waitForNextHAL": {
+      "description": "Delay period before transition to ext state",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.5
+    },
+    "par_CMN_Intern_PTC_Timeout": {
+      "description": "Internal Parallel Test Component timeout",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.4
+    },
+    "par_CMN_setKey": {
+      "description": "",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 3.0
+    },
+    "par_EVCC_waitForNextTC": {
+      "description": "Delay between each testcase executionn",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 2.0
+    },
+    "par_SECC_waitForNextTC": {
+      "description": "Delay between each testcase execution",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 5.0
+    },
+    "par_SECC_T_step_X1": {
+      "description": "Timer value for state X1",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 3.0
+    },
+    "par_SECC_Pmax0W": {
+      "description": "SECC PMAX value",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 200.0
+    },
+    "par_V2G_SECC_Sequence_Timeout": {
+      "description": "Sequence msg timeout value",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 60.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_SupportedAppProtocolReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_SessionSetupReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_ServiceDiscoveryReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_ServiceDetailReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  5.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_PaymentServiceSelectionReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_CertificateInstallationReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  5.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_CertificateUpdateReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  5.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_PaymentDetailsReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_AuthorizationReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_ChargeParameterDiscoveryReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_PowerDeliveryReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  5.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_ChargingStatusReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_MeteringReceiptReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_SessionStopReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_CableCheckReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_PreChargeReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Msg_Timeout_CurrentDemandReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  0.25
+    },
+    "par_V2G_EVCC_Msg_Timeout_WeldingDetectionReq": {
+      "description": "Timeout value when wait for response msg",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default":  2.0
+    },
+    "par_V2G_EVCC_Ongoing_Timeout": {
+      "description": "Timeout value when wait for Finished status after receive Ongoing status response",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 60.0
+    },
+    "par_V2G_EVCC_Ongoing_Performance_Timeout": {
+      "description": "Timeout value for performance of Ongoing process",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 55.0
+    },
+    "par_V2G_EVCC_CommunicationSetup_Timeout": {
+      "description": "Timeout value when no session setup established after sucessfull logical link setup(SLAC)",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 20.0
+    },
+    "par_V2G_SECC_CommunicationSetup_Performance_Time": {
+      "description": "Timeout value for communication setup performance",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 18.0
+    },
+    "par_V2G_EVCC_CableCheck_Timeout": {
+      "description": "Timeout value for Cable Check progress",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 40.0
+    },
+    "par_V2G_EVCC_PreCharge_Timeout": {
+      "description": "Timeout value for PreCharge progress",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 7.0
+    },
+    "par_EVCC_SDP_Timeout": {
+      "description": "Timeout value for SDP response message",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 1.25
+    },
+    "par_SECC_B1_B2_Timeout": {
+      "description": "Timeout value when not detect transition from B1-B2",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 8.0
+    },
+    "par_SECC_chargingLoop_pause": {
+      "description": "Pause period between check charging loop message pair",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.25
+    },
+    "par_V2G_SECC_CPState_Error_Detection_Timeout": {
+      "description": "Timeout value when expected ERROR CP State is not detected",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 1.5
+    },
+    "par_V2G_SECC_CPState_Detection_Timeout": {
+      "description": "Timeout value when expected CP State is not detected",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 0.25
+    },
+    "par_CMN_TCP_Connection_Termination_Timeout": {
+      "description": "Timeout value when no TCP connection is available",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "default": 5.0
+    }
+  },
+  "required": [
+  ]
+}

@@ -177,8 +177,7 @@ verdict_val TestBehavior_SECC_PreCharge::f_SECC_DC_TB_VTB_PreCharge_001(verdict_
     }
     if (f_CMN_PhysicalValue_GetValue(this->mtc->vc_EVSEPresentVoltage) < v_EVTargetVoltageValidMinDeviation)
     {
-      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "sleep 1s wait ongoing EVSE PreCharge Voltage check"));
-      PAsleep(1);
+      Logging::info(LogTbFnc_ENABLE, fmt::format("[TB][{0:s}]: {1}", __FUNCTION__, "wait ongoing EVSE PreCharge Voltage check"));
     }
   } while (f_CMN_PhysicalValue_GetValue(this->mtc->vc_EVSEPresentVoltage) < v_EVTargetVoltageValidMinDeviation);
   memcpy(&this->mtc->vc_EVTargetVoltage, &par_EVTargetVoltage, sizeof(PhysicalValueType));
