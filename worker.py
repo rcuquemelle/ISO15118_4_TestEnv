@@ -1,6 +1,6 @@
 import io
 import os, sys
-import re, jsonschema, json
+import re, json
 import openpyxl
 import multiprocessing, subprocess
 import logging
@@ -110,7 +110,7 @@ def get_excel_tc(file, testcase_name=None):
 
 def update_testconfig(config, update):
     for _type in ["pics", "pixit"]:
-        for k,v in update[_type]:
+        for k,v in update[_type].items():
             config[_type][k] = v
 
 RETURN_CODE = {
@@ -166,25 +166,25 @@ def main(argv):
             # export testcase config dict to test_config.json file
             update_testconfig(test_config, cfg)
             with open(output_cfg_path, "w", encoding="utf8") as wfp:
-                json.dump(test_config, wfp)
+                json.dump(test_config, wfp, indent=4)
         executable = check_file("./build/TestSuite/runTC")
-        instance = subprocess.run([executable, tc, "I", output_cfg_path], stdout=subprocess.STDOUT, universal_newlines=True, capture_output=True)
+        instance = subprocess.run([executable, tc, "I", output_cfg_path], stdout=subprocess.PIPE, universal_newlines=True)
         # ----- TEST CASE END -----
         # [MTC]: Verdict:
-        instance.stdout.seek(3000, os.SEEK_END)
-        get_flag = False
-        log = ""
-        for line in iter(instance.stdout.readline, ''):
-            if get_flag:
-                log += line
-            if "TEST CASE END" in line:
-                get_flag = True
+        #instance.stdout.seek(3000, os.SEEK_END)
+        #get_flag = False
+        log = instance.stdout.partition("TEST CASE END")[2]
+        #for line in iter(instance.stdout.readline, ''):
+        #    if get_flag:
+        #        log += line
+        #    if "TEST CASE END" in line:
+        #        get_flag = True
         # parse result and log to store
-        testreport.update((tc, {
+        testreport.update({tc: {
             # none = 0, pass = 1, inconc = 2, fail = 3, error = 4
             "result":RETURN_CODE[instance.returncode],
             "log":log
-        }))
+        }})
 
     # update result to testcase_report.xlsx
     export_report(testreport, excel_file)
