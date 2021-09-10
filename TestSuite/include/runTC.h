@@ -1,9 +1,6 @@
 #ifndef __RUNTC_H__
 #define __RUNTC_H__
 
-#include "PICSCfg.h"
-#include "PIXITCfg.h"
-#include "TimerCfg.h"
 #include "V2GSDP.h"
 #include "V2GTPSecc.h"
 #include "V2GAppSECCSessionSetup.h"

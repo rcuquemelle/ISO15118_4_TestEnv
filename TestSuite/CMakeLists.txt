@@ -9,7 +9,7 @@ foreach(item ${src_files})
   add_executable(${target_test} ${item})
 
   target_include_directories(${target_test} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" ${INCLUDE_DIRECTORIES})
-  target_link_libraries(${target_test} PUBLIC fmt asio cppcommon openv2g
+  target_link_libraries(${target_test} PUBLIC fmt asio cppcommon openv2g rapidjson
                                               Codecs DataType PlatformInterface IFRuntime TCP UDP SLAC IEC61851If
                                               Components CmnFunc ConfigurationFunc PreconditionFunc TestBehaviorFunc PostConditionFunc
                                               TestManagement TestLogging TestCase)

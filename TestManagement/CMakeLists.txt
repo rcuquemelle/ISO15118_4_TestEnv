@@ -7,4 +7,4 @@ add_library(TestManagement OBJECT ${src_files})
 target_include_directories(TestManagement PUBLIC "./include")
 
 target_link_libraries(TestManagement
-  PUBLIC DataType)
+  PUBLIC DataType rapidjson SLAC TestLogging)
