@@ -1,5 +1,6 @@
 #include "SystemComponent.h"
 #include "TestSystemLogging.h"
+#include "TimerCfg.h"
 
 // system component call to SUT Interface
 // system component initialize SUT interface runtime environment (execution context)
@@ -56,7 +57,7 @@ System_SECC::System_SECC(const std::shared_ptr<IfRuntime>& runtime, const std::s
   this->_ptrIOService = this->_ptrService->GetAsioService();
   // create BasicControlInterface
   this->_pBCIf = std::make_shared<SeccBasicSignaling>(this->_ptrService);
-  this->_pPLC = std::make_shared<Plc>(slacCfgFile, _ipv6IF, this->_pBCIf, this->_ptrService);
+  this->_pPLC = std::make_shared<Plc>(slacCfgFile, _ipv6IF, this->_pBCIf, this->_ptrService, Timer_15118::Timer_par_15118::par_CMN_Intern_PTC_Timeout);
   // create TCP Interface
   this->_pTCPIf = std::make_shared<TCPAdapter>(this->_ptrService);
   // create UDP interface
@@ -76,7 +77,7 @@ System_SECC::System_SECC(const std::shared_ptr<IfRuntime>& runtime, const std::s
   this->_ptrIOService = this->_ptrService->GetAsioService();
   // create BasicControlInterface
   this->_pBCIf = std::make_shared<SeccBasicSignaling>(this->_ptrService);
-  this->_pPLC = std::make_shared<Plc>(slacCfgFile, _ipv6IF, this->_pBCIf, this->_ptrService);
+  this->_pPLC = std::make_shared<Plc>(slacCfgFile, _ipv6IF, this->_pBCIf, this->_ptrService, Timer_15118::Timer_par_15118::par_CMN_Intern_PTC_Timeout);
   // create TCP Interface
   this->_pTCPIf = std::make_shared<TCPAdapter>(this->_ptrService);
   // create UDP interface

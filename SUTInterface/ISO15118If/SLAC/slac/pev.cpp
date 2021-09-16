@@ -48,9 +48,10 @@ float Plc::TT_match_response = 0.2;
 float Plc::TT_match_sequence = 0.4;
 float Plc::TT_matching_repetition = 10;
 float Plc::TT_matching_rate = 0.4;
-
-Plc::Plc(const std::string &config_file, const std::string &interface_name, const std::shared_ptr<SeccBasicSignaling> &_BC, const std::shared_ptr<CppCommon::Asio::Service> &_service)
+float RANDOM_DELAY = 0;
+Plc::Plc(const std::string &config_file, const std::string &interface_name, const std::shared_ptr<SeccBasicSignaling> &_BC, const std::shared_ptr<CppCommon::Asio::Service> &_service, float delay_value)
 {
+  RANDOM_DELAY = delay_value;
   // pev.ini file
   this->cfgFile = config_file;
   // qca interface name
@@ -105,6 +106,7 @@ void Plc::updateControlPilotState(IEC_61851_States cur_state)
     {
       Logging::info(LogSLAC_ENABLE, "[SLAC]: trigger init matching");
       // start timer 10s - after timeout no matched session then push event to upper layer TP_EV_SLAC_init
+      PAsleep(RANDOM_DELAY);
       Plc::state = pevStateType_MATCHING;
     }
     else if (isInStateArr(Plc::preState, TRG_INIT_STATE) && isInStateArr(cur_state, ORG_INIT_STATE))

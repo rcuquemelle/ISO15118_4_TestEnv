@@ -111,7 +111,7 @@ public:
   static std::atomic<pevStateType> state;
   static SeccBasicSignaling *slacInstance;
 public:
-  Plc(const std::string &config_file, const std::string &interface_name, const std::shared_ptr<SeccBasicSignaling> &_BC, const std::shared_ptr<CppCommon::Asio::Service>& _service);
+  Plc(const std::string &config_file, const std::string &interface_name, const std::shared_ptr<SeccBasicSignaling> &_BC, const std::shared_ptr<CppCommon::Asio::Service>& _service, float delay_value);
   ~Plc();
   bool init(bool runThread);
   bool reinit(void);
