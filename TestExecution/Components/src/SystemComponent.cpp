@@ -408,7 +408,7 @@ void on15118TCPEvent::operator()() {
       break;
     }
     case en_tcpAdapterCallbackType_EMPTY: {
-      Logging::debug(LogComponent_ENABLE, "Empty event TCP");
+      // Logging::debug(LogComponent_ENABLE, "Empty event TCP");
       break;
     }
     default:
@@ -423,6 +423,7 @@ void on15118TCPEvent::operator()(const void *buffer, size_t size) {
   recMsg->setMessage((const char*)buffer, size);
   // update to port queue
   this->parent->pt_V2G_TCP_TLS_ALM_SECC_Port->setMsg(recMsg);
+  Logging::debug(LogComponent_ENABLE, "[STC]: Store receive msg to port queue");
 }
 
 // TCP interface sent event handler

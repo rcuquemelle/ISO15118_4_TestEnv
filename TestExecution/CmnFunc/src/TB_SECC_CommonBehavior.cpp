@@ -84,7 +84,7 @@ bool TestBehavior_SECC_CommonBehavior::a_SECC_Unexpected_V2G_Message(verdict_val
 // message request/response(pair) timeout
 bool TestBehavior_SECC_CommonBehavior::a_SECC_Timeout(verdict_val v_verdict)
 {
-  if (this->mtc->tc_V2G_EVCC_Msg_Timer->timeout())
+  if (this->mtc->tc_V2G_EVCC_Msg_Timer->timeout() && (this->mtc->pt_V2G_TCP_TLS_ALM_SECC_Port->receiveQueueStatus == ReceiveType_NONE))
   {
     this->mtc->setverdict(v_verdict, "Nothing received. V2G_EVCC_Msg_Timer was triggered.");
     return true;

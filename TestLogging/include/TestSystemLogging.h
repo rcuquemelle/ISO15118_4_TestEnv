@@ -81,6 +81,19 @@ public:
   ~Logging() {
     fclose(Logging::outputLog);
   };
+  static std::string time_inMicroSec(void)
+  {
+    auto now = std::chrono::system_clock::now();
+    auto us = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch())% 1000000;
+    // auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
+    auto timer = std::chrono::system_clock::to_time_t(now);
+    auto t = fmt::localtime(timer);
+    std::string temp = fmt::format("{0:%H:%M:%S}:{1}", t, us);
+    // std::string tempms = fmt::format("{0:%H:%M:%S}:{1}", t, ms);
+    // fmt::print(temp);
+    // fmt::print(tempms);
+    return temp;
+  }
   static void setLogLevel(LogLevelType level) {
     Logging::logLevel = level;
   }
@@ -114,13 +127,12 @@ public:
   static void debug(uint16_t module, const std::string value) {
     // logic push log to console or file
     // and base on log level
-    std::time_t curr_time = std::time(nullptr);
     if (LOG_INFO < Logging::logLevel) {
       if ((LOG_OUT_CONSOLE == Logging::logOutDest) ||
           (LOG_OUT_BOTH == Logging::logOutDest)){
         if (module == (Logging::LogCfg.value & module)){
           // to console
-          fmt::print("{0:%H:%M:%S}[DEBUG]:{1}\r\n", fmt::localtime(curr_time), value);
+          fmt::print("{0}[DEBUG]:{1}\r\n", Logging::time_inMicroSec(), value);
         }
       }
       if ((LOG_OUT_FILE == Logging::logOutDest) ||
@@ -128,7 +140,7 @@ public:
         // to file
         if (Logging::outputLog != nullptr){
           if (module == (Logging::LogCfg.value & module)){
-            fmt::print(Logging::outputLog, "{0:%H:%M:%S}[DEBUG]:{1}\r\n", fmt::localtime(curr_time), value);
+            fmt::print(Logging::outputLog, "{0}[DEBUG]:{1}\r\n", Logging::time_inMicroSec(), value);
             // fmt::print(Logging::outputLog, "[DEBUG]:{}\r\n",value);
           }
         }
@@ -136,13 +148,13 @@ public:
     }
   }
   static void info(uint16_t module, const std::string value) {
-    std::time_t curr_time = std::time(nullptr);
+    // std::time_t curr_time = std::time(nullptr);
     if (LOG_ERROR < Logging::logLevel) {
       if ((LOG_OUT_CONSOLE == Logging::logOutDest) ||
           (LOG_OUT_BOTH == Logging::logOutDest)) {
         if (module == (Logging::LogCfg.value & module)){
           // to console
-          fmt::print("{0:%H:%M:%S}[ INFO]:{1}\r\n", fmt::localtime(curr_time), value);
+          fmt::print("{0}[ INFO]:{1}\r\n", Logging::time_inMicroSec(), value);
           // fmt::print("[ INFO]:{}\r\n",value);
         }
       }
@@ -151,7 +163,7 @@ public:
         // to file
         if (Logging::outputLog != nullptr){
           if (module == (Logging::LogCfg.value & module)){
-            fmt::print(Logging::outputLog, "{0:%H:%M:%S}[ INFO]:{1}\r\n", fmt::localtime(curr_time), value);
+            fmt::print(Logging::outputLog, "{0}[ INFO]:{1}\r\n", Logging::time_inMicroSec(), value);
             // fmt::print(Logging::outputLog, "[ INFO]:{}\r\n",value);
           }
         }
@@ -159,13 +171,13 @@ public:
     }
   }
   static void error(uint16_t module, const std::string value) {
-    std::time_t curr_time = std::time(nullptr);
+    // std::time_t curr_time = std::time(nullptr);
     if (LOG_NONE < Logging::logLevel) {
       if ((LOG_OUT_CONSOLE == Logging::logOutDest) ||
           (LOG_OUT_BOTH == Logging::logOutDest)) {
         if (module == (Logging::LogCfg.value & module)){
           // to console
-          fmt::print("{0:%H:%M:%S}[ERROR]:{1}\r\n", fmt::localtime(curr_time), value);
+          fmt::print("{0}[ERROR]:{1}\r\n", Logging::time_inMicroSec(), value);
           // fmt::print("[ERROR]:{}\r\n",value);
         }
       }
@@ -174,7 +186,7 @@ public:
         // to file
         if (Logging::outputLog != nullptr){
           if (module == (Logging::LogCfg.value & module)){
-            fmt::print(Logging::outputLog, "{0:%H:%M:%S}[ERROR]:{1}\r\n", fmt::localtime(curr_time), value);
+            fmt::print(Logging::outputLog, "{0}[ERROR]:{1}\r\n", Logging::time_inMicroSec(), value);
             // fmt::print(Logging::outputLog, "[ERROR]:{}\r\n",value);
           }
         }

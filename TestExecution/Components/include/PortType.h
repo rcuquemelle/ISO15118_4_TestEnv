@@ -103,7 +103,7 @@ protected:
       // call send msg handler for dequeued item
       if (this->sendV2GHandler) {
         auto self = this->shared_from_this();
-        Logging::debug(LogComponent_ENABLE, fmt::format("[PORT]:{} V2g queue handler call", pType));
+        // Logging::debug(LogComponent_ENABLE, fmt::format("[PORT]:{} V2g queue handler call", pType));
         (*(this->sendV2GHandler))(item, self);
       }
       AsyncQListener->asyncDequeue(queue, std::bind(&BasePort::sendV2GQueueHandler, this, std::placeholders::_1, std::placeholders::_2, AsyncQListener, queue));
@@ -122,7 +122,7 @@ protected:
     if (!ec) {
       if (this->cmdHandler) {
         auto self = this->shared_from_this();
-        Logging::debug(LogComponent_ENABLE, fmt::format("[PORT]:{} CMD queue handler call",pType));
+        // Logging::debug(LogComponent_ENABLE, fmt::format("[PORT]:{} CMD queue handler call",pType));
         (*(this->cmdHandler))(item, self);
       }
       AsyncQListener->asyncDequeue(queue, std::bind(&BasePort::sendCmdQueueHandler, this, std::placeholders::_1, std::placeholders::_2, AsyncQListener, queue));
