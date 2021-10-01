@@ -4,6 +4,7 @@
 namespace Pics_15118
 {
   using namespace DataStructure_PICS_15118;
+  using namespace urn_iso_15118_2_2013_MsgDataTypes;
   namespace PICS_CMN
   {
     uint32_t par_CMN_MaxEntriesSAScheduleTuple = 12;
@@ -19,6 +20,8 @@ namespace Pics_15118
     iso1Part4_CableCapabilityACType PICS_CMN_AC_CableCapability = iso1Part4_CableCapabilityACType::capability32A;
     /* Indication for the sleep time within a paused session  */
     float PICS_CMN_CMN_WakeUp = 300.0;
+    iso1Part4_EnergyTransferModeType PICS_CMN_CMN_EnergyTransferModeAC = iso1Part4_EnergyTransferModeType::aC_three_phase_core;
+    iso1Part4_EnergyTransferModeType PICS_CMN_CMN_EnergyTransferModeDC = iso1Part4_EnergyTransferModeType::dC_extended;
   } // namespace PICS_CMN
   namespace PICS_SECC_Tester
   {
@@ -29,7 +32,7 @@ namespace Pics_15118
   } // namespace PICS_SECC_Tester
   namespace PICS_EVCC_Tester
   {
-    /* Indication for enabling a PmaxScheduleList with a list element pMax = 0W (triggering pause) 
+    /* Indication for enabling a PmaxScheduleList with a list element pMax = 0W (triggering pause)
       Choice: i) sleepWithoutCharge, ii) sleepAfterCharge, iii) none_ */
     iso1Part4_ZeroPow PICS_EVCC_CMN_PmaxSchedulewithZeroPow = iso1Part4_ZeroPow::none_;
   } // namespace PICS_EVCC_Tester
@@ -48,8 +51,8 @@ namespace Pics_15118_2
       bool PICS_CMN_CMN_V2gtpV2g = true;
       /* Indication for explicit testing of Renegotiation  */
       bool PICS_CMN_CMN_Renegotiation = false;
-      /* Indicates the iteration of the ChargingStatus (AC) or 
-        CurrentDemand (DC) loop, when ReNegotiation shall be triggered 
+      /* Indicates the iteration of the ChargingStatus (AC) or
+        CurrentDemand (DC) loop, when ReNegotiation shall be triggered
         (shall be smaller or equal to PICS_CMN_CMN_LoopCounter).  */
       uint32_t PICS_CMN_CMN_RenegotiationLoopIndication = 1200;
       /* Indicates the number of iterations of the ChargingStatus (AC) or CurrentDemand (DC) loop  */

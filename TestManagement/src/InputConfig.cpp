@@ -91,6 +91,8 @@ std::map<std::string, void *> PICS_MAP =
         {"PICS_CMN_CMN_PlugType", (void *)&PICS_CMN_CMN_PlugType},
         {"PICS_CMN_AC_CableCapability", (void *)&PICS_CMN_AC_CableCapability},
         {"PICS_CMN_CMN_WakeUp", (void *)&PICS_CMN_CMN_WakeUp},
+        {"PICS_CMN_CMN_EnergyTransferModeAC", (void *)&PICS_CMN_CMN_EnergyTransferModeAC},
+        {"PICS_CMN_CMN_EnergyTransferModeDC", (void *)&PICS_CMN_CMN_EnergyTransferModeDC},
         {"PICS_SECC_CMN_Pause", (void *)&PICS_SECC_CMN_Pause},
         {"PICS_SECC_CMN_EIMDone", (void *)&PICS_SECC_CMN_EIMDone},
         {"PICS_EVCC_CMN_PmaxSchedulewithZeroPow", (void *)&PICS_EVCC_CMN_PmaxSchedulewithZeroPow},
@@ -222,6 +224,14 @@ int load_config(const std::string &testconfig, const std::string &slac_config) {
       else if (!val_name.compare("PICS_CMN_CMN_WakeUp"))
       {
         *(static_cast<float *>(PICS_MAP[val_name])) = static_cast<float>((*it).value.GetFloat());
+      }
+      else if (!val_name.compare("PICS_CMN_CMN_EnergyTransferModeAC"))
+      {
+        *(static_cast<iso1Part4_EnergyTransferModeType *>(PICS_MAP[val_name])) = static_cast<iso1Part4_EnergyTransferModeType>((*it).value.GetInt());
+      }
+      else if (!val_name.compare("PICS_CMN_CMN_EnergyTransferModeDC"))
+      {
+        *(static_cast<iso1Part4_EnergyTransferModeType *>(PICS_MAP[val_name])) = static_cast<iso1Part4_EnergyTransferModeType>((*it).value.GetInt());
       }
       else
       {

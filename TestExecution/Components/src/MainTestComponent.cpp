@@ -1,12 +1,13 @@
 #include "MainTestComponent.h"
 #include "TimerCfg.h"
 #include "PIXITCfg.h"
+#include "PICSCfg.h"
 // call to system component
 using namespace Timer_15118::Timer_par_15118;
 using namespace Timer_15118_2::Timer_par_15118_2;
 using namespace urn_iso_15118_2_2013_MsgDataTypes;
 using namespace Pixit_15118_2::PIXIT_15118_2::PIXIT_CMN;
-
+using namespace Pics_15118::PICS_CMN;
 const char* VERDICT_RESULT[] = {
   [none] = "NONE",
   [pass] = "PASS",
@@ -78,8 +79,8 @@ SECC_Tester::SECC_Tester(const std::shared_ptr<IfRuntime>& runtime) {
   // charging params discovery
   this->vc_ChargeProgress = iso1Part4_ChargeProgressType::start_;
   this->vc_EVSENotification = iso1Part4_EVSENotificationType::none_;
-  this->vc_requestedEnergyTransferModeAC = (EnergyTransferModeType)iso1Part4_EnergyTransferModeType::aC_three_phase_core;
-  this->vc_requestedEnergyTransferModeDC = (EnergyTransferModeType)iso1Part4_EnergyTransferModeType::dC_extended;
+  this->vc_requestedEnergyTransferModeAC = (EnergyTransferModeType)PICS_CMN_CMN_EnergyTransferModeAC;
+  this->vc_requestedEnergyTransferModeDC = (EnergyTransferModeType)PICS_CMN_CMN_EnergyTransferModeDC;
   this->vc_DepartureTime = 50;//86400;
   this->vc_EAmount = {.Multiplier=0, .Unit=(unitSymbolType)iso1Part4_UnitSymbolType::w, .Value=30000};
   this->vc_SAScheduleTupleId = 0;

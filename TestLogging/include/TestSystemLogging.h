@@ -84,7 +84,7 @@ public:
   static std::string time_inMicroSec(void)
   {
     auto now = std::chrono::system_clock::now();
-    unsigned long us = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count() % 1e6;
+    unsigned long us = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count() % 1000000;
     // auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
     auto timer = std::chrono::system_clock::to_time_t(now);
     auto t = fmt::localtime(timer);

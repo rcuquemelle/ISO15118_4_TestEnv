@@ -53,6 +53,8 @@
     "PICS_CMN_CMN_PlugType" : 1,
     "PICS_CMN_AC_CableCapability" : 2,
     "PICS_CMN_CMN_WakeUp" : 300,
+    "PICS_CMN_CMN_EnergyTransferModeAC": 1,
+    "PICS_CMN_CMN_EnergyTransferModeDC": 3,
     "PICS_SECC_CMN_Pause" : false,
     "PICS_SECC_CMN_EIMDone" : 3,
     "PICS_EVCC_CMN_PmaxSchedulewithZeroPow" : 2,

@@ -6,6 +6,7 @@
 namespace Pics_15118
 {
   using namespace DataStructure_PICS_15118;
+  using namespace urn_iso_15118_2_2013_MsgDataTypes;
   namespace PICS_CMN
   {
     extern uint32_t par_CMN_MaxEntriesSAScheduleTuple;
@@ -15,6 +16,8 @@ namespace Pics_15118
     extern iso1Part4_PlugType PICS_CMN_CMN_PlugType;
     extern iso1Part4_CableCapabilityACType PICS_CMN_AC_CableCapability;
     extern float PICS_CMN_CMN_WakeUp;
+    extern iso1Part4_EnergyTransferModeType PICS_CMN_CMN_EnergyTransferModeAC;
+    extern iso1Part4_EnergyTransferModeType PICS_CMN_CMN_EnergyTransferModeDC;
   } // namespace PICS_CMN
   namespace PICS_SECC_Tester
   {
