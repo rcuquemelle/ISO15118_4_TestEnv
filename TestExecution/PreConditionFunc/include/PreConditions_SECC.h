@@ -61,6 +61,8 @@ public:
   verdict_val f_SECC_DC_PR_WeldingDetection_002(std::shared_ptr<HAL_61851_Listener> &v_HAL_61851_Listener);
   verdict_val f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_002(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener);
   verdict_val f_SECC_AC_PR_PowerDeliveryStop_002(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener);
+  verdict_val f_SECC_AC_PR_PowerDeliveryStop_003(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener);
+  verdict_val f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_003(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener);
 public:
   std::shared_ptr<SECC_Tester> mtc;
   std::shared_ptr<Configuration_15118_2> cfg;

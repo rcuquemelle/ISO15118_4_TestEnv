@@ -797,6 +797,147 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringRec
   return verdict;
 }
 
+/* for AC aging */
+verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_003(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
+{
+  std::shared_ptr<TestBehavior_SECC_ChargeParameterDiscovery> tb_chargParam = std::make_shared<TestBehavior_SECC_ChargeParameterDiscovery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_ChargingStatus> tb_chargeSts = std::make_shared<TestBehavior_SECC_ChargingStatus>(this->mtc, this->systemSECC);
+  std::shared_ptr<TestBehavior_SECC_MeteringReceipt> tb_meterRe = std::make_shared<TestBehavior_SECC_MeteringReceipt>(this->mtc, this->systemSECC);
+  // authorization precondition
+  verdict_val verdict = f_SECC_CMN_PR_Authorization_001(v_HAL_61851_Listener);
+  if (verdict == pass)
+  {
+    uint32_t loopCounter = 0;
+    uint32_t renegotiationLoopInd = PICS_CMN_CMN_RenegotiationLoopIndication;
+    if (!PICS_CMN_CMN_Renegotiation)
+    {
+      /* if renegotiation is no enable */
+      renegotiationLoopInd = -1;
+    };
+    /* Loop until charging progress end - default MTC vc_ChargeProgress = iso1Part4_ChargeProgressType::start_ */
+    while (this->mtc->vc_ChargeProgress != iso1Part4_ChargeProgressType::stop_)
+    {
+      // ChargeParameterDiscovery
+      if (verdict == pass)
+      {
+        if ((this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_) && (loopCounter == 0))
+        {
+          if (PIXIT_SECC_CMN_SalesTariff == iso1Part4_SalesTariff::unknown)
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_001(inconc);
+          }
+          else
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_006(inconc);
+          }
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      // PowerDelivery
+      if (verdict == pass)
+      {
+        if (this->mtc->vc_ChargeProgress == iso1Part4_ChargeProgressType::start_)
+        {
+          verdict = tb_powerDeli->f_SECC_AC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::start_, v_HAL_61851_Listener, inconc);
+        }
+      }
+      else
+      {
+        return verdict;
+      }
+      /* EVSE Notification not stop or renegotiation and loop counter < max value and loop counter != renegotiation loop counter */
+      while ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::none_) && (this->systemSECC->_pBCIf->getBtnPressCounter() == 0))
+      {
+        // ChargingStatus
+        if (verdict == pass)
+        {
+          verdict = tb_chargeSts->f_SECC_AC_TB_VTB_ChargingStatus_001(inconc);
+        }
+        else
+        {
+          return verdict;
+        }
+        // MeteringReceipt
+        if (verdict == pass)
+        {
+          /* if vc_receiptRequired status = true and P&C mode*/
+          if (this->mtc->vc_receiptRequired && (PICS_CMN_CMN_IdentificationMode == DataStructure_PICS_15118::iso1Part4_IdentificationMode::pnC))
+          {
+            verdict = tb_meterRe->f_SECC_AC_TB_VTB_MeteringReceipt_001(inconc);
+          }
+        }
+        else
+        {
+          return verdict;
+        }
+        loopCounter = loopCounter + 1;
+        if (verdict == pass)
+        {
+          Logging::info(LogPreFnc_ENABLE, fmt::format("loopcounter -> ChargingStatus: {}", loopCounter));
+          PAsleep(par_SECC_chargingLoop_pause);
+        }
+      }
+      /* if evse status return = renegotiation or reached negotiation loop */
+      if ((this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::reNegotiation) || ((loopCounter == renegotiationLoopInd) && PICS_CMN_CMN_Renegotiation))
+      {
+        if (verdict == pass)
+        {
+          /* change mtc charge progress */
+          this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::renegotiate;
+        }
+        else
+        {
+          return verdict;
+        }
+        if (verdict == pass)
+        {
+          /* request renegotiation from ev */
+          verdict = tb_powerDeli->f_SECC_AC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::renegotiate, v_HAL_61851_Listener, inconc);
+        }
+        else
+        {
+          return verdict;
+        }
+        if (verdict == pass)
+        {
+          /* change max request current to 10A */
+          this->mtc->vc_EVMaxCurrent = {.Multiplier = 0, .Unit = (unitSymbolType)iso1Part4_UnitSymbolType::a, .Value = 10};
+          if (PIXIT_SECC_CMN_SalesTariff == iso1Part4_SalesTariff::unknown)
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_001(inconc);
+          }
+          else
+          {
+            verdict = tb_chargParam->f_SECC_AC_TB_VTB_ChargeParameterDiscovery_006(inconc);
+          }
+          if (verdict == pass)
+          {
+            /* after renegotiation > change chargeProgress back to start_ */
+            this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::start_;
+            renegotiationLoopInd = 0;
+            this->mtc->vc_EVSENotification = iso1Part4_EVSENotificationType::none_;
+          }
+        }
+        else
+        {
+          return verdict;
+        }
+      }
+      if ((loopCounter == PICS_CMN_CMN_LoopCounter) || (this->mtc->vc_EVSENotification == iso1Part4_EVSENotificationType::stopCharging))
+      {
+        /* if loopcounter = end, or evse notification = stop > change chargeProgress to stop_ and break while loop */
+        this->mtc->vc_ChargeProgress = iso1Part4_ChargeProgressType::stop_;
+      }
+    }
+    Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  }
+  return verdict;
+}
+
 /* AC create renegotiation precondition */
 verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_ChargingStatusOrMeteringReceiptRenegotiation_001(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
 {
@@ -938,6 +1079,19 @@ verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_PowerDeliveryStop_002(std::
   verdict_val verdict;
   std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
   verdict = f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_002(v_HAL_61851_Listener);
+  // SECC_f_SECC_PowerDeliveryStopAC Behavior
+  if (verdict == pass)
+  {
+    verdict = tb_powerDeli->f_SECC_AC_TB_VTB_PowerDelivery_001(iso1Part4_ChargeProgressType::stop_, v_HAL_61851_Listener, inconc);
+  }
+  Logging::debug(LogPreFnc_ENABLE, fmt::format("[PRE_CND][{}]",__FUNCTION__));
+  return verdict;
+}
+verdict_val PreConditions_SECC_15118_2::f_SECC_AC_PR_PowerDeliveryStop_003(std::shared_ptr<HAL_61851_Listener> & v_HAL_61851_Listener)
+{
+  verdict_val verdict;
+  std::shared_ptr<TestBehavior_SECC_PowerDelivery> tb_powerDeli = std::make_shared<TestBehavior_SECC_PowerDelivery>(this->mtc, this->systemSECC);
+  verdict = f_SECC_AC_PR_ChargingStatusOrMeteringReceiptStop_003(v_HAL_61851_Listener);
   // SECC_f_SECC_PowerDeliveryStopAC Behavior
   if (verdict == pass)
   {

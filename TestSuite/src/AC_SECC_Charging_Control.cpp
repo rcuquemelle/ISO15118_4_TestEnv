@@ -85,7 +85,8 @@ int main(int argc, char *argv[])
   if (-1 == load_config(testconfig, slac_config))
     return -1;
 
-  init_tc("dc_aging");
+  init_tc("ac_aging");
+  Pics_15118::PICS_CMN::PICS_CMN_CMN_ChargingMode = iso1Part4_ChargingMode::aC;
   tc16 = std::make_shared<TestCases_SECC_SessionStop>(mtc, stc, cfg, cmn, pre, post);
 
   // for (size_t i = 0; i < 5; i++)
@@ -99,20 +100,15 @@ int main(int argc, char *argv[])
   while (0 == stc->_pBCIf->getBtnPressCounter()){
   }
   PAsleep(1.5);
-  if (stc->_pBCIf->getBtnPressCounter() == 1){
-    // 30kw
-    Logging::info(LogTc_ENABLE, "------ DC 30KW AGING TEST ------");
-  }
-  else {
-    // 60kw
-    Logging::info(LogTc_ENABLE, "------ DC 60KW AGING TEST ------");
-    par_EVTargetCurrent.value_ *= 2;
-    mtc->vc_EVMaximumCurrentLimit.Value *= 2;
-  }
+  // 30kw
+  Logging::info(LogTc_ENABLE, "------ AC 11KW AGING TEST ------");
+  // par_EVTargetCurrent.value_ *= 2;
+  // mtc->vc_EVMaximumCurrentLimit.Value *= 2;
+
   Logging::info(LogTc_ENABLE, fmt::format("Target current: {}A", par_EVTargetCurrent.value_));
   Logging::info(LogTc_ENABLE, fmt::format("Target voltage: {}V", par_EVTargetVoltage.value_));
   stc->_pBCIf->resetBtnCounter();
-  tc16->TC_SECC_DC_VTB_SessionStop_010();
+  tc16->TC_SECC_AC_VTB_SessionStop_011();
   stc->_pBCIf->resetBtnCounter();
   tc16.reset();
   deinit_tc();

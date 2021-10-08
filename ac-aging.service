@@ -1,0 +1,17 @@
+[Unit]
+Description=EV lite emulator
+After=network.target
+Wants=network.target
+
+[Service]
+User=root
+Type=simple
+Environment=HOME=/root
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/hlc/run_ac_aging.sh
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5s
+[Install]
+WantedBy=multi-user.target
